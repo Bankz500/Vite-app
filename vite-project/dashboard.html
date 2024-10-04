@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Crypto Brand</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Chart.js Library -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script type="module">
+        // Firebase SDK imports
+        import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.1.3/firebase-app.js';
+        import { getAuth, onAuthStateChanged, signOut } from 'https://www.gstatic.com/firebasejs/9.1.3/firebase-auth.js';
+        import { getFirestore, doc, getDoc } from 'https://www.gstatic.com/firebasejs/9.1.3/firebase-firestore.js';
+
+        // Firebase configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyCYPebq5BKkATW4TbriKmyzfrg1SClHh1E",
+            authDomain: "visionprobase.firebaseapp.com",
+            projectId: "visionprobase",
+            storageBucket: "visionprobase",
+            messagingSenderId: "470005462156",
+            appId: "1:470005462156:web:008163a778caceeb7637a9"
+        };
+
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+        const db = getFirestore(app); // Initialize Firestore
+
+        // Check if the user is authenticated
+        onAuthStateChanged(auth, async (user) => {
+            if (user) {
+                // Fetch user data from Firestore
+                const userDocRef = doc(db, 'users', user.uid); // Reference to user's document
+                const userDoc = await getDoc(userDocRef);
+
+                if (userDoc.exists()) {
+                    // Populate the fields with the user data
+                    const userData = userDoc.data();
+                    
+                    // Set the amounts directly from user data
+                    document.getElementById('Deposit-account').textContent = `${userData.deposit || '0.00'}`;
+                    document.getElementById('Profit-wallet').textContent = `${userData.profit || '0.00'}`;
+                    document.getElementById('wallet').textContent = `${userData.wallet || '0.00'}`;
+                } else {
+                    console.log('No user document found in Firestore.');
+                    alert('No user data found in Firestore.');
+                }
+            } else {
+                // If user is not authenticated, redirect to the sign-in page
+                console.log('No user signed in, redirecting to sign-in page.');
+                window.location.href = 'sign-in.html';
+            }
+        });
+
+        // Sign out function
+        window.signOut = function() {
+            signOut(auth).then(() => {
+                alert('Signed out successfully!');
+                window.location.href = 'sign-in.html'; // Redirect after sign-out
+            }).catch((error) => {
+                alert('Error signing out: ' + error.message);
+            });
+        };
+    </script>
+</head>
+<body class="font-sans antialiased bg-gray-100">
+
+    <!-- Navbar -->
+    <nav class="bg-white p-4 shadow">
+        <div class="container mx-auto flex items-center justify-between">
+            <a href="index.html">
+                <img src="vision.png" alt="Crypto Brand Logo" class="h-12">
+            </a>
+            
+            <!-- Sign out button for mobile and desktop -->
+            <button onclick="signOut()" class="bg-gradient-to-r from-blue-500 to-blue-900 text-white px-6 py-2 rounded-lg hover:bg-blue-600">Sign Out</button>
+        </div>
+    </nav>
+
+    <div class="flex">
+
+        <!-- Sidebar (hidden on mobile, visible on desktop) -->
+        <div id="sidebar" class="md:w-64 bg-white shadow-md h-screen hidden md:block">
+            <div class="p-4">
+                <h2 class="text-lg font-semibold text-gray-800">Investor Dashboard</h2>
+            </div>
+            <nav class="mt-6">
+                <ul>
+                    <li class="p-4 hover:bg-gray-200"><a href="dashboard.html">Wallet</a></li>
+                    <li class="p-4 hover:bg-gray-200"><a href="deposit.html">Deposit</a></li>
+                    <li class="p-4 hover:bg-gray-200"><a href="withdrawal.html">Withdrawal</a></li>
+                    <li class="p-4 hover:bg-gray-200"><a href="verification.html">Verification</a></li>
+                    <li class="p-4 hover:bg-gray-200"><a href="profile.html">Profile</a></li>
+                </ul>
+            </nav>
+        </div>
+
+      <!-- Main Content -->
+<div class="flex-1 p-2 bg-blue-100"> <!-- Added navy background -->
+    <div class="flex-1 py-2 bg-white rounded-lg text-black">
+        <div class="flex-1 p-2 bg-blue-100">
+            <h1 class="text-2xl font-bold mb-6 rounded-lg text-black">Wallet Overview</h1>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <!-- Deposit Account Card -->
+                <!DOCTYPE html>
+                <html lang="en">
+                <head>
+                    <meta charset="UTF-8">
+                    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                    <title>Striped Background Card</title>
+                    <style>
+                        .striped-bg {
+                            background: repeating-linear-gradient(
+                                45deg,
+                                #f0f0f0,
+                                #f0f0f0 10px,
+                                #ffffff 10px,
+                                #ffffff 20px
+                            );
+                        }
+                    </style>
+                </head>
+                <body class="bg-gray-200 flex items-center justify-center h-screen">
+                    <div class="bg-white shadow-xl rounded-lg p-6 flex flex-col justify-between h-48 striped-bg">
+                        <label for="Deposit-account" class="block text-sm font-medium text-gray-700 text-center">Deposit account</label>
+                        <p id="Deposit-account" class="mt-2 text-2xl font-bold text-gray-900 text-center">$0.00</p>
+                    </div>
+                </body>
+                
+                <!-- Profit Wallet Card -->
+                <div class="bg-gradient-to-r from-blue-500 to-blue-900 shadow-xl rounded-lg p-6 flex flex-col justify-between h-48">
+                    <label for="Profit-wallet" class="block text-sm font-medium text-white text-center">Profit Wallet</label>
+                    <p id="Profit-wallet" class="mt-2 text-2xl font-bold text-white text-center">$0.00</p>
+                </div>
+                
+                <!-- Wallet Card -->
+                <div class="bg-white shadow-xl rounded-lg p-6 flex flex-col justify-between h-48 striped-bg"> <!-- Add the striped-bg class -->
+                    <label for="wallet" class="block text-sm font-medium text-gray-700 text-center">Wallet</label>
+                    <p id="wallet" class="mt-2 text-2xl font-bold text-gray-900 text-center">$0.00</p>
+                </div>
+                
+                <style>
+                    .striped-bg {
+                        background: repeating-linear-gradient(
+                            45deg,
+                            #f0f0f0,
+                            #f0f0f0 10px,
+                            #ffffff 10px,
+                            #ffffff 20px
+                        );
+                    }
+                </style>
+        </div>
+        
+        <section class="py-12 bg-blue-100" id="spacing">
+            <div class="container mx-auto text-center">
+            </div>
+        </section>
+
+
+        <!-- TradingView Widget BEGIN (Desktop Only) -->
+        <div class="hidden md:block tradingview-widget-container mx-auto text-center my-6">
+            <div class="tradingview-widget-container__widget"></div>
+            <div class="tradingview-widget-copyright">
+                <a href="https://www.tradingview.com/" rel="noopener nofollow" target="_blank">
+                    <span class="blue-text">Track all markets on TradingView</span>
+                </a>
+            </div>
+            <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-screener.js" async></script>
+            <script>
+                new TradingView.widget({
+                    "width": 1000,
+                    "height": 490,
+                    "defaultColumn": "overview",
+                    "screener_type": "crypto_mkt",
+                    "displayCurrency": "USD",
+                });
+            </script>
+        </div>
+        <!-- TradingView Widget END -->
+    </div>
+</div>
+
+<!-- Bottom Navbar (only visible on mobile) -->
+<div class="md:hidden fixed bottom-2 left-2 right-2 rounded-lg bg-gradient-to-r from-blue-500 to-blue-900 shadow-2xl p-3">
+    <div class="flex justify-between items-center">
+        <!-- Wallet Icon -->
+        <a href="dashboard.html" class="flex flex-col items-center">
+            <div class="bg-white rounded-full shadow-md p-2">
+                <img src="122.png" alt="Wallet Icon" class="h-6 w-6">
+            </div>
+            <span class="text-xs font-semibold text-white mt-1">Wallet</span>
+        </a>
+        <!-- Deposit Icon -->
+        <a href="deposit.html" class="flex flex-col items-center">
+            <div class="bg-white rounded-full shadow-md p-2">
+                <img src="save.png" alt="Deposit Icon" class="h-6 w-6">
+            </div>
+            <span class="text-xs font-semibold text-black mt-1">Deposit</span>
+        </a>
+        <!-- Withdraw Icon -->
+        <a href="withdrawal.html" class="flex flex-col items-center">
+            <div class="bg-white rounded-full shadow-md p-2">
+                <img src="money.png" alt="Withdraw Icon" class="h-6 w-6">
+            </div>
+            <span class="text-xs font-semibold text-black mt-1">Withdraw</span>
+        </a>
+        <!-- Verify Icon -->
+        <a href="verification.html" class="flex flex-col items-center">
+            <div class="bg-white rounded-full shadow-md p-2">
+                <img src="23345.png" alt="Verify Icon" class="h-6 w-6">
+            </div>
+            <span class="text-xs font-semibold text-black mt-1">Verify</span>
+        </a>
+        <!-- Profile Icon -->
+        <a href="profile.html" class="flex flex-col items-center">
+            <div class="bg-white rounded-full shadow-md p-2">
+                <img src="2334.png" alt="Profile Icon" class="h-6 w-6">
+            </div>
+            <span class="text-xs font-semibold text-black mt-1">Profile</span>
+        </a>
+    </div>
+</div>
+
+
+</body>
+</html>

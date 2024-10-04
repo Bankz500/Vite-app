@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Crypto Brand</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Chart.js Library -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script type="module">
+        // Firebase SDK imports
+        import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.1.3/firebase-app.js';
+        import { getAuth, onAuthStateChanged, signOut } from 'https://www.gstatic.com/firebasejs/9.1.3/firebase-auth.js';
+        import { getFirestore, doc, getDoc } from 'https://www.gstatic.com/firebasejs/9.1.3/firebase-firestore.js';
+
+        // Firebase configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyCYPebq5BKkATW4TbriKmyzfrg1SClHh1E",
+            authDomain: "visionprobase.firebaseapp.com",
+            projectId: "visionprobase",
+            storageBucket: "visionprobase",
+            messagingSenderId: "470005462156",
+            appId: "1:470005462156:web:008163a778caceeb7637a9"
+        };
+
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+        const db = getFirestore(app); // Initialize Firestore
+
+        // Check if the user is authenticated
+        onAuthStateChanged(auth, async (user) => {
+            if (user) {
+                // Fetch user data from Firestore
+                const userDocRef = doc(db, 'users', user.uid); // Reference to user's document
+                const userDoc = await getDoc(userDocRef);
+
+                if (userDoc.exists()) {
+                    // Populate the fields with the user data
+                    const userData = userDoc.data();
+                    
+                    // Set the amounts directly from user data
+                    document.getElementById('Deposit-account').textContent = `${userData.deposit || '0.00'}`;
+                    document.getElementById('Profit-wallet').textContent = `${userData.profit || '0.00'}`;
+                    document.getElementById('wallet').textContent = `${userData.wallet || '0.00'}`;
+                } else {
+                    console.log('No user document found in Firestore.');
+                    alert('No user data found in Firestore.');
+                }
+            } else {
+                // If user is not authenticated, redirect to the sign-in page
+                console.log('No user signed in, redirecting to sign-in page.');
+                window.location.href = 'sign-in.html';
+            }
+        });
+
+        // Sign out function
+        window.signOut = function() {
+            signOut(auth).then(() => {
+                alert('Signed out successfully!');
+                window.location.href = 'sign-in.html'; // Redirect after sign-out
+            }).catch((error) => {
+                alert('Error signing out: ' + error.message);
+            });
+        };
+    </script>
+</head>
+<body class="font-sans antialiased bg-blue-100">
+
+    <!-- Navbar -->
+    <nav class="bg-white p-4 shadow">
+        <div class="container mx-auto flex items-center justify-between">
+            <a href="index.html">
+                <img src="vision.png" alt="Crypto Brand Logo" class="h-12">
+            </a>
+            
+            <!-- Sign out button for mobile and desktop -->
+            <button onclick="signOut()" class="bg-gradient-to-r from-blue-500 to-blue-900 text-white px-6 py-2 rounded-lg hover:bg-blue-600">Sign Out</button>
+        </div>
+    </nav>
+
+    <div class="flex">
+
+        <!-- Sidebar (hidden on mobile, visible on desktop) -->
+        <div id="sidebar" class="md:w-64 bg-white shadow-md h-screen hidden md:block">
+            <div class="p-4">
+                <h2 class="text-lg font-semibold text-gray-800">Investor Dashboard</h2>
+            </div>
+            <nav class="mt-6">
+                <ul>
+                    <li class="p-4 hover:bg-gray-200"><a href="dashboard.html">Wallet</a></li>
+                    <li class="p-4 hover:bg-gray-200"><a href="deposit.html">Deposit</a></li>
+                    <li class="p-4 hover:bg-gray-200"><a href="withdrawal.html">Withdrawal</a></li>
+                    <li class="p-4 hover:bg-gray-200"><a href="verification.html">Verification</a></li>
+                    <li class="p-4 hover:bg-gray-200"><a href="profile.html">Profile</a></li>
+                </ul>
+            </nav>
+        </div>
+
+<!-- Main Content -->
+<div class="flex-1 p-6 bg-blue-100"> <!-- Added navy background -->
+    <div class="flex-1 p-6 bg-white rounded-lg text-black">
+        <h1 class="text-2xl font-semibold mb-6">Verification</h1>
+        <p class="mb-4">To complete your verification process, please upload a government-issued identity card.</p>
+
+        <!-- Select Dropdown -->
+        <div class="mb-4">
+            <label for="docType" class="block mb-2 text-sm font-medium">Choose an option</label>
+            <select id="docType" class="block w-full p-3 border border-gray-300 rounded-md bg-white text-black focus:ring-indigo-500 focus:border-white">
+                <option value="" disabled selected>Select a document type</option>
+                <option value="driversLicense">Driver's License</option>
+                <option value="passport">International Passport</option>
+                <option value="ssn">SSN Card</option>
+            </select>
+            <p id="docTypeError" class="text-red-500 text-sm hidden">Document type is required.</p>
+        </div>
+
+        <!-- Upload File Section -->
+        <div class="mb-4">
+            <label for="verificationFile" class="block mb-2 text-sm font-medium">Upload File</label>
+            <input type="file" id="verificationFile" class="block w-full text-black p-3 border border-gray-300 rounded-md bg-white" accept=".jpg,.jpeg,.png,.pdf" onchange="uploadVerificationDocument(event)">
+            <p id="fileError" class="text-red-500 text-sm hidden">File upload is required.</p>
+        </div>
+        <p class="text-sm mb-6">Upload supported file types: JPG, PNG, PDF</p>
+
+        <!-- Submit Button -->
+        <button id="submitButton" onclick="submitVerification()" class="bg-blue-600 text-white px-6 py-2 rounded-md hover:bg-blue-700 w-full">
+            Submit
+        </button>
+
+        <!-- Hidden prompt for submission status -->
+        <p id="submissionStatus" class="mt-4 text-blue-500 font-semibold hidden"></p>
+    </div>
+</div>
+
+<script>
+    function uploadVerificationDocument(event) {
+        // Handle the file upload event here if needed
+    }
+
+    function submitVerification() {
+        const docType = document.getElementById('docType');
+        const verificationFile = document.getElementById('verificationFile');
+        const submitButton = document.getElementById('submitButton');
+        const submissionStatus = document.getElementById('submissionStatus');
+
+        // Reset error messages and status
+        document.getElementById('docTypeError').classList.add('hidden');
+        document.getElementById('fileError').classList.add('hidden');
+        submissionStatus.classList.add('hidden');
+        submitButton.textContent = 'Submit'; // Reset button text if clicked again
+
+        // Validation flag
+        let isValid = true;
+
+        // Validate Document Type
+        if (docType.value === "") {
+            document.getElementById('docTypeError').classList.remove('hidden');
+            isValid = false;
+        }
+
+        // Validate File Upload
+        if (verificationFile.files.length === 0) {
+            document.getElementById('fileError').classList.remove('hidden');
+            isValid = false;
+        }
+
+        // If all fields are valid, show loading state for 5 seconds
+        if (isValid) {
+            // Change button to loading state
+            submitButton.textContent = 'Please wait...';
+            submitButton.disabled = true;
+
+            // Simulate a delay of 5 seconds (5000ms) before showing the success message
+            setTimeout(() => {
+                submitButton.textContent = 'Sent';
+                submitButton.disabled = false;
+                submissionStatus.textContent = 'Verification document has been sent.';
+                submissionStatus.classList.remove('hidden');
+            }, 5000); // 5 seconds delay
+        }
+    }
+</script>
+
+
+<!-- Bottom Navbar (only visible on mobile) -->
+<div class="md:hidden fixed bottom-2 left-2 right-2 rounded-lg bg-gradient-to-r from-blue-500 to-blue-900 shadow-2xl p-3">
+    <div class="flex justify-between items-center">
+        <!-- Wallet Icon -->
+        <a href="dashboard.html" class="nav-item flex flex-col items-center" onclick="setActive(this)">
+            <div class="bg-white rounded-full shadow-md p-2 transition-transform transform hover:scale-110 active:scale-95 active:shadow-lg">
+                <img src="122.png" alt="Wallet Icon" class="h-6 w-6" />
+            </div>
+            <span class="text-xs font-semibold text-black mt-1">Wallet</span>
+        </a>
+        <!-- Deposit Icon -->
+        <a href="deposit.html" class="nav-item flex flex-col items-center" onclick="setActive(this)">
+            <div class="bg-white rounded-full shadow-md p-2 transition-transform transform hover:scale-110 active:scale-95 active:shadow-lg">
+                <img src="save.png" alt="Deposit Icon" class="h-6 w-6" />
+            </div>
+            <span class="text-xs font-semibold text-black mt-1">Deposit</span>
+        </a>
+        <!-- Withdraw Icon -->
+        <a href="withdrawal.html" class="nav-item flex flex-col items-center" onclick="setActive(this)">
+            <div class="bg-white rounded-full shadow-md p-2 transition-transform transform hover:scale-110 active:scale-95 active:shadow-lg">
+                <img src="money.png" alt="Withdraw Icon" class="h-6 w-6" />
+            </div>
+            <span class="text-xs font-semibold text-black mt-1">Withdraw</span>
+        </a>
+        <!-- Verify Icon -->
+        <a href="verification.html" class="nav-item flex flex-col items-center" onclick="setActive(this)">
+            <div class="bg-white rounded-full shadow-md p-2 transition-transform transform hover:scale-110 active:scale-95 active:shadow-lg">
+                <img src="23345.png" alt="Verify Icon" class="h-6 w-6" />
+            </div>
+            <span class="text-xs font-semibold text-white mt-1">Verify</span>
+        </a>
+        <!-- Profile Icon -->
+        <a href="profile.html" class="nav-item flex flex-col items-center transition-all duration-200 ease-in-out active">
+            <div class="bg-white rounded-full shadow-md p-2 transition-transform transform hover:scale-110 active:scale-95 active:shadow-lg">
+                <img src="2334.png" alt="Profile Icon" class="h-6 w-6 text-blue-600" />
+            </div>
+            <span class="text-xs font-semibold text-black mt-1">Profile</span>
+        </a>
+    </div>
+</div>
+
+<script>
+    // JavaScript function to set the active state
+    function setActive(clickedItem) {
+        // Remove active class from all items
+        const navItems = document.querySelectorAll('.nav-item');
+        navItems.forEach(item => {
+            item.classList.remove('text-blue-600', 'bg-blue-100', 'shadow-lg'); // Reset styles
+            item.classList.add('text-gray-700'); // Default text color
+            const icon = item.querySelector('img');
+            if (icon) {
+                icon.classList.remove('text-blue-600'); // Reset icon color
+                icon.classList.add('text-gray-700'); // Default icon color
+            }
+        });
+        
+        // Add active class to the clicked item
+        clickedItem.classList.add('text-blue-600', 'bg-blue-100', 'shadow-lg'); // Change styles for active
+        const icon = clickedItem.querySelector('img');
+        if (icon) {
+            icon.classList.add('text-blue-600'); // Change icon color for active
+        }
+    }
+</script>
+</html>

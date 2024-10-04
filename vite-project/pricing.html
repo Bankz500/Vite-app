@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Crypto Brand</title>
+    <!-- Include Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="font-sans antialiased">
+
+    <!-- Navbar -->
+    <nav class="bg-white bg-opacity-800 p-4">
+        <div class="container mx-auto flex items-center justify-between flex-wrap">
+            <!-- Replace with your logo -->
+            <a href="index.html">
+                <img src="vision.png" alt="Crypto Brand Logo" class="h-12">
+            </a>
+            
+            
+            <!-- Navigation links -->
+            <div class="space-x-8 ml-auto pr-10 hidden md:flex">
+                <a href="landingpage.html" class="text-blue hover:text-gray-400">Home</a>
+                <a href="#" class="text-blue hover:text-gray-400">Contact</a>
+                <a href="sign-in.html" class="text-blue hover:text-gray-400">Dashboard</a>
+            </div>
+
+            <!-- Log In CTA -->
+            <a href="sign-in.html" class="bg-blue-500 text-white px-6 py-2 rounded-lg hover:bg-gray-600">Log In</a>
+
+            <!-- Mobile Menu Button -->
+            <div class="md:hidden">
+                <button id="mobile-menu-button" class="text-blue-500 focus:outline-none">
+                    <!-- Icon for mobile menu -->
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="hidden fixed top-0 right-0 w-64 h-full bg-white shadow-lg transition-transform transform translate-x-full md:hidden">
+        <div class="p-4">
+            <!-- Cancel Button -->
+            <button id="close-menu" class="text-blue-500 mb-4">✖ Close</button>
+            <a href="index.html" class="block text-blue hover:text-gray-400">Home</a>
+            <a href="contact.html" class="block text-blue hover:text-gray-400">Contact</a>
+            <a href="sign-in.html" class="block text-blue hover:text-gray-400">Dashboard</a>
+        </div>
+    </div>
+
+    <script>
+        const menu = document.getElementById('mobile-menu');
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const closeMenuButton = document.getElementById('close-menu');
+
+        // Toggle mobile menu visibility
+        mobileMenuButton.onclick = function() {
+            menu.classList.toggle('hidden');
+            menu.classList.toggle('translate-x-full'); // Slide in/out effect
+        };
+
+        // Close menu when clicking the close button
+        closeMenuButton.onclick = function() {
+            menu.classList.add('hidden');
+            menu.classList.add('translate-x-full'); // Slide out effect
+        };
+
+        // Close menu when clicking outside of it
+        document.addEventListener('click', function(event) {
+            if (!menu.contains(event.target) && !mobileMenuButton.contains(event.target)) {
+                menu.classList.add('hidden');
+                menu.classList.add('translate-x-full'); // Slide out effect
+            }
+        });
+    </script>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Selected Plan - Crypto Brand</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        // Function to get the selected plan from the URL
+        function getQueryParams() {
+            const params = new URLSearchParams(window.location.search);
+            return params.get('plan');
+        }
+
+        // Function to display the selected plan details
+        function displaySelectedPlan() {
+            const selectedPlan = getQueryParams();
+            const planDetails = {
+                bronze: {
+                    name: "Bronze",
+                    price: "$300/mo",
+                    description: "WEEKLY 100% RETURN, 100% ROI",
+                },
+                silver: {
+                    name: "Silver",
+                    price: "$7500/mo",
+                    description: "WEEKLY 100% RETURN, 100% ROI",
+                },
+                gold: {
+                    name: "Gold",
+                    price: "$20000/mo",
+                    description: "WEEKLY 100% RETURN, 100% ROI",
+                }
+            };
+
+            const plan = planDetails[selectedPlan];
+            if (plan) {
+                document.getElementById("plan-name").textContent = plan.name;
+                document.getElementById("plan-price").textContent = plan.price;
+                document.getElementById("plan-description").textContent = plan.description;
+            } else {
+                document.getElementById("plan-card").textContent = "Invalid plan selected.";
+            }
+        }
+
+        window.onload = displaySelectedPlan;
+    </script>
+
+
+</head>
+<body class="bg-gray-100">
+
+    <section class="py-16 bg-white">
+        <div class="container mx-auto text-center">
+            <div id="plan-card" class="bg-white p-10 rounded-lg shadow-2xl inline-block max-w-xl">
+                <h2 id="plan-name" class="text-4xl font-bold mb-4 text-blue-600">Selected Plan: Gold</h2>
+                <p id="plan-price" class="text-3xl font-semibold mb-2 text-gray-800">$20,000<span class="text-lg font-normal">/mo</span></p>
+                <p id="plan-description" class="text-lg text-gray-600 mb-6">Enjoy the benefits of our Gold plan with weekly 100% ROI returns. This is our top-tier plan offering maximum benefits and rewards.</p>
+                
+                <!-- Subtext -->
+                <p class="text-gray-700 mb-4">You’ve selected the <span class="font-semibold text-blue-600">Gold Plan</span>. Please click "Proceed to Sign Up" to continue with your registration.</p>
+                <p class="text-gray-600 mb-8 italic">After signing up, you'll be able to proceed to the payment section.</p>
+                
+               <!-- Proceed Button -->
+<a href="sign-in.html" class="bg-blue-500 text-white px-8 py-3 rounded-full font-semibold hover:bg-blue-600 transition duration-300 transform hover:scale-105">
+    Proceed to Sign Up
+</a>
+
+
+                <!-- Payment Disclaimer -->
+                <p class="text-xs text-gray-500 mt-4">*Payment options will be presented on the next step. Make sure to review the terms before proceeding.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Payment Methods Section -->
+    <section class="py-16 bg-gray-50">
+        <div class="container mx-auto text-center">
+            <h3 class="text-2xl font-bold mb-8 text-gray-700">Payment Methods</h3>
+            <p class="text-gray-600 mb-6">We accept the following payment methods:</p>
+
+            <!-- Payment Methods -->
+            <div class="flex justify-center space-x-6">
+                <!-- Bitcoin -->
+                <div class="bg-yellow-400 p-4 rounded-full shadow-lg w-24 h-24 flex items-center justify-center transition transform hover:scale-105 hover:shadow-xl">
+                    <div>
+                        <h4 class="text-xl font-semibold text-gray-800">BTC</h4>
+                    </div>
+                </div>
+                <!-- USDT -->
+                <div class="bg-green-400 p-4 rounded-full shadow-lg w-24 h-24 flex items-center justify-center transition transform hover:scale-105 hover:shadow-xl">
+                    <div>
+                        <h4 class="text-xl font-semibold text-gray-800">USDT</h4>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Payment Disclaimer -->
+            <p class="text-sm text-gray-500 mt-8">*All payments are final and processed securely via Bitcoin and USDT. For any inquiries, contact our support team.</p>
+        </div>
+    </section>
+
+</body>
+
+
+
+<section class="py-16 bg-white" id="spacing">
+<div class="container mx-auto text-center">
+</div>
+</section>
+
+
+<!-- Footer Section -->
+<footer class="bg-gray-800 text-white py-8">
+    <div class="container mx-auto text-center">
+        <div class="flex flex-col md:flex-row md:justify-between md:items-center">
+            <div class="mb-4 md:mb-0">
+                <h4 class="text-lg font-semibold">Vision Pro</h4>
+                <p class="text-gray-400">Empowering your trading.</p>
+            </div>
+            <div class="space-y-2">
+                <a href="#" class="text-gray-400 hover:text-white">Home</a>
+                <a href="#" class="text-gray-400 hover:text-white">About</a>
+                <a href="#" class="text-gray-400 hover:text-white">Contact</a>
+            </div>
+        </div>
+        <div class="mt-6">
+            <p class="text-gray-400 text-sm">&copy; 2024 Vision Pro. All rights reserved.</p>
+        </div>
+    </div>
+</footer>
+</body>
+</html>

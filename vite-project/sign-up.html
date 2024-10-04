@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up - Crypto Brand</title>
+    <!-- Include Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Include Firebase SDKs -->
+    <script src="https://www.gstatic.com/firebasejs/9.1.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.1.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.1.0/firebase-firestore.js"></script>
+</head>
+<body class="font-sans antialiased">
+
+    <!-- Navbar -->
+    <nav class="bg-white bg-opacity-800 p-4">
+        <div class="container mx-auto flex items-center justify-between flex-wrap">
+            <a href="index.html">
+                <img src="vision.png" alt="Crypto Brand Logo" class="h-12">
+            </a>  
+            <div class="space-x-8 ml-auto pr-10 hidden md:flex">
+                <a href="index.html" class="text-blue hover:text-gray-400">Home</a>
+                <a href="contact.html" class="text-blue hover:text-gray-400">Contact</a>
+                <a href="#dashboard" class="text-blue hover:text-gray-400">Dashboard</a>
+            </div>
+            <a href="dashboard.html" class="bg-blue-500 text-white px-6 py-2 rounded-lg hover:bg-gray-600">Log In</a>
+            <div class="md:hidden">
+                <button id="mobile-menu-button" class="text-blue-500 focus:outline-none">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+  <!-- Mobile Menu -->
+  <div id="mobile-menu" class="hidden fixed top-0 right-0 w-64 h-full bg-white shadow-lg transition-transform transform translate-x-full md:hidden">
+    <div class="p-4">
+        <!-- Cancel Button -->
+        <button id="close-menu" class="text-blue-500 mb-4">✖ Close</button>
+        <a href="index.html" class="block text-blue hover:text-gray-400">Home</a>
+        <a href="contact.html" class="block text-blue hover:text-gray-400">Contact</a>
+        <a href="sign-in.html" class="block text-blue hover:text-gray-400">Dashboard</a>
+    </div>
+</div>
+
+<script>
+    const menu = document.getElementById('mobile-menu');
+    const mobileMenuButton = document.getElementById('mobile-menu-button');
+    const closeMenuButton = document.getElementById('close-menu');
+
+    // Toggle mobile menu visibility
+    mobileMenuButton.onclick = function() {
+        menu.classList.toggle('hidden');
+        menu.classList.toggle('translate-x-full'); // Slide in/out effect
+    };
+
+    // Close menu when clicking the close button
+    closeMenuButton.onclick = function() {
+        menu.classList.add('hidden');
+        menu.classList.add('translate-x-full'); // Slide out effect
+    };
+
+    // Close menu when clicking outside of it
+    document.addEventListener('click', function(event) {
+        if (!menu.contains(event.target) && !mobileMenuButton.contains(event.target)) {
+            menu.classList.add('hidden');
+            menu.classList.add('translate-x-full'); // Slide out effect
+        }
+    });
+</script>
+
+    <!-- Sign-Up Section -->
+    <section class="min-h-screen bg-gradient-to-r from-blue-500 to-blue-700 flex items-center justify-center">
+        <div class="bg-white shadow-lg rounded-lg p-8 max-w-md w-full">
+            <h2 class="text-4xl font-bold text-gray-900 mb-6 text-center">Create Your Account</h2>
+            <p class="text-lg text-gray-600 text-center mb-4">Join our community and start trading with confidence.</p>
+            <p class="text-sm text-gray-500 text-center mb-8">It’s quick and easy to set up your account.</p>
+
+            <!-- Sign-Up Form -->
+            <form class="space-y-6">
+                <div>
+                    <label for="signUpName" class="block text-sm font-medium text-gray-700">Name</label>
+                    <input type="text" id="signUpName" required class="mt-1 w-full border-gray-300 rounded-lg shadow-sm p-3 focus:border-blue-500 focus:ring-blue-500" placeholder="Enter your name">
+                </div>
+
+                <div>
+                    <label for="signUpEmail" class="block text-sm font-medium text-gray-700">Email</label>
+                    <input type="email" id="signUpEmail" required class="mt-1 w-full border-gray-300 rounded-lg shadow-sm p-3 focus:border-blue-500 focus:ring-blue-500" placeholder="Enter your email">
+                </div>
+
+                <div>
+                    <label for="signUpPassword" class="block text-sm font-medium text-gray-700">Password</label>
+                    <input type="password" id="signUpPassword" required class="mt-1 w-full border-gray-300 rounded-lg shadow-sm p-3 focus:border-blue-500 focus:ring-blue-500" placeholder="Enter your password">
+                </div>
+
+                <button type="button" onclick="signUp()" class="w-full bg-blue-600 text-white py-3 rounded-lg hover:bg-blue-700 transition duration-200">Sign Up</button>
+            </form>
+
+            <p class="mt-4 text-sm text-gray-600 text-center">Already have an account? <a href="sign-in.html" class="text-blue-600 hover:underline">Sign In</a></p>
+        </div>
+    </section>
+
+    <footer class="bg-gray-800 text-white py-8">
+        <div class="container mx-auto text-center">
+            <div class="flex flex-col md:flex-row md:justify-between md:items-center">
+                <div class="mb-4 md:mb-0">
+                    <h4 class="text-lg font-semibold">Vision Pro Base</h4>
+                    <p class="text-gray-400">Empowering your trading journey.</p>
+                </div>
+                <div class="space-y-2">
+                    <a href="#" class="text-gray-400 hover:text-white">Home</a>
+                    <a href="#" class="text-gray-400 hover:text-white">About Us</a>
+                    <a href="#" class="text-gray-400 hover:text-white">Contact</a>
+                </div>
+            </div>
+            <div class="mt-6">
+                <p class="text-gray-400 text-sm">&copy; 2024 Vision Pro Base. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script type="module">
+        // Firebase SDK imports
+        import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.1.3/firebase-app.js';
+        import { getAuth, createUserWithEmailAndPassword } from 'https://www.gstatic.com/firebasejs/9.1.3/firebase-auth.js';
+        import { getFirestore, doc, setDoc } from 'https://www.gstatic.com/firebasejs/9.1.3/firebase-firestore.js';
+
+        // Firebase configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyCYPebq5BKkATW4TbriKmyzfrg1SClHh1E",
+            authDomain: "visionprobase.firebaseapp.com",
+            projectId: "visionprobase",
+            storageBucket: "visionprobase.appspot.com",
+            messagingSenderId: "470005462156",
+            appId: "1:470005462156:web:008163a778caceeb7637a9"
+        };
+
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+        const db = getFirestore(app);
+
+        // Sign-up function
+        window.signUp = function() {
+            const name = document.getElementById('signUpName').value;
+            const email = document.getElementById('signUpEmail').value;
+            const password = document.getElementById('signUpPassword').value;
+
+            createUserWithEmailAndPassword(auth, email, password)
+                .then(async (userCredential) => {
+                    const user = userCredential.user;
+                    // Add user to Firestore
+                    try {
+                        await setDoc(doc(db, 'users', user.uid), {
+                            name: name,
+                            email: email,
+                            uid: user.uid
+                        });
+                        alert('Signed up successfully! Your account has been created.');
+                        window.location.href = 'sign-in.html';
+                    } catch (firestoreError) {
+                        alert('Error saving user data: ' + firestoreError.message);
+                    }
+                })
+                .catch((error) => {
+                    alert('Error signing up: ' + error.message);
+                });
+        };
+    </script>
+
+</body>
+</html>

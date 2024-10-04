@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Crypto Brand</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Chart.js Library -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script type="module">
+        // Firebase SDK imports
+        import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.1.3/firebase-app.js';
+        import { getAuth, onAuthStateChanged, signOut } from 'https://www.gstatic.com/firebasejs/9.1.3/firebase-auth.js';
+        import { getFirestore, doc, getDoc } from 'https://www.gstatic.com/firebasejs/9.1.3/firebase-firestore.js';
+
+        // Firebase configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyCYPebq5BKkATW4TbriKmyzfrg1SClHh1E",
+            authDomain: "visionprobase.firebaseapp.com",
+            projectId: "visionprobase",
+            storageBucket: "visionprobase",
+            messagingSenderId: "470005462156",
+            appId: "1:470005462156:web:008163a778caceeb7637a9"
+        };
+
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+        const db = getFirestore(app); // Initialize Firestore
+
+        // Check if the user is authenticated
+        onAuthStateChanged(auth, async (user) => {
+            if (user) {
+                // Fetch user data from Firestore
+                const userDocRef = doc(db, 'users', user.uid); // Reference to user's document
+                const userDoc = await getDoc(userDocRef);
+
+                if (userDoc.exists()) {
+                    // Populate the fields with the user data
+                    const userData = userDoc.data();
+                    
+                    // Set the amounts directly from user data
+                    document.getElementById('Deposit-account').textContent = `${userData.deposit || '0.00'}`;
+                    document.getElementById('Profit-wallet').textContent = `${userData.profit || '0.00'}`;
+                    document.getElementById('wallet').textContent = `${userData.wallet || '0.00'}`;
+                } else {
+                    console.log('No user document found in Firestore.');
+                    alert('No user data found in Firestore.');
+                }
+            } else {
+                // If user is not authenticated, redirect to the sign-in page
+                console.log('No user signed in, redirecting to sign-in page.');
+                window.location.href = 'sign-in.html';
+            }
+        });
+
+        // Sign out function
+        window.signOut = function() {
+            signOut(auth).then(() => {
+                alert('Signed out successfully!');
+                window.location.href = 'sign-in.html'; // Redirect after sign-out
+            }).catch((error) => {
+                alert('Error signing out: ' + error.message);
+            });
+        };
+    </script>
+</head>
+<body class="font-sans antialiased bg-blue-100">
+
+    <!-- Navbar -->
+    <nav class="bg-white p-4 shadow">
+        <div class="container mx-auto flex items-center justify-between">
+            <a href="index.html">
+                <img src="vision.png" alt="Crypto Brand Logo" class="h-12">
+            </a>
+            
+            <!-- Sign out button for mobile and desktop -->
+            <button onclick="signOut()" class="bg-gradient-to-r from-blue-500 to-blue-900 text-white px-6 py-2 rounded-lg hover:bg-blue-600">Sign Out</button>
+        </div>
+    </nav>
+
+    <div class="flex">
+
+        <!-- Sidebar (hidden on mobile, visible on desktop) -->
+        <div id="sidebar" class="md:w-64 bg-white shadow-md h-screen hidden md:block">
+            <div class="p-4">
+                <h2 class="text-lg font-semibold text-gray-800">Investor Dashboard</h2>
+            </div>
+            <nav class="mt-6">
+                <ul>
+                    <li class="p-4 hover:bg-gray-200"><a href="dashboard.html">Wallet</a></li>
+                    <li class="p-4 hover:bg-gray-200"><a href="deposit.html">Deposit</a></li>
+                    <li class="p-4 hover:bg-gray-200"><a href="withdrawal.html">Withdrawal</a></li>
+                    <li class="p-4 hover:bg-gray-200"><a href="verification.html">Verification</a></li>
+                    <li class="p-4 hover:bg-gray-200"><a href="profile.html">Profile</a></li>
+                </ul>
+            </nav>
+        </div>
+        
+        <section class="py-16 bg-white" id="spacing">
+            <div class="container mx-auto text-center">
+            </div>
+        </section>  
+
+       <!-- Main Content -->
+
+       <div class="flex-1 p-2 bg-blue-100"> <!-- Added navy background -->
+        <div class="flex-1 py-3 bg-white rounded-lg  text-black">
+<div class="bg-white shadow-0 rounded-0 p-6 hidden md:block max-w-2xl mx-0"> <!-- Desktop Card -->
+    <h2 class="text-3xl font-semibold mb-6 text-gray-800">Deposit</h2>
+    <p class="mb-4 text-gray-700">To make a deposit, copy the wallet address below. After payment, kindly attach a payment proof receipt.</p>
+
+    <label class="block mb-2 text-gray-700" for="depositorName">Depositor's Name:</label>
+    <input type="text" id="depositorName" class="border rounded w-full p-3 mb-4 focus:outline-none focus:ring-2 focus:ring-blue-400" placeholder="Enter your name">
+
+    <label class="block mb-2 text-gray-700" for="amount">Select Amount:</label>
+    <select id="amount" class="border rounded w-full p-3 mb-4 focus:outline-none focus:ring-2 focus:ring-blue-400">
+        <option value="" disabled selected>Select an amount</option>
+        <option value="$100">$100</option>
+        <option value="$200">$200</option>
+        <option value="$500">$500</option>
+        <option value="$1000">$1000</option>
+        <option value="$2000">$2000</option>
+        <option value="$3000">$3000</option>
+        <option value="$5000">$5000</option>
+        <option value="$10000">$10000</option>
+        <option value="$20000">$20000</option>
+        <option value="$25000">$25000</option>
+        <option value="$50000">$50000</option>
+        <option value="$100000">$100000</option>
+    </select>
+
+    <label class="block mb-2 text-gray-700">Wallet Address:</label>
+    <div class="flex items-center border rounded p-3 mb-4 bg-gray-50 shadow-sm">
+        <span id="walletAddress" class="flex-1 text-gray-800 font-mono text-sm break-words">bc1qkkj0payl2w0lh937vj27y0zwqgzre38jm0rey4</span>
+        <button id="copyButton" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition">Copy</button>
+    </div>
+
+    <label class="block mb-2 text-gray-700">Upload Payment Receipt:</label>
+    <input type="file" class="border rounded w-full mb-4 focus:outline-none focus:ring-2 focus:ring-blue-400" accept="image/*">
+
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Loading State Button</title>
+        <style>
+            /* Add custom styling if needed */
+        </style>
+    </head>
+    <body>
+        <form id="myForm">
+            <!-- Other form fields here -->
+            
+            <button id="sendButton" type="submit" class="bg-blue-500 text-white w-full py-3 rounded-lg shadow hover:bg-blue-600 transition">
+                Send
+            </button>
+        </form>
+    
+        <script>
+            const form = document.getElementById('myForm');
+            const sendButton = document.getElementById('sendButton');
+    
+            form.addEventListener('submit', function(event) {
+                // Prevent the default form submission behavior
+                event.preventDefault();
+    
+                // Change the button text to "Please wait..." and disable the button
+                sendButton.textContent = 'Please wait...';
+                sendButton.disabled = true;
+                sendButton.classList.add('bg-gray-400', 'cursor-not-allowed');
+                sendButton.classList.remove('bg-blue-500', 'hover:bg-blue-600');
+    
+            // Simulate a delay (for demo purposes)
+            setTimeout(() => {
+                // Change the button text to "Completed"
+                sendButton.textContent = 'Completed';
+
+                // Simulate a short delay before resetting the form
+                setTimeout(() => {
+                    // Reset the form fields to their default state
+                    form.reset();
+
+                    // Reset the button text to "Send" and re-enable it
+                    sendButton.textContent = 'Send';
+                    sendButton.disabled = false;
+                    sendButton.classList.remove('bg-gray-400', 'cursor-not-allowed');
+                    sendButton.classList.add('bg-blue-500', 'hover:bg-blue-600');
+                }, 1500); // Show "Completed" for 1.5 seconds
+            }, 3000); // Simulate a 3-second delay for the demo
+        });
+    </script>
+    </body>
+    </html>
+    
+</div>
+
+<!-- Mobile Card -->
+<div class="flex flex-col items-center justify-start p-4 mt-0 md:hidden"> 
+    <div class="deposit-card bg-white shadow-0 rounded-lg p-4"> 
+        <h1 class="text-3xl font-bold mb-6 text-gray-800">Deposit</h1>
+        <p class=" text-gray-700 mb-4">To make a deposit, copy the wallet address below and attach the payment proof receipt.</p>
+        
+        <!-- Depositor's Name -->
+        <div class="mb-4">
+            <label class="block text-gray-700" for="depositorName">Depositor's Name:</label>
+            <input type="text" id="depositorName" class="border rounded w-full p-2 focus:outline-none focus:ring-2 focus:ring-blue-400" placeholder="Enter your name">
+            <p id="nameError" class="text-red-500 text-sm hidden">Name is required.</p>
+        </div>
+
+        <!-- Select Amount -->
+        <div class="mb-4">
+            <label class="block text-gray-700" for="amount">Select Amount:</label>
+            <select id="amount" class="border rounded w-full p-2 focus:outline-none focus:ring-2 focus:ring-blue-400">
+                <option value="" disabled selected>Select an amount</option>
+                <option value="$100">$100</option>
+                <option value="$200">$200</option>
+                <!-- Add more options as needed -->
+            </select>
+            <p id="amountError" class="text-red-500 text-sm hidden">Amount is required.</p>
+        </div>
+
+        <!-- Wallet Address Section -->
+        <div class="mb-4">
+            <label class="block text-gray-700">Wallet Address:</label>
+            <div class="flex flex-col items-start border rounded p-2 bg-gray-50 shadow-sm">
+                <span id="walletAddress" class="w-full text-gray-800 font-mono text-xs mb-2">bc1qkkj0payl2w0lh937vj27y0zwqgzre38jm0rey4</span>
+                <button id="copyButton" class="flex items-center justify-center px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 transition focus:outline-none">
+                    Copy Address
+                </button>
+            </div>
+        </div>
+
+        <!-- Upload File Section -->
+        <div class="mb-4">
+            <label for="verificationFile" class="block mb-2 text-sm font-medium">Upload Payment Proof</label>
+            <input type="file" id="verificationFile" class="block w-full text-black p-3 border border-gray-300 rounded-md bg-white" accept=".jpg,.jpeg,.png,.pdf">
+            <p id="fileError" class="text-red-500 text-sm hidden">File upload is required.</p>
+        </div>
+
+        <!-- Submit Button -->
+        <button id="submitButton" onclick="submitForm()" class="bg-blue-600 text-white px-6 py-2 rounded-md hover:bg-blue-700 w-full">
+            Submit
+        </button>
+
+        <!-- Hidden prompt for submission status -->
+        <p id="submissionStatus" class="mt-4 text-blue-500 font-semibold hidden"></p>
+    </div>
+</div>
+
+<script>
+    // Function to copy the wallet address
+    const copyButton = document.getElementById('copyButton');
+    copyButton.addEventListener('click', function() {
+        const walletAddress = document.getElementById('walletAddress').textContent;
+        navigator.clipboard.writeText(walletAddress).then(() => {
+            alert('Wallet address copied to clipboard!');
+        }).catch(err => {
+            console.error('Error copying text: ', err);
+        });
+    });
+
+    // Function to submit the form with validation and loading state
+    function submitForm() {
+        const depositorName = document.getElementById('depositorName').value;
+        const amount = document.getElementById('amount').value;
+        const verificationFile = document.getElementById('verificationFile');
+        const submitButton = document.getElementById('submitButton');
+        const submissionStatus = document.getElementById('submissionStatus');
+
+        // Reset error messages and submission status
+        document.getElementById('nameError').classList.add('hidden');
+        document.getElementById('amountError').classList.add('hidden');
+        document.getElementById('fileError').classList.add('hidden');
+        submissionStatus.classList.add('hidden');
+        submitButton.textContent = 'Submit'; // Reset button text if clicked again
+
+        // Validation flag
+        let isValid = true;
+
+        // Validate Depositor's Name
+        if (!depositorName) {
+            document.getElementById('nameError').classList.remove('hidden');
+            isValid = false;
+        }
+
+        // Validate Amount
+        if (!amount) {
+            document.getElementById('amountError').classList.remove('hidden');
+            isValid = false;
+        }
+
+        // Validate File Upload
+        if (verificationFile.files.length === 0) {
+            document.getElementById('fileError').classList.remove('hidden');
+            isValid = false;
+        }
+
+        // If all fields are valid, show loading state and success message
+        if (isValid) {
+            // Change button to loading state
+            submitButton.textContent = 'Submitting...';
+            submitButton.disabled = true;
+
+            // Simulate a delay of 5 seconds before showing the success message
+            setTimeout(() => {
+                submitButton.textContent = 'Sent';
+                submitButton.disabled = false;
+                submissionStatus.textContent = 'Your deposit has been sent successfully. We will get in touch soon.';
+                submissionStatus.classList.remove('hidden');
+            }, 5000); // 5 seconds delay
+        }
+    }
+</script>
+
+
+
+<section class="py-16 bg-white" id="spacing">
+    <div class="container mx-auto text-center">
+    </div>
+</section>
+
+<!-- Bottom Navbar (only visible on mobile) -->
+<div class="md:hidden fixed bottom-2 left-2 right-2 rounded-lg bg-gradient-to-r from-blue-500 to-blue-900 shadow-2xl p-3">
+    <div class="flex justify-between items-center">
+        <!-- Wallet Icon -->
+        <a href="dashboard.html" class="nav-item flex flex-col items-center" onclick="setActive(this)">
+            <div class="bg-white rounded-full shadow-md p-2 transition-transform transform hover:scale-110 active:scale-95 active:shadow-lg">
+                <img src="122.png" alt="Wallet Icon" class="h-6 w-6" />
+            </div>
+            <span class="text-xs font-semibold text-black mt-1">Wallet</span>
+        </a>
+        <!-- Deposit Icon -->
+        <a href="deposit.html" class="nav-item flex flex-col items-center" onclick="setActive(this)">
+            <div class="bg-white rounded-full shadow-md p-2 transition-transform transform hover:scale-110 active:scale-95 active:shadow-lg">
+                <img src="save.png" alt="Deposit Icon" class="h-6 w-6" />
+            </div>
+            <span class="text-xs font-semibold text-white mt-1">Deposit</span>
+        </a>
+        <!-- Withdraw Icon -->
+        <a href="withdrawal.html" class="nav-item flex flex-col items-center" onclick="setActive(this)">
+            <div class="bg-white rounded-full shadow-md p-2 transition-transform transform hover:scale-110 active:scale-95 active:shadow-lg">
+                <img src="money.png" alt="Withdraw Icon" class="h-6 w-6" />
+            </div>
+            <span class="text-xs font-semibold text-black mt-1">Withdraw</span>
+        </a>
+        <!-- Verify Icon -->
+        <a href="verification.html" class="nav-item flex flex-col items-center" onclick="setActive(this)">
+            <div class="bg-white rounded-full shadow-md p-2 transition-transform transform hover:scale-110 active:scale-95 active:shadow-lg">
+                <img src="23345.png" alt="Verify Icon" class="h-6 w-6" />
+            </div>
+            <span class="text-xs font-semibold text-black mt-1">Verify</span>
+        </a>
+        <!-- Profile Icon -->
+        <a href="profile.html" class="nav-item flex flex-col items-center transition-all duration-200 ease-in-out active">
+            <div class="bg-white rounded-full shadow-md p-2 transition-transform transform hover:scale-110 active:scale-95 active:shadow-lg">
+                <img src="2334.png" alt="Profile Icon" class="h-6 w-6 text-blue-600" />
+            </div>
+            <span class="text-xs font-semibold text-black mt-1">Profile</span>
+        </a>
+    </div>
+</div>
+
+<script>
+    // JavaScript function to set the active state
+    function setActive(clickedItem) {
+        // Remove active class from all items
+        const navItems = document.querySelectorAll('.nav-item');
+        navItems.forEach(item => {
+            item.classList.remove('text-blue-600', 'bg-blue-100', 'shadow-lg'); // Reset styles
+            item.classList.add('text-gray-700'); // Default text color
+            const icon = item.querySelector('img');
+            if (icon) {
+                icon.classList.remove('text-blue-600'); // Reset icon color
+                icon.classList.add('text-gray-700'); // Default icon color
+            }
+        });
+        
+        // Add active class to the clicked item
+        clickedItem.classList.add('text-blue-600', 'bg-blue-100', 'shadow-lg'); // Change styles for active
+        const icon = clickedItem.querySelector('img');
+        if (icon) {
+            icon.classList.add('text-blue-600'); // Change icon color for active
+        }
+    }
+</script>
+</html>

@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Crypto Brand</title>
+    <!-- Include Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="font-sans antialiased">
+
+    <!-- Navbar -->
+    <nav class="bg-white bg-opacity-800 p-4">
+        <div class="container mx-auto flex items-center justify-between flex-wrap">
+            <!-- Replace with your logo -->
+            <a href="index.html">
+                <img src="vision.png" alt="Crypto Brand Logo" class="h-12">
+            </a>
+            
+            
+            <!-- Navigation links -->
+            <div class="space-x-8 ml-auto pr-10 hidden md:flex">
+                <a href="landingpage.html" class="text-blue hover:text-gray-400">Home</a>
+                <a href="#" class="text-blue hover:text-gray-400">Contact</a>
+                <a href="sign-in.html" class="text-blue hover:text-gray-400">Dashboard</a>
+            </div>
+
+            <!-- Log In CTA -->
+            <a href="sign-in.html" class="bg-blue-500 text-white px-6 py-2 rounded-lg hover:bg-gray-600">Log In</a>
+
+            <!-- Mobile Menu Button -->
+            <div class="md:hidden">
+                <button id="mobile-menu-button" class="text-blue-500 focus:outline-none">
+                    <!-- Icon for mobile menu -->
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+                </button>
+            </div>
+        </div>
+    </nav>
+  <!-- Mobile Menu -->
+  <div id="mobile-menu" class="hidden fixed top-0 right-0 w-64 h-full bg-white shadow-lg transition-transform transform translate-x-full md:hidden">
+    <div class="p-4">
+        <!-- Cancel Button -->
+        <button id="close-menu" class="text-blue-500 mb-4">✖ Close</button>
+        <a href="index.html" class="block text-blue hover:text-gray-400">Home</a>
+        <a href="contact.html" class="block text-blue hover:text-gray-400">Contact</a>
+        <a href="sign-in.html" class="block text-blue hover:text-gray-400">Dashboard</a>
+    </div>
+</div>
+
+<script>
+    const menu = document.getElementById('mobile-menu');
+    const mobileMenuButton = document.getElementById('mobile-menu-button');
+    const closeMenuButton = document.getElementById('close-menu');
+
+    // Toggle mobile menu visibility
+    mobileMenuButton.onclick = function() {
+        menu.classList.toggle('hidden');
+        menu.classList.toggle('translate-x-full'); // Slide in/out effect
+    };
+
+    // Close menu when clicking the close button
+    closeMenuButton.onclick = function() {
+        menu.classList.add('hidden');
+        menu.classList.add('translate-x-full'); // Slide out effect
+    };
+
+    // Close menu when clicking outside of it
+    document.addEventListener('click', function(event) {
+        if (!menu.contains(event.target) && !mobileMenuButton.contains(event.target)) {
+            menu.classList.add('hidden');
+            menu.classList.add('translate-x-full'); // Slide out effect
+        }
+    });
+</script>
+
+    <!-- Contact Us Section -->
+    <section class="py-16 bg-gradient-to-r from-blue-500 to-blue-700" id="contact-us">
+        <div class="container mx-auto text-center">
+            <h2 class="text-4xl font-bold text-white mb-4">Contact Vision Pro</h2>
+            <p class="text-lg text-gray-200 mb-10">We'd love to hear from you! Fill out the form below and we’ll get back to you.</p>
+
+            <!-- Get in Touch Section (Centered) -->
+            <div class="mb-12">
+                <h3 class="text-2xl font-semibold text-white mb-6">Get in Touch</h3>
+            </div>
+
+<!-- Contact Form (Centered) -->
+<div class="flex justify-center">
+    <form id="contactForm" class="bg-white shadow-lg rounded-lg p-8 w-full max-w-md transition-transform transform hover:scale-105" onsubmit="handleSubmit(event)">
+        <h3 class="text-xl font-semibold text-gray-800 mb-4">Send a Message</h3>
+        <div class="mb-4">
+            <label for="name" class="block text-sm font-medium text-gray-700 text-left">Name</label>
+            <input type="text" id="name" required class="mt-1 block w-full border border-gray-300 rounded-md p-3 focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Enter your name">
+        </div>
+        <div class="mb-4">
+            <label for="email" class="block text-sm font-medium text-gray-700 text-left">Email</label>
+            <input type="email" id="email" required class="mt-1 block w-full border border-gray-300 rounded-md p-3 focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Enter your email">
+        </div>
+        <div class="mb-4">
+            <label for="phone" class="block text-sm font-medium text-gray-700 text-left">Phone Number</label>
+            <input type="tel" id="phone" required class="mt-1 block w-full border border-gray-300 rounded-md p-3 focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Enter your phone number">
+        </div>
+        <div class="mb-4">
+            <label for="message" class="block text-sm font-medium text-gray-700 text-left">Message</label>
+            <textarea id="message" required class="mt-1 block w-full border border-gray-300 rounded-md p-3 focus:outline-none focus:ring-2 focus:ring-blue-500" rows="4" placeholder="Your message"></textarea>
+        </div>
+        <button type="submit" id="submitButton" class="w-full bg-blue-600 text-white py-3 rounded-lg hover:bg-blue-700 transition duration-200">Send Message</button>
+        <p id="responseMessage" class="mt-4 text-center text-gray-600 hidden"></p> <!-- Response message -->
+    </form>
+</div>
+
+<script>
+    function handleSubmit(event) {
+        event.preventDefault(); // Prevent the form from submitting normally
+        
+        const submitButton = document.getElementById('submitButton');
+        const responseMessage = document.getElementById('responseMessage');
+
+        // Change button text to "Sending..."
+        submitButton.textContent = 'Sending...';
+        submitButton.disabled = true; // Disable the button to prevent multiple submissions
+
+        // Simulate a delay for sending (e.g., API call)
+        setTimeout(() => {
+            // After 3 seconds, show the success message
+            responseMessage.textContent = 'Message sent! We will get in touch.';
+            responseMessage.classList.remove('hidden');
+            responseMessage.classList.add('text-green-600'); // Change text color to green
+
+            // Reset the form
+            document.getElementById('contactForm').reset();
+            submitButton.textContent = 'Send Message'; // Reset button text
+            submitButton.disabled = false; // Re-enable the button
+        }, 3000); // Adjust the timeout as necessary
+    }
+</script>
+
+
+            <!-- Contact Information (Below the Form) -->
+            <div class="mt-12 text-center">
+                <h3 class="text-2xl font-semibold text-white mb-4">Contact Info</h3>
+                <p class="text-gray-200"><strong>Email:</strong> info@visionprobase.com</p>
+                <p class="text-gray-200"><strong>Phone:</strong> +1 (234) 567-8900</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-12 bg-gradient-to-r from-blue-500 to-blue-700">
+        <div class="container mx-auto text-center">
+        </div>
+    </section>
+
+    <!-- Footer Section -->
+    <footer class="bg-gray-800 text-white py-8">
+        <div class="container mx-auto text-center">
+            <div class="flex flex-col md:flex-row md:justify-between md:items-center">
+                <div class="mb-4 md:mb-0">
+                    <h4 class="text-lg font-semibold">Vision Pro</h4>
+                    <p class="text-gray-400">Empowering your trading.</p>
+                </div>
+                <div class="space-y-2">
+                    <a href="#" class="text-gray-400 hover:text-white">Home</a>
+                    <a href="#" class="text-gray-400 hover:text-white">About</a>
+                    <a href="#" class="text-gray-400 hover:text-white">Contact</a>
+                </div>
+            </div>
+            <div class="mt-6">
+                <p class="text-gray-400 text-sm">&copy; 2024 Vision Pro. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
