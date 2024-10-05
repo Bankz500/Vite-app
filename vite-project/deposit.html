@@ -99,7 +99,7 @@
         </div>
         
         <section class="py-16 bg-white" id="spacing">
-            <div class="container mx-auto text-center">
+            <div class="container mx-auto text-center"> 
             </div>
         </section>  
 
@@ -153,11 +153,14 @@
     <body>
         <form id="myForm">
             <!-- Other form fields here -->
+             
             
             <button id="sendButton" type="submit" class="bg-blue-500 text-white w-full py-3 rounded-lg shadow hover:bg-blue-600 transition">
                 Send
             </button>
         </form>
+
+
     
         <script>
             const form = document.getElementById('myForm');
@@ -182,6 +185,7 @@
                 setTimeout(() => {
                     // Reset the form fields to their default state
                     form.reset();
+                    
 
                     // Reset the button text to "Send" and re-enable it
                     sendButton.textContent = 'Send';
@@ -191,6 +195,7 @@
                 }, 1500); // Show "Completed" for 1.5 seconds
             }, 3000); // Simulate a 3-second delay for the demo
         });
+        
     </script>
     </body>
     </html>
@@ -218,6 +223,16 @@
                 <option value="$100">$100</option>
                 <option value="$200">$200</option>
                 <option value="$500">$500</option>
+                <option value="$500">$1000</option>
+                <option value="$500">$2000</option>
+                <option value="$500">$3000</option>
+                <option value="$500">$5000</option>
+                <option value="$500">$7000</option>
+                <option value="$500">$10000</option>
+                <option value="$500">$20000</option>
+                <option value="$500">$50000</option>
+                <option value="$500">$70000</option>
+                <option value="$500">$100000</option>
                 <!-- Add more options if needed -->
             </select>
             <p id="amountError" class="text-red-500 text-sm hidden">Amount is required.</p>
@@ -245,7 +260,7 @@
         </button>
 
         <!-- Hidden prompt for submission status -->
-        <p id="submissionStatus" class="mt-4 text-blue-500 font-regular hidden"></p>
+        <p id="submissionStatus" class="mt-4 text-blue-500 text-center font-regular hidden"></p>
     </div> 
 </div>
 
