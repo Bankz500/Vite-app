@@ -107,7 +107,7 @@
 
        <div class="flex-1 p-2 bg-blue-100"> <!-- Added navy background -->
         <div class="flex-1 py-3 bg-white rounded-lg  text-black">
-<div class="bg-white shadow-0 rounded-0 p-6 hidden md:block max-w-full mx-0"> <!-- Desktop Card -->
+<div class="bg-white shadow-0 rounded-0 p-6 hidden md:block max-w-full mx-10"> <!-- Desktop Card -->
     <h2 class="text-3xl font-semibold mb-6 text-gray-800">Deposit</h2>
     <p class="mb-4 text-gray-700">To make a deposit, copy the wallet address below. After payment, kindly attach a payment proof receipt.</p>
 
@@ -115,7 +115,7 @@
     <input type="text" id="depositorName" class="border rounded w-full p-3 mb-4 focus:outline-none focus:ring-2 focus:ring-blue-400" placeholder="Enter your name">
 
     <label class="block mb-2 text-gray-700" for="amount">Select Amount:</label>
-    <select id="amount" class="border rounded w-full p-3 mb-4 focus:outline-none focus:ring-2 focus:ring-blue-400">
+    <select id="amount" class="border rounded w-full p-3 mb-4 focus:outline-none focus:ring-2 focus:ring-white">
         <option value="" disabled selected>Select an amount</option>
         <option value="$100">$100</option>
         <option value="$200">$200</option>
@@ -133,7 +133,7 @@
 
     <label class="block mb-2 text-gray-700">Wallet Address:</label>
     <div class="flex items-center border rounded p-3 mb-4 bg-gray-50 shadow-sm">
-        <span id="walletAddress" class="flex-1 text-gray-800 font-mono text-sm break-words">bc1qkkj0payl2w0lh937vj27y0zwqgzre38jm0rey4</span>
+        <span id="walletAddress" class="flex-1 text-gray-800 font-sans text-sm break-words">bc1qkkj0payl2w0lh937vj27y0zwqgzre38jm0rey4</span>
         <button id="copyButton" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition">Copy</button>
     </div>
 
@@ -238,14 +238,15 @@
             <p id="amountError" class="text-red-500 text-sm hidden">Amount is required.</p>
         </div>
 
-        <!-- Wallet Address Section -->
-        <div class="mb-4">
-            <label class="block text-gray-700">Wallet Address:</label>
-            <div class="flex flex-col items-start border rounded p-2 bg-gray-50 shadow-sm">
-                <span id="walletAddress" class="w-full text-gray-800 font-mono text-xs mb-2">bc1qkkj0payl2w0lh937vj27y0zwqgzre38jm0rey4</span>
-                <button id="copyButton" class="flex items-center justify-center px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 transition focus:outline-none">Copy</button>
-            </div>
-        </div>
+<!-- Mobile Wallet Address Section -->
+<div class="mb-4 md:hidden"> <!-- Hidden on desktop -->
+    <label class="block text-gray-700">Wallet Address:</label>
+    <div class="flex flex-col items-start border rounded p-2 bg-gray-50 shadow-sm">
+        <span id="mobileWalletAddress" class="w-full text-gray-800 font-mono text-xs mb-2">bc1qkkj0payl2w0lh937vj27y0zwqgzre38jm0rey5</span>
+        <button id="mobileCopyButton" class="flex items-center justify-center px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 transition focus:outline-none">Copy</button>
+    </div>
+</div>
+
 
         <!-- Upload File Section -->
         <div class="mb-4">
@@ -270,15 +271,17 @@
         const submitButton = document.getElementById('submitButton');
         const submissionStatus = document.getElementById('submissionStatus');
 
-        // Function to copy the wallet address
-        copyButton.addEventListener('click', function() {
-            const walletAddress = document.getElementById('walletAddress').textContent;
-            navigator.clipboard.writeText(walletAddress).then(() => {
-                alert('Wallet address copied to clipboard!');
-            }).catch(err => {
-                console.error('Error copying text: ', err);
-            });
+ // Function to copy the mobile wallet address
+ const mobileCopyButton = document.getElementById('mobileCopyButton');
+    
+    mobileCopyButton.addEventListener('click', function() {
+        const mobileWalletAddress = document.getElementById('mobileWalletAddress').textContent;
+        navigator.clipboard.writeText(mobileWalletAddress).then(() => {
+            alert('Mobile wallet address copied to clipboard!');
+        }).catch(err => {
+            console.error('Error copying text: ', err);
         });
+    });
 
         // Function to submit the form with validation and loading state
         submitButton.addEventListener('click', function() {

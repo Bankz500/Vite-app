@@ -100,74 +100,128 @@
 
 
 <!-- Main Content -->
-
 <div class="flex-1 p-6 bg-blue-100 pb-28 md:pb-0"> <!-- Added navy background -->
-    <div class="flex-1 p-6 bg-white rounded-lg  text-black">
-    <h1 class="text-3xl font-bold mb-6 text-black">Withdrawal</h1>
+    <div class="flex-1 p-6 bg-white rounded-lg text-black">
+        <h1 class="text-3xl font-bold mb-6 text-black">Withdrawal</h1>
 
-    <!-- Tabs for Cash Withdrawal and BTC Withdrawal -->
-    <div class="flex mb-4 gap-3">
-        <button onclick="toggleWithdrawal('cash')" class="flex-1 text-center text-xs md:text-lg  text-black bg-white rounded-lg px-3 py-4 border border-gray-300">Cash Withdrawal</button>
-        <button onclick="toggleWithdrawal('btc')" class="flex-1 text-center text-xs md:text-lg  text-gray-400 bg-black rounded-lg px-3 py-4 border-b-2 border-gray-600">BTC Withdrawal</button>
+        <!-- Tabs for Cash Withdrawal and BTC Withdrawal -->
+        <div class="flex mb-4 gap-3">
+            <button onclick="toggleWithdrawal('cash')" id="cashButton" class="flex-1 text-center text-xs md:text-lg text-black bg-white rounded-lg px-3 py-4 border border-gray-300">Cash Withdrawal</button>
+            <button onclick="toggleWithdrawal('btc')" id="btcButton" class="flex-1 text-center text-xs md:text-lg text-white bg-black rounded-lg px-3 py-4 border-b-2 border-gray-600">BTC Withdrawal</button>
+        </div>
+
+        <!-- Cash Withdrawal Form -->
+        <div id="cashWithdrawal" class="block">
+            <p class="mb-4 text-gray-400">Withdrawal costs $1.00, input your details to complete your withdrawal.</p>
+            <form id="withdrawalForm">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                        <label for="bankName" class="block text-sm text-black">Bank Name</label>
+                        <input type="text" id="bankName" 
+                               class="w-full bg-white border border-gray-300 rounded-lg p-2 text-black placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-white" 
+                               placeholder="Enter bank name">
+                        <p id="bankNameError" class="text-red-500 text-sm hidden">Bank Name is required</p>
+                    </div>
+                    <div>
+                        <label for="accountNumber" class="block text-sm text-black">Account Number</label>
+                        <input type="text" id="accountNumber" 
+                               class="w-full bg-white border border-gray-300 rounded-lg p-2 text-black placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-white" 
+                               placeholder="Enter account number">
+                        <p id="accountNumberError" class="text-red-500 text-sm hidden">Account Number is required</p>
+                    </div>
+                    <div>
+                        <label for="amount" class="block text-sm text-black">Amount</label>
+                        <input type="text" id="amount" 
+                               class="w-full bg-white border border-gray-300 rounded-lg p-2 text-black placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-white" 
+                               placeholder="Enter amount">
+                        <p id="amountError" class="text-red-500 text-sm hidden">Amount is required</p>
+                    </div>
+                    <div>
+                        <label for="accountName" class="block text-sm text-black">Account Name</label>
+                        <input type="text" id="accountName" 
+                               class="w-full bg-white border border-gray-300 rounded-lg p-2 text-black placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-white" 
+                               placeholder="Enter account name">
+                        <p id="accountNameError" class="text-red-500 text-sm hidden">Account Name is required</p>
+                    </div>
+                </div>
+                <button type="button" id="withdrawButton" class="mt-6 bg-blue-500 text-white w-full px-6 py-2 rounded-lg">Withdraw</button>
+            </form>
+
+            <!-- Hidden prompt for withdrawal status -->
+            <p id="withdrawalStatus" class="mt-4 text-blue-500 text-center hidden">Withdrawal is being processed</p>
+        </div>
+
+        <!-- BTC Withdrawal Section (Initially hidden) -->
+                <div id="btcWithdrawal" class="hidden">
+                    <p class="mb-4 text-gray-400">Enter your BTC address for withdrawal.</p>
+                    <form>
+                        <div>
+                            <label for="btcAddress" class="block text-sm text-black">BTC Address</label>
+                            <input type="text" id="btcAddress" 
+                                   class="w-full bg-white border border-black rounded-lg p-2 text-black placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-400" 
+                                   placeholder="Enter BTC address">
+                        </div>
+                        <div>
+                            <label for="btcAmount" class="block text-sm text-black mt-4">Amount ($)</label>
+                            <input type="text" id="btcAmount" 
+                                   class="w-full bg-white border border-black rounded-lg p-2 text-black placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-400" 
+                                   placeholder="Enter amount in $">
+                        </div>
+                        <p id="btcConversion" class="mt-2 text-gray-500"></p>
+                        <button type="button" id="btcWithdrawButton" class="mt-6 bg-blue-500 text-white w-full px-6 py-2 rounded-lg">Withdraw BTC</button>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Cash Withdrawal Confirmation Modal -->
+    <div id="cashModal" class="fixed inset-0 flex items-center justify-center z-50 hidden">
+        <div class="bg-white p-4 rounded shadow-md">
+            <p class="text-lg">Your withdrawal request is being processed...</p>
+            <button onclick="closeCashModal()" class="mt-4 bg-blue-500 text-white px-4 py-2 rounded">Close</button>
+        </div>
     </div>
 
-<!-- Cash Withdrawal Form -->
-<div id="cashWithdrawal" class="block">
-    <p class="mb-4 text-gray-400">Withdrawal costs $1.00, input your details to complete your withdrawal.</p>
-    <form id="withdrawalForm">
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div>
-                <label for="bankName" class="block text-sm text-black">Bank Name</label>
-                <input type="text" id="bankName" 
-                       class="w-full bg-white border border-gray-300 rounded-lg p-2 text-black placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-white" 
-                       placeholder="Enter bank name">
-                <p id="bankNameError" class="text-red-500 text-sm hidden">Bank Name is required</p>
-            </div>
-            <div>
-                <label for="accountNumber" class="block text-sm text-black">Account Number</label>
-                <input type="text" id="accountNumber" 
-                       class="w-full bg-white border border-gray-300 rounded-lg p-2 text-black placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-white" 
-                       placeholder="Enter account number">
-                <p id="accountNumberError" class="text-red-500 text-sm hidden">Account Number is required</p>
-            </div>
-            <div>
-                <label for="amount" class="block text-sm text-black">Amount</label>
-                <input type="text" id="amount" 
-                       class="w-full bg-white border border-gray-300 rounded-lg p-2 text-black placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-white" 
-                       placeholder="Enter amount">
-                <p id="amountError" class="text-red-500 text-sm hidden">Amount is required</p>
-            </div>
-            <div>
-                <label for="accountName" class="block text-sm text-black">Account Name</label>
-                <input type="text" id="accountName" 
-                       class="w-full bg-white border border-gray-300 rounded-lg p-2 text-black placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-white" 
-                       placeholder="Enter account name">
-                <p id="accountNameError" class="text-red-500 text-sm hidden">Account Name is required</p>
-            </div>
+    <!-- BTC Withdrawal Verification Modal -->
+    <div id="btcModal" class="fixed inset-0 flex items-center justify-center z-50 hidden">
+        <div class="bg-white p-4 rounded shadow-md">
+            <p class="text-lg">Please verify your BTC withdrawal details.</p>
+            <button onclick="closeBtcModal()" class="mt-4 bg-blue-500 text-white px-4 py-2 rounded">Close</button>
         </div>
-        <button type="button" id="withdrawButton" class="mt-6 bg-blue-500 text-white w-full px-6 py-2 rounded-lg">Withdraw</button>
-    </form>
+    </div>
 
-    <!-- Hidden prompt for withdrawal status -->
-    <p id="withdrawalStatus" class="mt-4 text-blue-500 text-center hidden">Withdrawal is being processed</p>
+<!-- Modal Popup (Initially hidden) -->
+<div id="errorModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden z-50">
+    <div class="bg-white rounded-lg p-6 shadow-lg text-center max-w-md w-full">
+        <img src="Error-512.webp" alt="Error Icon" class="mx-2 mb-4"> <!-- Replace with your error image -->
+        <h2 class="text-lg font-semibold text-red-500">Action not allowed</h2>
+        <p class="text-gray-600 mt-2">Bitcoin withdrawals are allowed for verified users alone. Contact our support for more information.</p>
+        <button id="closeModal" class="mt-4 bg-blue-500 text-white px-4 py-2 rounded-lg">Close</button>
+    </div>
 </div>
 
 <script>
     const withdrawButton = document.getElementById('withdrawButton');
+    const btcWithdrawButton = document.getElementById('btcWithdrawButton');
     const withdrawalStatus = document.getElementById('withdrawalStatus');
-    
-    // Form input fields
+    const errorModal = document.getElementById('errorModal');
+    const closeModal = document.getElementById('closeModal');
+
+    // Form input fields for cash withdrawal
     const bankName = document.getElementById('bankName');
     const accountNumber = document.getElementById('accountNumber');
     const amount = document.getElementById('amount');
     const accountName = document.getElementById('accountName');
-    
-    // Error messages
+
+    // Form input field for BTC withdrawal
+    const btcAmount = document.getElementById('btcAmount');
+    const btcConverted = document.getElementById('btcConverted');
+
+    // Error messages for cash withdrawal
     const bankNameError = document.getElementById('bankNameError');
     const accountNumberError = document.getElementById('accountNumberError');
     const amountError = document.getElementById('amountError');
     const accountNameError = document.getElementById('accountNameError');
-    
+
     withdrawButton.addEventListener('click', function(event) {
         // Reset error messages and button state
         bankNameError.classList.add('hidden');
@@ -176,7 +230,7 @@
         accountNameError.classList.add('hidden');
         withdrawalStatus.classList.add('hidden');
         withdrawButton.textContent = 'Withdraw'; // Reset button text if clicked again
-        
+
         // Validation flag
         let isValid = true;
 
@@ -218,36 +272,57 @@
             }, 5000); // 5 seconds delay
         }
     });
+
+    // BTC Withdraw Button Click
+    btcWithdrawButton.addEventListener('click', function() {
+        // Show the error modal for unverified users
+        errorModal.classList.remove('hidden');
+    });
+
+    // Close Modal
+    closeModal.addEventListener('click', function() {
+        errorModal.classList.add('hidden');
+    });
+
+    // Toggle between Cash and BTC Withdrawal Forms
+    function toggleWithdrawal(type) {
+        const cashWithdrawal = document.getElementById('cashWithdrawal');
+        const btcWithdrawal = document.getElementById('btcWithdrawal');
+
+        if (type === 'cash') {
+            cashWithdrawal.classList.remove('hidden');
+            btcWithdrawal.classList.add('hidden');
+            document.getElementById('cashButton').classList.remove('text-gray-400');
+            document.getElementById('btcButton').classList.add('text-gray-400');
+        } else {
+            cashWithdrawal.classList.add('hidden');
+            btcWithdrawal.classList.remove('hidden');
+            document.getElementById('btcButton').classList.remove('text-gray-400');
+            document.getElementById('cashButton').classList.add('text-gray-400');
+        }
+    }
+
+    // BTC Amount Conversion
+    btcAmount.addEventListener('input', function() {
+        const btcInputValue = parseFloat(btcAmount.value);
+        const conversionRate = 50000; // Example conversion rate: 1 BTC = $50,000
+        if (!isNaN(btcInputValue)) {
+            const convertedValue = btcInputValue * conversionRate;
+            btcConverted.textContent = `Equivalent in USD: $${convertedValue.toFixed(2)}`;
+        } else {
+            btcConverted.textContent = '';
+        }
+    });
+
+    // Initialize the view to show Cash Withdrawal by default
+    toggleWithdrawal('cash');
 </script>
-
-
-    <!-- BTC Withdrawal Section (Initially hidden) -->
-    <div id="btcWithdrawal" class="hidden">
-        <p class="mb-4 text-gray-400">Enter your BTC address for withdrawal.</p>
-        <form>
-            <div>
-                <label for="btcAddress" class="block text-sm text-black">BTC Address</label>
-                <input type="text" id="btcAddress" 
-                       class="w-full bg-blue-100 border border-black rounded-lg p-2 text-black placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-400" 
-                       placeholder="Enter BTC address">
-            </div>
-            <div>
-                <label for="btcAmount" class="block text-sm text-black mt-4">Amount</label>
-                <input type="text" id="btcAmount" 
-                       class="w-full bg-blue-100 border border-black rounded-lg p-2 text-black placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-400" 
-                       placeholder="Enter amount">
-            </div>
-            <button type="withdraw" class="mt-6 bg-white text-black px-6 py-2 rounded-lg">withdraw</button>
-        </form>
-    </div>
-</div>
-</div>
-
 
 <section class="py-16 bg-gradient-to-r from-blue-500 to-blue-700" id="spacing">
     <div class="container mx-auto text-center">
     </div>
 </section>
+
 
 
 <!-- Bottom Navbar (only visible on mobile) -->
