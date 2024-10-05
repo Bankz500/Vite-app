@@ -201,7 +201,7 @@
 <div class="flex flex-col items-center justify-start p-4 mt-0 md:hidden"> 
     <div class="deposit-card bg-white shadow-0 rounded-lg p-4"> 
         <h1 class="text-3xl font-bold mb-6 text-gray-800">Deposit</h1>
-        <p class=" text-gray-700 mb-4">To make a deposit, copy the wallet address below and attach the payment proof receipt.</p>
+        <p class="text-gray-700 mb-4">To make a deposit, copy the wallet address below and attach the payment proof receipt.</p>
         
         <!-- Depositor's Name -->
         <div class="mb-4">
@@ -218,16 +218,7 @@
                 <option value="$100">$100</option>
                 <option value="$200">$200</option>
                 <option value="$500">$500</option>
-                <option value="$1000">$1000</option>
-                <option value="$2000">$2000</option>
-                <option value="$3000">$3000</option>
-                <option value="$5000">$5000</option>
-                <option value="$10000">$10000</option>
-                <option value="$20000">$20000</option>
-                <option value="$25000">$25000</option>
-                <option value="$50000">$50000</option>
-                <option value="$100000">$100000</option>
-                <!-- Add more options as needed -->
+                <!-- Add more options if needed -->
             </select>
             <p id="amountError" class="text-red-500 text-sm hidden">Amount is required.</p>
         </div>
@@ -249,79 +240,88 @@
         </div>
 
         <!-- Submit Button -->
-        <button id="submitButton" onclick="submitForm()" class="bg-blue-600 text-white px-6 py-2 rounded-md hover:bg-blue-700 w-full">
+        <button id="submitButton" class="bg-blue-600 text-white px-6 py-2 rounded-md hover:bg-blue-700 w-full">
             Submit
         </button>
 
         <!-- Hidden prompt for submission status -->
-        <p id="submissionStatus" class="mt-4 text-blue-500 font-semibold hidden"></p>
-    </div>
+        <p id="submissionStatus" class="mt-4 text-blue-500 font-regular hidden"></p>
+    </div> 
 </div>
 
 <script>
-    // Function to copy the wallet address
-    const copyButton = document.getElementById('copyButton');
-    copyButton.addEventListener('click', function() {
-        const walletAddress = document.getElementById('walletAddress').textContent;
-        navigator.clipboard.writeText(walletAddress).then(() => {
-            alert('Wallet address copied to clipboard!');
-        }).catch(err => {
-            console.error('Error copying text: ', err);
-        });
-    });
-
-    // Function to submit the form with validation and loading state
-    function submitForm() {
-        const depositorName = document.getElementById('depositorName').value;
-        const amount = document.getElementById('amount').value;
-        const verificationFile = document.getElementById('verificationFile');
+    document.addEventListener('DOMContentLoaded', function () {
+        const copyButton = document.getElementById('copyButton');
         const submitButton = document.getElementById('submitButton');
         const submissionStatus = document.getElementById('submissionStatus');
 
-        // Reset error messages and submission status
-        document.getElementById('nameError').classList.add('hidden');
-        document.getElementById('amountError').classList.add('hidden');
-        document.getElementById('fileError').classList.add('hidden');
-        submissionStatus.classList.add('hidden');
-        submitButton.textContent = 'Submit'; // Reset button text if clicked again
+        // Function to copy the wallet address
+        copyButton.addEventListener('click', function() {
+            const walletAddress = document.getElementById('walletAddress').textContent;
+            navigator.clipboard.writeText(walletAddress).then(() => {
+                alert('Wallet address copied to clipboard!');
+            }).catch(err => {
+                console.error('Error copying text: ', err);
+            });
+        });
 
-        // Validation flag
-        let isValid = true;
+        // Function to submit the form with validation and loading state
+        submitButton.addEventListener('click', function() {
+            const depositorName = document.getElementById('depositorName').value.trim();
+            const amount = document.getElementById('amount').value;
+            const verificationFile = document.getElementById('verificationFile');
+            
+            // Reset error messages
+            document.getElementById('nameError').classList.add('hidden');
+            document.getElementById('amountError').classList.add('hidden');
+            document.getElementById('fileError').classList.add('hidden');
+            submissionStatus.classList.add('hidden');
+            submitButton.textContent = 'Submit'; // Reset button text if clicked again
 
-        // Validate Depositor's Name
-        if (!depositorName) {
-            document.getElementById('nameError').classList.remove('hidden');
-            isValid = false;
-        }
+            // Validation flag
+            let isValid = true;
 
-        // Validate Amount
-        if (!amount) {
-            document.getElementById('amountError').classList.remove('hidden');
-            isValid = false;
-        }
+            // Log values for debugging
+            console.log("Depositor Name:", depositorName);
+            console.log("Selected Amount:", amount);
+            console.log("File uploaded:", verificationFile.files.length);
 
-        // Validate File Upload
-        if (verificationFile.files.length === 0) {
-            document.getElementById('fileError').classList.remove('hidden');
-            isValid = false;
-        }
+            // Validate Depositor's Name
+            if (depositorName === "#") {
+                document.getElementById('nameError').classList.remove('hidden');
+                isValid = false;
+            }
 
-        // If all fields are valid, show loading state and success message
-        if (isValid) {
-            // Change button to loading state
-            submitButton.textContent = 'Submitting...';
-            submitButton.disabled = true;
+            // Validate Amount (exclude the default disabled option)
+            if (amount === "$100" || amount === null) {
+                document.getElementById('amountError').classList.remove('hidden');
+                isValid = false;
+            }
 
-            // Simulate a delay of 5 seconds before showing the success message
-            setTimeout(() => {
-                submitButton.textContent = 'Sent';
-                submitButton.disabled = false;
-                submissionStatus.textContent = 'Your deposit has been sent successfully. We will get in touch soon.';
-                submissionStatus.classList.remove('hidden');
-            }, 5000); // 5 seconds delay
-        }
-    }
+            // Validate File Upload
+            const allowedExtensions = /(\.jpg|\.jpeg|\.png|\.pdf)$/i;
+            if (verificationFile.files.length === 0 || !allowedExtensions.exec(verificationFile.value)) {
+                document.getElementById('fileError').classList.remove('hidden');
+                isValid = false;
+            }
+
+            // If all fields are valid, show loading state and success message
+            if (isValid) {
+                submitButton.textContent = 'Submitting...';
+                submitButton.disabled = true;
+
+                // Simulate a delay of 5 seconds before showing the success message
+                setTimeout(() => {
+                    submissionStatus.textContent = 'Your deposit has been sent successfully. We will get in touch soon.';
+                    submissionStatus.classList.remove('hidden');
+                    submitButton.textContent = 'Submit';
+                    submitButton.disabled = false;
+                }, 5000); // 5 seconds delay
+            }
+        });
+    });
 </script>
+
 
 
 
@@ -340,7 +340,6 @@
             </div>
             <span class="text-xs font-semibold text-black mt-1">Wallet</span>
         </a>
-
         <!-- Deposit Icon -->
         <a href="deposit.html" class="nav-item flex flex-col items-center" onclick="setActive(this)">
             <div class="bg-white rounded-full shadow-md p-2 transition-transform transform hover:scale-110 active:scale-95 active:shadow-lg">
