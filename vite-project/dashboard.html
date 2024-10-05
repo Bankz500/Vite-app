@@ -160,30 +160,19 @@
             <div class="container mx-auto text-center">
             </div>
         </section>
-
-
-        <!-- TradingView Widget BEGIN (Desktop Only) -->
-        <div class="hidden md:block tradingview-widget-container mx-auto text-center my-6">
-            <div class="tradingview-widget-container__widget w-full"></div>
-            <div class="tradingview-widget-copyright">
-                <a href="https://www.tradingview.com/" rel="noopener nofollow" target="_blank">
-                    <span class="blue-text">Track all markets on TradingView</span>
-                </a>
-            </div>
-            <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-screener.js" async></script>
-            <script>
-                new TradingView.widget({
-                    "width": 1000,
-                    "height": 490,
-                    "defaultColumn": "overview",
-                    "screener_type": "crypto_mkt",
-                    "displayCurrency": "USD",
-                });
-            </script>
-        </div>
-        <!-- TradingView Widget END -->
-    </div>
+<!-- TradingView Widget BEGIN (Desktop Only) -->
+<div class="hidden md:block">
+    <script type="text/javascript" src="https://s3.tradingview.com/tv.js"></script>
+    <script type="text/javascript">
+        var tradingview_embed_options = {};
+        tradingview_embed_options.width = "1000";
+        tradingview_embed_options.height = "500";
+        tradingview_embed_options.chart = "mC37KVoz";
+        new TradingView.chart(tradingview_embed_options);
+    </script>
+    <p><a href="https://www.tradingview.com/script/mC37KVoz-Magic-Order-Blocks-MW/"></a> <a href="https://www.tradingview.com/u/mwrightinc/"></a> <a href="https://www.tradingview.com/"></a></p>
 </div>
+<!-- TradingView Chart END -->
 
 <!-- Bottom Navbar (only visible on mobile) -->
 <div class="md:hidden fixed bottom-2 left-2 right-2 rounded-lg bg-gradient-to-r from-blue-500 to-blue-900 shadow-2xl p-3">
