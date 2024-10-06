@@ -82,21 +82,36 @@
 
     <div class="flex">
 
-        <!-- Sidebar (hidden on mobile, visible on desktop) -->
-        <div id="sidebar" class="md:w-64 bg-white shadow-md h-screen hidden md:block">
-            <div class="p-4">
-                <h2 class="text-lg font-semibold text-gray-800">Investor Dashboard</h2>
-            </div>
-            <nav class="mt-6">
-                <ul>
-                    <li class="p-4 hover:bg-gray-200"><a href="dashboard.html">Wallet</a></li>
-                    <li class="p-4 hover:bg-gray-200"><a href="deposit.html">Deposit</a></li>
-                    <li class="p-4 hover:bg-gray-200"><a href="withdrawal.html">Withdrawal</a></li>
-                    <li class="p-4 hover:bg-gray-200"><a href="verification.html">Verification</a></li>
-                    <li class="p-4 hover:bg-gray-200"><a href="profile.html">Profile</a></li>
-                </ul>
-            </nav>
-        </div>
+<!-- Sidebar (hidden on mobile, visible on desktop) -->
+<div id="sidebar" class="md:w-64 bg-gradient-to-r from-blue-800 to-blue-600 shadow-lg h-screen hidden md:block">
+    <div class="p-6">
+        <h2 class="text-xl font-bold text-white border-b border-gray-500 pb-4">Investor Dashboard</h2>
+    </div>
+    <nav class="mt-6 text-white">
+        <ul>
+            <li class="p-4 hover:bg-blue-300  flex items-center border-b border-gray-500 transition">
+                <img src="wallet 1.png" alt="Wallet Icon" class="w-5 h-5 mr-4"> <!-- Custom Wallet Icon -->
+                <a href="dashboard.html" class="flex-1">Wallet</a>
+            </li>
+            <li class="p-4 hover:bg-blue-300  flex items-center border-b border-gray-500 transition">
+                <img src="piggy 1.png" alt="Deposit Icon" class="w-5 h-5 mr-4"> <!-- Custom Deposit Icon -->
+                <a href="deposit.html" class="flex-1">Deposit</a>
+            </li>
+            <li class="p-4 hover:bg-blue-300  flex items-center border-b border-gray-500 transition">
+                <img src="money 2.png" alt="Withdrawal Icon" class="w-5 h-5 mr-4"> <!-- Custom Withdrawal Icon -->
+                <a href="withdrawal.html" class="flex-1">Withdrawal</a>
+            </li>
+            <li class="p-4 hover:bg-blue-300  flex items-center border-b border-gray-500 transition">
+                <img src="secure 1.png" alt="Verification Icon" class="w-5 h-5 mr-4"> <!-- Custom Verification Icon -->
+                <a href="verification.html" class="flex-1">Verification</a>
+            </li>
+            <li class="p-4 hover:bg-blue-300 flex items-center transition">
+                <img src="user 1.png" alt="Profile Icon" class="w-5 h-5 mr-4"> <!-- Custom Profile Icon -->
+                <a href="profile.html" class="flex-1">Profile</a>
+            </li>
+        </ul>
+    </nav>
+</div>
         
         <section class="py-16 bg-white" id="spacing">
             <div class="container mx-auto text-center"> 
@@ -161,6 +176,9 @@
         </form>
 
 
+<!-- Hidden prompt for submission status -->
+<p id="submissionStatus" class="mt-4 text-gray-400 text-center text-sm hidden"></p>
+
     
         <script>
             const form = document.getElementById('myForm');
@@ -195,6 +213,14 @@
                 }, 1500); // Show "Completed" for 1.5 seconds
             }, 3000); // Simulate a 3-second delay for the demo
         });
+
+                    // Simulate a delay of 5 seconds (5000ms) before showing the success message
+                    setTimeout(() => {
+                submitButton.textContent = 'Sent';
+                submitButton.disabled = false;
+                submissionStatus.textContent = 'Your verification is currently in progress and may take up to 24 hours. We will reach out to you with the results via your registered email once the process is complete..';
+                submissionStatus.classList.remove('hidden');
+            }, 5000); // 5 seconds delay
         
     </script>
     </body>
@@ -349,67 +375,69 @@
 </section>
 
 <!-- Bottom Navbar (only visible on mobile) -->
-<div class="md:hidden fixed bottom-2 left-2 right-2 rounded-lg bg-gradient-to-r from-blue-600 to-blue-600 shadow-2xl p-3">
+<div class="md:hidden fixed bottom-2 left-2 right-2 rounded-lg bg-gradient-to-r from-blue-600 to-blue-500 shadow-2xl p-3">
     <div class="flex justify-between items-center">
         <!-- Wallet Icon -->
         <a href="dashboard.html" class="nav-item flex flex-col items-center" onclick="setActive(this)">
-            <div class="bg-white rounded-full shadow-md p-2 transition-transform transform hover:scale-110 active:scale-95 active:shadow-lg">
+            <div class="bg-white rounded-full shadow-lg p-2 transition-transform transform hover:scale-110 active:scale-95 active:shadow-xl" id="walletIcon">
                 <img src="122.png" alt="Wallet Icon" class="h-6 w-6" />
             </div>
-            <span class="text-xs font-semibold text-black mt-1">Wallet</span>
+            <span class="text-xs font-semibold mt-2" id="walletText">Wallet</span>
         </a>
         <!-- Deposit Icon -->
         <a href="deposit.html" class="nav-item flex flex-col items-center" onclick="setActive(this)">
-            <div class="bg-white rounded-full shadow-md p-2 transition-transform transform hover:scale-110 active:scale-95 active:shadow-lg">
+            <div class="bg-white rounded-full shadow-lg p-2 transition-transform transform hover:scale-110 active:scale-95 active:shadow-xl" id="depositIcon">
                 <img src="save.png" alt="Deposit Icon" class="h-6 w-6" />
             </div>
-            <span class="text-xs font-semibold text-white mt-1">Deposit</span>
+            <span class="text-xs font-semibold mt-2" id="depositText">Deposit</span>
         </a>
         <!-- Withdraw Icon -->
         <a href="withdrawal.html" class="nav-item flex flex-col items-center" onclick="setActive(this)">
-            <div class="bg-white rounded-full shadow-md p-2 transition-transform transform hover:scale-110 active:scale-95 active:shadow-lg">
+            <div class="bg-white rounded-full shadow-lg p-2 transition-transform transform hover:scale-110 active:scale-95 active:shadow-xl" id="withdrawIcon">
                 <img src="money.png" alt="Withdraw Icon" class="h-6 w-6" />
             </div>
-            <span class="text-xs font-semibold text-black mt-1">Withdraw</span>
+            <span class="text-xs font-semibold mt-2" id="withdrawText">Withdraw</span>
         </a>
         <!-- Verify Icon -->
         <a href="verification.html" class="nav-item flex flex-col items-center" onclick="setActive(this)">
-            <div class="bg-white rounded-full shadow-md p-2 transition-transform transform hover:scale-110 active:scale-95 active:shadow-lg">
+            <div class="bg-white rounded-full shadow-lg p-2 transition-transform transform hover:scale-110 active:scale-95 active:shadow-xl" id="verifyIcon">
                 <img src="23345.png" alt="Verify Icon" class="h-6 w-6" />
             </div>
-            <span class="text-xs font-semibold text-black mt-1">Verify</span>
+            <span class="text-xs font-semibold mt-2" id="verifyText">Verify</span>
         </a>
         <!-- Profile Icon -->
-        <a href="profile.html" class="nav-item flex flex-col items-center transition-all duration-200 ease-in-out active">
-            <div class="bg-white rounded-full shadow-md p-2 transition-transform transform hover:scale-110 active:scale-95 active:shadow-lg">
-                <img src="2334.png" alt="Profile Icon" class="h-6 w-6 text-blue-600" />
+        <a href="profile.html" class="nav-item flex flex-col items-center" onclick="setActive(this)">
+            <div class="bg-white rounded-full shadow-lg p-2 transition-transform transform hover:scale-110 active:scale-95 active:shadow-xl" id="profileIcon">
+                <img src="2334.png" alt="Profile Icon" class="h-6 w-6" />
             </div>
-            <span class="text-xs font-semibold text-black mt-1">Profile</span>
+            <span class="text-xs font-semibold mt-2" id="profileText">Profile</span>
         </a>
     </div>
 </div>
 
 <script>
-    // JavaScript function to set the active state
-    function setActive(clickedItem) {
-        // Remove active class from all items
-        const navItems = document.querySelectorAll('.nav-item');
-        navItems.forEach(item => {
-            item.classList.remove('text-blue-600', 'bg-blue-100', 'shadow-lg'); // Reset styles
-            item.classList.add('text-gray-700'); // Default text color
-            const icon = item.querySelector('img');
-            if (icon) {
-                icon.classList.remove('text-blue-600'); // Reset icon color
-                icon.classList.add('text-gray-700'); // Default icon color
-            }
-        });
-        
-        // Add active class to the clicked item
-        clickedItem.classList.add('text-blue-600', 'bg-blue-100', 'shadow-lg'); // Change styles for active
-        const icon = clickedItem.querySelector('img');
-        if (icon) {
-            icon.classList.add('text-blue-600'); // Change icon color for active
-        }
+    // Function to set the active navbar item
+    function setActive(element) {
+        // Reset all items to default styles
+        const icons = document.querySelectorAll('.nav-item div');
+        const texts = document.querySelectorAll('.nav-item span');
+        icons.forEach(icon => icon.classList.remove('bg-blue-300', 'text-white'));
+        texts.forEach(text => text.classList.remove('text-blue-300'));
+
+        // Add active styles to the clicked item
+        const icon = element.querySelector('div');
+        const text = element.querySelector('span');
+        icon.classList.add('bg-blue-300', 'text-white'); // Highlight background of active icon
+        text.classList.add('text-blue-300'); // Highlight text of active item
     }
+
+    // Set the active state on page load based on the current URL
+    const currentPath = window.location.pathname;
+    const navItems = document.querySelectorAll('.nav-item');
+    navItems.forEach(item => {
+        if (item.href.includes(currentPath)) {
+            setActive(item);
+        }
+    });
 </script>
 </html>
