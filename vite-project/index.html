@@ -8,13 +8,62 @@
     <!-- Include Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
+        /* Splash screen and animation styles */
+        body {
+            margin: 0;
+            overflow: hidden; /* Hide scrollbar during the splash */
+        }
+
+        .splash-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #000000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            opacity: 100;
+            animation: fadeOut 13s forwards;
+        }
+
+        .splash-screen h1 {
+            color: rgb(255, 255, 255);
+            font-size: 3em;
+            animation: slideIn 13s forwards;
+        }
+
+        @keyframes slideIn {
+            from {
+                transform: translateY(-100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 100;
+            }
+        }
+
+        @keyframes fadeOut {
+            to {
+                opacity: 0;
+            }
+        }
+
         /* Optional: Add a transition for smoother sliding effect */
         .transition-transform {
-            transition: transform 0.3s ease-in-out;
+            transition: transform 10.3s ease-in-out;
         }
     </style>
 </head>
 <body class="font-sans antialiased">
+
+    <!-- Splash screen -->
+    <div class="splash-screen" id="splash-screen">
+        <h1>Welcome to Vision Pro Base</h1>
+    </div>
 
     <!-- Navbar -->
     <nav class="bg-white bg-opacity-800 p-4">
@@ -49,42 +98,50 @@
     <!-- Overlay -->
     <div id="overlay" class="fixed inset-0 bg-black opacity-50 hidden"></div>
 
-  <!-- Mobile Menu -->
-  <div id="mobile-menu" class="hidden fixed top-0 right-0 w-64 h-full bg-white shadow-lg transition-transform transform translate-x-full md:hidden">
-    <div class="p-4">
-        <!-- Cancel Button -->
-        <button id="close-menu" class="text-blue-500 mb-4">✖ Close</button>
-        <a href="index.html" class="block text-blue hover:text-gray-400">Home</a>
-        <a href="contact.html" class="block text-blue hover:text-gray-400">Contact</a>
-        <a href="sign-in.html" class="block text-blue hover:text-gray-400">Dashboard</a>
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="hidden fixed top-0 right-0 w-64 h-full bg-white shadow-lg transition-transform transform translate-x-full md:hidden">
+        <div class="p-4">
+            <!-- Cancel Button -->
+            <button id="close-menu" class="text-blue-500 mb-4">✖ Close</button>
+            <a href="index.html" class="block text-blue hover:text-gray-400">Home</a>
+            <a href="contact.html" class="block text-blue hover:text-gray-400">Contact</a>
+            <a href="sign-in.html" class="block text-blue hover:text-gray-400">Dashboard</a>
+        </div>
     </div>
-</div>
 
-<script>
-    const menu = document.getElementById('mobile-menu');
-    const mobileMenuButton = document.getElementById('mobile-menu-button');
-    const closeMenuButton = document.getElementById('close-menu');
+    <script>
+        window.onload = function() {
+            const splashScreen = document.getElementById('splash-screen');
+            setTimeout(() => {
+                splashScreen.style.display = 'none'; // Hide the splash screen
+                document.body.style.overflow = 'auto'; // Restore scroll
+            }, 4000); // Adjust time to match animation duration
+        };
 
-    // Toggle mobile menu visibility
-    mobileMenuButton.onclick = function() {
-        menu.classList.toggle('hidden');
-        menu.classList.toggle('translate-x-full'); // Slide in/out effect
-    };
+        const menu = document.getElementById('mobile-menu');
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const closeMenuButton = document.getElementById('close-menu');
 
-    // Close menu when clicking the close button
-    closeMenuButton.onclick = function() {
-        menu.classList.add('hidden');
-        menu.classList.add('translate-x-full'); // Slide out effect
-    };
+        // Toggle mobile menu visibility
+        mobileMenuButton.onclick = function() {
+            menu.classList.toggle('hidden');
+            menu.classList.toggle('translate-x-full'); // Slide in/out effect
+        };
 
-    // Close menu when clicking outside of it
-    document.addEventListener('click', function(event) {
-        if (!menu.contains(event.target) && !mobileMenuButton.contains(event.target)) {
+        // Close menu when clicking the close button
+        closeMenuButton.onclick = function() {
             menu.classList.add('hidden');
             menu.classList.add('translate-x-full'); // Slide out effect
-        }
-    });
-</script>
+        };
+
+        // Close menu when clicking outside of it
+        document.addEventListener('click', function(event) {
+            if (!menu.contains(event.target) && !mobileMenuButton.contains(event.target)) {
+                menu.classList.add('hidden');
+                menu.classList.add('translate-x-full'); // Slide out effect
+            }
+        });
+    </script>
 </body>
 
  <!-- TradingView Widget BEGIN -->
@@ -126,18 +183,22 @@
   
 <!-- Hero Section -->
 <section class="bg-gradient-to-r from-blue-500 to-navy-600 flex items-center justify-center h-screen">
-    <div class="container mx-auto flex flex-col md:flex-row items-center justify-center text-white space-y-4 md:space-y-0 p-4">
+    <div class="container mx-auto flex flex-col md:flex-row items-center justify-center text-white space-y-8 md:space-y-0 p-6">
         <div class="md:w-1/2 text-center md:text-left space-y-8">
-            <h1 class="text-4xl md:text-6xl font-bold mb-4 transition-transform transform duration-700 hover:scale-105">Welcome to Vision Pro Base</h1>
+            <h1 class="text-8xl md:text-10xl font-bold italic mb-4 transition-transform transform duration-700 hover:scale-105">Investment for Future Vision Investors</h1>
             <h2 class="text-xl md:text-3xl font-bold mb-2 transition-transform transform duration-700 hover:scale-105">Trade with a broker that gives you more</h2>
             <p class="mb-6">We are a financial trading firm that helps people invest their money and make a profit. Our platform is designed to provide you with the tools you need to make informed investment decisions. Click the button below to get started. With our platform, access the tools, platforms, and support you need to navigate global markets.</p>
             <a href="dashboard.html#sign-up" class="inline-block bg-white text-black px-6 py-3 rounded-lg text-lg mb-2 hover:bg-gray-100">Open an account</a>
         </div>
+        
         <!-- Replace with your own image -->
-        <div class="md:w-1/2 mt-6 md:mt-0">
-            <img src="coin.webp" alt="Man with phone" class="w-full h-auto transition-transform transform duration-700 hover:scale-105">
+        <div class="md:w-1/2 mt-12 md:mt-0 pl-6 md:pl-12"> <!-- Added padding-left -->
+            <img src="icon.png" alt="Man with phone" class="w-full h-auto transition-transform transform duration-700 hover:scale-105">
         </div>
     </div>
+</section>
+
+
     <style>
         .bg-gradient-to-r {
             background: linear-gradient(to right, #3B82F6, #1E3A8A); /* Adjust colors as needed */

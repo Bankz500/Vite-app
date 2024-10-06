@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -40,13 +39,11 @@
                 if (userDoc.exists()) {
                     // Populate the fields with the user data
                     const userData = userDoc.data();
-
-                    // Set the input fields with user data
-                    document.getElementById('firstName').value = userData.firstName || '';
-                    document.getElementById('lastName').value = userData.lastName || '';
-                    document.getElementById('email').value = userData.email || '';
-                    document.getElementById('phone').value = userData.phone || '';
-                    document.getElementById('bio').value = userData.bio || '';
+                    
+                    // Set the amounts directly from user data
+                    document.getElementById('Deposit-account').textContent = `${userData.deposit || '0.00'}`;
+                    document.getElementById('Profit-wallet').textContent = `${userData.profit || '0.00'}`;
+                    document.getElementById('wallet').textContent = `${userData.wallet || '0.00'}`;
                 } else {
                     console.log('No user document found in Firestore.');
                     alert('No user data found in Firestore.');
@@ -59,7 +56,7 @@
         });
 
         // Sign out function
-        window.signOut = function () {
+        window.signOut = function() {
             signOut(auth).then(() => {
                 alert('Signed out successfully!');
                 window.location.href = 'sign-in.html'; // Redirect after sign-out
@@ -67,22 +64,11 @@
                 alert('Error signing out: ' + error.message);
             });
         };
-
-        // Example function to handle profile picture upload (to be implemented)
-        function uploadProfilePicture(event) {
-            // Upload logic here
-        }
-
-        // Example function to update profile information (to be implemented)
-        function updateProfile() {
-            // Logic to update the profile in Firestore
-        }
     </script>
 </head>
-
 <body class="font-sans antialiased bg-blue-100">
 
-<!-- Navbar -->
+    <!-- Navbar -->
 <nav class="bg-white p-4 shadow">
     <div class="container mx-auto flex items-center justify-between">
         <a href="index.html">
@@ -90,26 +76,20 @@
         </a>
 
         <div class="flex items-center space-x-4">
-            <!-- Date and Time Display (hidden on mobile) -->
-            <div id="date-time" class="hidden md:block text-lg font-medium text-blue-600"></div>
+            <!-- Notification Icon -->
+            <a href="notification.html" class="relative">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-700 hover:text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.157V11a6 6 0 10-12 0v3.157c0 .538-.214 1.055-.595 1.438L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
+                </svg>
+                <!-- Notification Badge (optional) -->
+                <span class="absolute top-0 right-0 inline-block w-2 h-2 bg-red-600 rounded-full"></span>
+            </a>
 
             <!-- Sign out button for mobile and desktop -->
             <button onclick="signOut()" class="bg-gradient-to-r from-blue-600 to-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-600">Sign Out</button>
         </div>
     </div>
 </nav>
-
-<script>
-    // Function to update the date and time
-    function updateDateTime() {
-        const now = new Date();
-        const dateTimeString = now.toLocaleString(); // Adjust to your desired format
-        document.getElementById('date-time').textContent = dateTimeString;
-    }
-
-    // Update the date and time every second
-    setInterval(updateDateTime, 1000);
-</script>
 
 
     <div class="flex">
@@ -145,69 +125,7 @@
     </nav>
 </div>
 
-        <!-- Main Profile Content -->
 
-    <div class="flex-1 p-6 bg-blue-100"> <!-- Added navy background -->
-        <div class="flex-1 p-3 bg-white rounded-lg  text-black">
-                <div class="w-full bg-white px-6 rounded-lg shadow-md">
-                    <!-- Profile Header -->
-                    <div class="flex items-center space-x-4">
-                        <div class="relative">
-                            <img id="profilePic" src="https://via.placeholder.com/100" alt="Profile Picture" class="w-16 h-16 rounded-full border border-gray-300">
-                            <label for="profileImageInput" class="absolute inset-0 flex items-center justify-center text-gray-500 bg-gray-700 bg-opacity-50 rounded-full cursor-pointer opacity-0 hover:opacity-100 transition-opacity duration-300">
-                                <span class="text-sm">Change</span>
-                            </label>
-                            <input type="file" id="profileImageInput" class="hidden" accept="image/*" onchange="uploadProfilePicture(event)">
-                        </div>
-                        <div>
-                            <h1 id="displayName" class="text-3xl font-bold"></h1>
-                            <p id="displayEmail" class="text-gray-500"></p>
-                        </div>
-                    </div>
-
-                    <!-- Profile Information Card -->
-                    <div class="max-w-fulll max-w-full bg-white shadow-0 rounded-lg p-6 mt-8">
-                        <h2 class="text-2xl font-bold text-gray-800 mb-6">Profile Information</h2>
-                        <form class="space-y-6" onsubmit="event.preventDefault(); updateProfile();">
-                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                                <div>
-                                    <label for="firstName" class="block text-sm font-medium text-gray-700">First Name</label>
-                                    <input type="text" id="firstName" name="firstName" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 p-2">
-                                </div>
-
-                                <div>
-                                    <label for="lastName" class="block text-sm font-medium text-gray-700">Last Name</label>
-                                    <input type="text" id="lastName" name="lastName" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 p-2">
-                                </div>
-                            </div>
-
-                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                                <div>
-                                    <label for="email" class="block text-sm font-medium text-gray-700">Email</label>
-                                    <input type="email" id="email" name="email" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 p-2" disabled>
-                                </div>
-
-                                <div>
-                                    <label for="phone" class="block text-sm font-medium text-gray-700">Phone</label>
-                                    <input type="tel" id="phone" name="phone" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 p-2">
-                                </div>
-                            </div>
-                            <div class="flex justify-end">
-                                <button type="submit" class="px-6 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition duration-200 w-full">Save Changes</button>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-
-
-<section class="py-16 bg-blue-100" id="spacing">
-    <div class="container mx-auto text-center">
-    </div>
-</section>
 
 
 <!-- Bottom Navbar (only visible on mobile) -->

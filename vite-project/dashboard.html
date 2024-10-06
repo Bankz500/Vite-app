@@ -68,17 +68,36 @@
 </head>
 <body class="font-sans antialiased bg-gray-100">
 
-    <!-- Navbar -->
-    <nav class="bg-white p-4 shadow">
-        <div class="container mx-auto flex items-center justify-between">
-            <a href="index.html">
-                <img src="vision.png" alt="Crypto Brand Logo" class="h-12">
-            </a>
-            
+<!-- Navbar -->
+<nav class="bg-white p-4 shadow">
+    <div class="container mx-auto flex items-center justify-between">
+        <a href="index.html">
+            <img src="vision.png" alt="Crypto Brand Logo" class="h-12">
+        </a>
+
+        <div class="flex items-center space-x-4">
+            <!-- Date and Time Display (hidden on mobile) -->
+            <div id="date-time" class="hidden md:block text-lg font-medium text-blue-600"></div>
+
             <!-- Sign out button for mobile and desktop -->
             <button onclick="signOut()" class="bg-gradient-to-r from-blue-600 to-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-600">Sign Out</button>
         </div>
-    </nav>
+    </div>
+</nav>
+
+<script>
+    // Function to update the date and time
+    function updateDateTime() {
+        const now = new Date();
+        const dateTimeString = now.toLocaleString(); // Adjust to your desired format
+        document.getElementById('date-time').textContent = dateTimeString;
+    }
+
+    // Update the date and time every second
+    setInterval(updateDateTime, 1000);
+</script>
+
+
 
     <div class="flex">
 <!-- Sidebar (hidden on mobile, visible on desktop) -->
