@@ -55,10 +55,10 @@
             </nav>
         </div>
         
-        <!-- Main Content -->
-<div class="flex-1 p-4 bg-blue-100 overflow-y-auto items-center justify-center w-full"> <!-- Enable vertical scrolling and center content -->
-    <div class="flex flex-col items-center w-full bg-white rounded-lg shadow-lg p-6"> <!-- Removed max-w-lg to allow full width -->
-        <h1 class="text-3xl font-bold mb-6 text-gray-800">Deposit</h1>
+<!-- Main Content -->
+<div class="flex-1 p-6 bg-blue-100 pb-28 md:pb-0"> <!-- Added navy background -->
+    <div class="flex-1 p-6 bg-white rounded-lg text-black">
+        <h1 class="text-3xl font-semibold mb-6 text-black">Deposit</h1>
         <p class="text-gray-700 mb-4">To make a deposit, copy the wallet address below and attach the payment proof receipt.</p>
 
         <!-- Depositor's Name -->
@@ -109,91 +109,131 @@
         <button id="submitButton" class="bg-blue-600 text-white px-6 py-2 rounded-md hover:bg-blue-700 w-full">
             Submit
         </button>
+
+        <!-- Hidden prompt for submission status -->
+        <p id="submissionStatus" class="mt-4 text-gray-500 text-center font-regular text-sm hidden"></p>
+    </div> 
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        // Function to copy the mobile wallet address
+        const mobileCopyButton = document.getElementById('mobileCopyButton');
+        mobileCopyButton.addEventListener('click', function() {
+            const mobileWalletAddress = document.getElementById('mobileWalletAddress').textContent;
+            navigator.clipboard.writeText(mobileWalletAddress).then(() => {
+                alert('Mobile wallet address copied to clipboard!');
+            }).catch(err => {
+                console.error('Error copying text: ', err);
+            });
+        });
+
+        // Form submission logic (validation and loading state)
+        const submitButton = document.getElementById('submitButton');
+        submitButton.addEventListener('click', function() {
+            // Reset error messages
+            document.getElementById('nameError').classList.add('hidden');
+            document.getElementById('amountError').classList.add('hidden');
+            document.getElementById('fileError').classList.add('hidden');
+
+            // Get values
+            const depositorName = document.getElementById('depositorName').value.trim();
+            const selectedAmount = document.getElementById('amount').value;
+            const verificationFile = document.getElementById('verificationFile').files.length > 0;
+            const submissionStatus = document.getElementById('submissionStatus');
+
+            // Validate fields
+            let valid = true;
+            if (!depositorName) {
+                document.getElementById('nameError').classList.remove('hidden');
+                valid = false;
+            }
+            if (!selectedAmount) {
+                document.getElementById('amountError').classList.remove('hidden');
+                valid = false;
+            }
+            if (!verificationFile) {
+                document.getElementById('fileError').classList.remove('hidden');
+                valid = false;
+            }
+
+            // Show success message or handle errors
+            if (valid) {
+                submissionStatus.textContent = 'Deposit completed! Transaction is in process.';
+                submissionStatus.classList.remove('hidden');
+            } else {
+                submissionStatus.classList.add('hidden');
+            }
+        });
+    });
+</script>
+
+
+       <!-- Bottom Navbar (only visible on mobile) -->
+<div class="md:hidden fixed bottom-2 left-2 right-2 rounded-lg bg-white shadow-2xl p-3">
+    <div class="flex justify-between items-center">
+        <!-- Wallet Icon -->
+        <a href="dashboard.html" class="nav-item flex flex-col items-center" onclick="setActive(this)">
+            <div class="bg-white rounded-full shadow-lg p-2 transition-transform transform hover:scale-110 active:scale-95 active:shadow-xl" id="walletIcon">
+                <img src="122.png" alt="Wallet Icon" class="h-6 w-6" />
+            </div>
+            <span class="text-xs font-semibold mt-2" id="walletText">Wallet</span>
+        </a>
+        <!-- Deposit Icon -->
+        <a href="deposit.html" class="nav-item flex flex-col items-center" onclick="setActive(this)">
+            <div class="bg-white rounded-full shadow-lg p-2 transition-transform transform hover:scale-110 active:scale-95 active:shadow-xl" id="depositIcon">
+                <img src="save.png" alt="Deposit Icon" class="h-6 w-6" />
+            </div>
+            <span class="text-xs font-semibold mt-2" id="depositText">Deposit</span>
+        </a>
+        <!-- Withdraw Icon -->
+        <a href="withdrawal.html" class="nav-item flex flex-col items-center" onclick="setActive(this)">
+            <div class="bg-white rounded-full shadow-lg p-2 transition-transform transform hover:scale-110 active:scale-95 active:shadow-xl" id="withdrawIcon">
+                <img src="money.png" alt="Withdraw Icon" class="h-6 w-6" />
+            </div>
+            <span class="text-xs font-semibold mt-2" id="withdrawText">Withdraw</span>
+        </a>
+        <!-- Verify Icon -->
+        <a href="verification.html" class="nav-item flex flex-col items-center" onclick="setActive(this)">
+            <div class="bg-white rounded-full shadow-lg p-2 transition-transform transform hover:scale-110 active:scale-95 active:shadow-xl" id="verifyIcon">
+                <img src="23345.png" alt="Verify Icon" class="h-6 w-6" />
+            </div>
+            <span class="text-xs font-semibold mt-2" id="verifyText">Verify</span>
+        </a>
+        <!-- Profile Icon -->
+        <a href="profile.html" class="nav-item flex flex-col items-center" onclick="setActive(this)">
+            <div class="bg-white rounded-full shadow-lg p-2 transition-transform transform hover:scale-110 active:scale-95 active:shadow-xl" id="profileIcon">
+                <img src="2334.png" alt="Profile Icon" class="h-6 w-6" />
+            </div>
+            <span class="text-xs font-semibold mt-2" id="profileText">Profile</span>
+        </a>
     </div>
 </div>
 
-                <!-- Hidden prompt for submission status -->
-                <p id="submissionStatus" class="mt-4 text-gray-500 text-center font-regular text-sm hidden"></p>
-            </div> 
-        </div>
+<script>
+    // Function to set the active navbar item
+    function setActive(element) {
+        // Reset all items to default styles
+        const icons = document.querySelectorAll('.nav-item div');
+        const texts = document.querySelectorAll('.nav-item span');
+        icons.forEach(icon => icon.classList.remove('bg-blue-300', 'text-white'));
+        texts.forEach(text => text.classList.remove('text-blue-300'));
 
-        <script>
-            document.addEventListener('DOMContentLoaded', function () {
-                // Function to copy the mobile wallet address
-                const mobileCopyButton = document.getElementById('mobileCopyButton');
-                mobileCopyButton.addEventListener('click', function() {
-                    const mobileWalletAddress = document.getElementById('mobileWalletAddress').textContent;
-                    navigator.clipboard.writeText(mobileWalletAddress).then(() => {
-                        alert('Mobile wallet address copied to clipboard!');
-                    }).catch(err => {
-                        console.error('Error copying text: ', err);
-                    });
-                });
-        
-                // Form submission logic (validation and loading state)
-                const submitButton = document.getElementById('submitButton');
-                submitButton.addEventListener('click', function() {
-                    // Form validation logic here
-                    // Simulate loading state and success message
-                });
-            });
-        </script>
+        // Add active styles to the clicked item
+        const icon = element.querySelector('div');
+        const text = element.querySelector('span');
+        icon.classList.add('bg-blue-300', 'text-white'); // Highlight background of active icon
+        text.classList.add('text-blue-300'); // Highlight text of active item
+    }
 
-        <!-- Bottom Navbar (only visible on mobile) -->
-        <div class="md:hidden fixed bottom-2 left-2 right-2 rounded-lg bg-white shadow-2xl p-3">
-            <div class="flex justify-between items-center">
-                <!-- Wallet Icon -->
-                <a href="dashboard.html" class="nav-item flex flex-col items-center" onclick="setActive(this)">
-                    <div class="bg-white rounded-full shadow-lg p-2 transition-transform transform hover:scale-110 active:scale-95 active:shadow-xl" id="walletIcon">
-                        <img src="122.png" alt="Wallet Icon" class="h-6 w-6" />
-                    </div>
-                    <span class="text-xs font-semibold mt-2" id="walletText">Wallet</span>
-                </a>
-                <!-- Deposit Icon -->
-                <a href="deposit.html" class="nav-item flex flex-col items-center" onclick="setActive(this)">
-                    <div class="bg-white rounded-full shadow-lg p-2 transition-transform transform hover:scale-110 active:scale-95 active:shadow-xl" id="depositIcon">
-                        <img src="save.png" alt="Deposit Icon" class="h-6 w-6" />
-                    </div>
-                    <span class="text-xs font-semibold mt-2" id="depositText">Deposit</span>
-                </a>
-                <!-- Withdraw Icon -->
-                <a href="withdrawal.html" class="nav-item flex flex-col items-center" onclick="setActive(this)">
-                    <div class="bg-white rounded-full shadow-lg p-2 transition-transform transform hover:scale-110 active:scale-95 active:shadow-xl" id="withdrawIcon">
-                        <img src="money.png" alt="Withdraw Icon" class="h-6 w-6" />
-                    </div>
-                    <span class="text-xs font-semibold mt-2" id="withdrawText">Withdraw</span>
-                </a>
-                <!-- Verification Icon -->
-                <a href="verification.html" class="nav-item flex flex-col items-center" onclick="setActive(this)">
-                    <div class="bg-white rounded-full shadow-lg p-2 transition-transform transform hover:scale-110 active:scale-95 active:shadow-xl" id="verificationIcon">
-                        <img src="23345.png" alt="Verification Icon" class="h-6 w-6" />
-                    </div>
-                    <span class="text-xs font-semibold mt-2" id="verificationText">Verification</span>
-                </a>
-                <!-- Profile Icon -->
-                <a href="profile.html" class="nav-item flex flex-col items-center" onclick="setActive(this)">
-                    <div class="bg-white rounded-full shadow-lg p-2 transition-transform transform hover:scale-110 active:scale-95 active:shadow-xl" id="profileIcon">
-                        <img src="2334.png" alt="Profile Icon" class="h-6 w-6" />
-                    </div>
-                    <span class="text-xs font-semibold mt-2" id="profileText">Profile</span>
-                </a>
-            </div>
-        </div>
-    </div>
-
-    <script>
-        function setActive(element) {
-            const navItems = document.querySelectorAll('.nav-item');
-            navItems.forEach(item => {
-                item.classList.remove('bg-gray-100');
-            });
-            element.classList.add('bg-gray-100');
+    // Set the active state on page load based on the current URL
+    const currentPath = window.location.pathname;
+    const navItems = document.querySelectorAll('.nav-item');
+    navItems.forEach(item => {
+        if (item.href.includes(currentPath)) {
+            setActive(item);
         }
-        
-        function signOut() {
-            // Add your sign-out logic here
-            alert("You have signed out!");
-        }
-    </script>
+    });
+</script>
 </body>
 </html>

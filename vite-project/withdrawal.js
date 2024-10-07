@@ -106,7 +106,7 @@ const withdrawButton = document.getElementById('withdrawButton');
 
 
      // Function to set the active navbar item
-     function setActive(element) {
+    function setActive(element) {
         // Reset all items to default styles
         const icons = document.querySelectorAll('.nav-item div');
         const texts = document.querySelectorAll('.nav-item span');
