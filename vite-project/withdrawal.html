@@ -112,8 +112,7 @@
                 </ul>
             </nav>
         </div>
-
-        <!-- Main Content -->
+<!-- Main Content -->
 <div class="flex-1 p-6 bg-blue-100 pb-28 md:pb-0"> <!-- Added navy background -->
     <div class="flex-1 p-6 bg-white rounded-lg text-black">
         <h1 class="text-3xl font-semibold mb-6 text-black">Withdrawal</h1>
@@ -152,8 +151,8 @@
                         <p id="balance" class="text-green-500 text-sm mt-1 hidden">Current Balance: $0.00</p>
                     </div>
                     <div class="col-span-1 flex justify-center md:col-span-2">
-                        <button type="button" onclick="submitCashWithdrawal()" 
-                                class="bg-gradient-to-r from-blue-600 to-blue-600 text-white px-8 py-2 w-full hover:bg-blue-600">Withdraw</button>
+                        <button type="button" onclick="submitCashWithdrawal()" id="cashWithdrawButton"
+                                class="bg-gradient-to-r from-blue-600 to-blue-600 text-white px-8 rounded-lg py-2 w-full hover:bg-blue-600">Submit</button>
                     </div>
                 </div>
             </form>
@@ -182,8 +181,8 @@
                         <p id="btcConversion" class="text-green-500 text-sm mt-1">BTC Amount: <span id="btcAmountDisplay">0.00</span></p>
                     </div>
                     <div class="col-span-1 flex justify-center md:col-span-2">
-                        <button type="button" onclick="submitBTCWithdrawal()" 
-                                class="bg-gradient-to-r from-blue-600 to-blue-600 text-white px-8 py-2 w-full hover:bg-blue-600">Withdraw</button>
+                        <button type="button" onclick="submitBTCWithdrawal()" id="btcWithdrawButton"
+                                class="bg-gradient-to-r from-blue-600 to-blue-600 text-white px-8 rounded-lg py-2 w-full hover:bg-blue-600">Submit</button>
                     </div>
                 </div>
             </form>
@@ -236,6 +235,7 @@
         const accountNumber = document.getElementById('accountNumber').value.trim();
         const amount = document.getElementById('amount').value.trim();
         const cashMessage = document.getElementById('cashMessage');
+        const cashWithdrawButton = document.getElementById('cashWithdrawButton');
 
         cashMessage.textContent = ''; // Clear previous messages
 
@@ -258,8 +258,14 @@
         }
 
         if (bankName && accountNumber && amount) {
-            cashMessage.textContent = "Withdrawal is being processed please wait.";
-            // You can implement further processing here
+            // Change button text to "Please wait..."
+            cashWithdrawButton.textContent = "Please wait...";
+
+            // Add a delay before showing the confirmation message
+            setTimeout(() => {
+                cashWithdrawButton.textContent = "Submit";
+                cashMessage.textContent = "Withdrawal is being processed.";
+            }, 2000); // 2-second delay
         }
     }
 
@@ -268,6 +274,7 @@
         const btcAddress = document.getElementById('btcAddress').value.trim();
         const btcAmount = document.getElementById('btcAmount').value.trim();
         const btcMessage = document.getElementById('btcMessage');
+        const btcWithdrawButton = document.getElementById('btcWithdrawButton');
 
         btcMessage.textContent = ''; // Clear previous messages
 
@@ -284,12 +291,19 @@
         }
 
         if (btcAddress && btcAmount) {
-            btcMessage.textContent = "Not allowed BTC withdrawal is accessable to only verified users";
-            // Further processing can be handled here
+            // Change button text to "Please wait..."
+            btcWithdrawButton.textContent = "Please wait...";
+            
+            
+
+            // Add a delay before showing the not allowed message
+            setTimeout(() => {
+                btcWithdrawButton.textContent = "Withdraw";
+                btcMessage.textContent = "Not allowed: BTC withdrawal is accessible to only verified users.";
+            }, 2000); // 7-second delay
         }
     }
 </script>
-
 </body>
 
 <!-- Bottom Navbar (only visible on mobile) -->

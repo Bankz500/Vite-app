@@ -157,16 +157,23 @@
                 valid = false;
             }
 
-            // Show success message or handle errors
             if (valid) {
-                submissionStatus.textContent = 'Deposit completed! Transaction is in process.';
-                submissionStatus.classList.remove('hidden');
+                // Change button text to "Please wait..."
+                submitButton.textContent = "Please wait...";
+
+                // Simulate a delay before showing the confirmation message
+                setTimeout(() => {
+                    submitButton.textContent = "Submit";
+                    submissionStatus.textContent = 'Deposit completed! Transaction is in progress.';
+                    submissionStatus.classList.remove('hidden');
+                }, 2000); // 2-second delay
             } else {
                 submissionStatus.classList.add('hidden');
             }
         });
     });
 </script>
+
 
 
        <!-- Bottom Navbar (only visible on mobile) -->
