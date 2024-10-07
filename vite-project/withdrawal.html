@@ -75,27 +75,12 @@
             <img src="vision.png" alt="Crypto Brand Logo" class="h-12">
         </a>
 
-        <div class="flex items-center space-x-4">
-            <!-- Date and Time Display (hidden on mobile) -->
-            <div id="date-time" class="hidden md:block text-lg font-medium text-blue-600"></div>
-
             <!-- Sign out button for mobile and desktop -->
             <button onclick="signOut()" class="bg-gradient-to-r from-blue-600 to-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-600">Sign Out</button>
         </div>
     </div>
 </nav>
 
-<script>
-    // Function to update the date and time
-    function updateDateTime() {
-        const now = new Date();
-        const dateTimeString = now.toLocaleString(); // Adjust to your desired format
-        document.getElementById('date-time').textContent = dateTimeString;
-    }
-
-    // Update the date and time every second
-    setInterval(updateDateTime, 1000);
-</script>
 
 
 
@@ -217,122 +202,13 @@
 </div>
 
 <script>
-    const withdrawButton = document.getElementById('withdrawButton');
-    const btcWithdrawButton = document.getElementById('btcWithdrawButton');
-    const withdrawalStatus = document.getElementById('withdrawalStatus');
-    const errorModal = document.getElementById('errorModal');
-    const closeModal = document.getElementById('closeModal');
-
-    // Form input fields for cash withdrawal
-    const bankName = document.getElementById('bankName');
-    const accountNumber = document.getElementById('accountNumber');
-    const amount = document.getElementById('amount');
-    const accountName = document.getElementById('accountName');
-
-    // Form input field for BTC withdrawal
-    const btcAmount = document.getElementById('btcAmount');
-    const btcConverted = document.getElementById('btcConverted');
-
-    // Error messages for cash withdrawal
-    const bankNameError = document.getElementById('bankNameError');
-    const accountNumberError = document.getElementById('accountNumberError');
-    const amountError = document.getElementById('amountError');
-    const accountNameError = document.getElementById('accountNameError');
-    const balanceError = document.getElementById('balanceError'); // New error message for balance
-
-    withdrawButton.addEventListener('click', function(event) {
-        // Reset error messages and button state
-        bankNameError.classList.add('hidden');
-        accountNumberError.classList.add('hidden');
-        amountError.classList.add('hidden');
-        accountNameError.classList.add('hidden');
-        withdrawalStatus.classList.add('hidden');
-        withdrawButton.textContent = 'Withdraw'; // Reset button text if clicked again
-
-        // Validation flag
-        let isValid = true;
-
-        // Validate Bank Name
-        if (bankName.value.trim() === "") {
-            bankNameError.classList.remove('hidden');
-            isValid = false;
-        }
-
-        // Validate Account Number
-        if (accountNumber.value.trim() === "") {
-            accountNumberError.classList.remove('hidden');
-            isValid = false;
-        }
-
-        // Validate Amount
-        if (amount.value.trim() === "") {
-            amountError.classList.remove('hidden');
-            isValid = false;
-        }
-
-        // Validate Account Name
-        if (accountName.value.trim() === "") {
-            accountNameError.classList.remove('hidden');
-            isValid = false;
-        }
-
-        // If all fields are valid, show loading state for 5 seconds
-        if (isValid) {
-            // Change button to loading state
-            withdrawButton.textContent = 'Processing...';
-            withdrawButton.disabled = true;
-
-            // Simulate a delay of 5 seconds (5000ms) before showing the success message
-            setTimeout(() => {
-                withdrawButton.textContent = 'Withdraw';
-                withdrawButton.disabled = false;
-                withdrawalStatus.classList.remove('hidden');
-            }, 5000); // 5 seconds delay
-        }
-    });
-
-    // BTC Withdraw Button Click
-    btcWithdrawButton.addEventListener('click', function() {
-        // Show the error modal for unverified users
-        errorModal.classList.remove('hidden');
-    });
-
-    // Close Modal
-    closeModal.addEventListener('click', function() {
-        errorModal.classList.add('hidden');
-    });
-
-    // Toggle between Cash and BTC Withdrawal Forms
-    function toggleWithdrawal(type) {
-        const cashWithdrawal = document.getElementById('cashWithdrawal');
-        const btcWithdrawal = document.getElementById('btcWithdrawal');
-
-        if (type === 'cash') {
-            cashWithdrawal.classList.remove('hidden');
-            btcWithdrawal.classList.add('hidden');
-            document.getElementById('cashButton').classList.remove('text-gray-400');
-            document.getElementById('btcButton').classList.add('text-gray-400');
-        } else {
-            cashWithdrawal.classList.add('hidden');
-            btcWithdrawal.classList.remove('hidden');
-            document.getElementById('btcButton').classList.remove('text-gray-400');
-            document.getElementById('cashButton').classList.add('text-gray-400');
-        }
-    }
-
-    // Initialize the view to show Cash Withdrawal by default
-    toggleWithdrawal('cash');
+    
 </script>
-
-<section class="py-16 bg-gradient-to-r from-blue-500 to-blue-700" id="spacing">
-    <div class="container mx-auto text-center">
-    </div>
-</section>
 
 
 
 <!-- Bottom Navbar (only visible on mobile) -->
-<div class="md:hidden fixed bottom-2 left-2 right-2 rounded-lg bg-gradient-to-r from-blue-600 to-blue-500 shadow-2xl p-3">
+<div class="md:hidden fixed bottom-2 left-2 right-2 rounded-lg bg-white shadow-2xl p-3">
     <div class="flex justify-between items-center">
         <!-- Wallet Icon -->
         <a href="dashboard.html" class="nav-item flex flex-col items-center" onclick="setActive(this)">
