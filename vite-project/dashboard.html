@@ -76,7 +76,7 @@
         </a>
 
             <!-- Sign out button for mobile and desktop -->
-            <button onclick="signOut()" class="bg-gradient-to-r from-blue-600 to-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-600">Sign Out</button>
+            <button onclick="signOut()" class="bg-gradient-to-r from-blue-600 to-blue-600 border-gray- text-white px-6 py-2 rounded-lg hover:bg-blue-600">Sign Out</button>
         </div>
     </div>
 </nav>
@@ -127,14 +127,42 @@
     </nav>
 </div>
 
+<!-- Main Content -->
+<div class="flex-1 p-2 bg-blue-100">
+    <div class="flex-1 py-2 bg-blue-100 rounded-lg text-black">
 
-      <!-- Main Content -->
-<div class="flex-1 p-2 bg-blue-100"> <!-- Added navy background -->
-    <div class="flex-1 py-2 bg-white rounded-lg text-black">
-        <div class="flex-1 p-2 bg-blue-100">
-            <h1 class="text-3xl font-semibold mb-6 rounded-lg text-black">Wallet Overview</h1>
+        <!-- Flex container to align Wallet Overview and Generate Wallet Address -->
+        <div class="flex justify-between items-center mb-6">
+            <!-- Wallet Overview -->
+                    <div class="flex-1 p-2 bg-blue-100">
+                        <h1 class="text-2xl font-semibold mb-6 rounded-lg text-black">Wallet Overview</h1>
+                        
+                        <!-- Generate Wallet Address Feature -->
+<div class="flex items-center space-x-4 mb-6"> <!-- Added mb-6 for spacing -->
+    <input id="wallet-address-input" type="text" placeholder="Generate personalized wallet address" class="w-full p-3 border rounded-lg focus:outline-none" readonly>
+    <button id="generate-button" onclick="generateWalletAddress()" class="bg-blue-200 text-black px-4 py-2 rounded-lg hover:bg-blue-500">Generate</button>
+</div>
 
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+<script>
+    // Generate wallet address with loading state
+    window.generateWalletAddress = function() {
+        const walletAddress = "bc1qkkj0payl2w0lh937vj27y0zwqgzre38jm0rey5";
+        const input = document.getElementById('wallet-address-input');
+        const button = document.getElementById('generate-button');
+
+        // Change button text to "Generating..."
+        button.textContent = "Generating...";
+        button.disabled = true; // Disable the button
+
+        // Simulate a loading time of 5 seconds
+        setTimeout(() => {
+            input.value = walletAddress; // Set the wallet address after 5 seconds
+            button.textContent = "Generate"; // Reset button text
+            button.disabled = false; // Re-enable the button
+        }, 5000); // 5000 ms = 5 seconds
+    }
+</script>
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-6"> <!-- Added mt-6 for spacing -->
                 <!-- Deposit Account Card -->
                 <!DOCTYPE html>
                 <html lang="en">
