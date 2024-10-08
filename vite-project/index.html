@@ -91,47 +91,47 @@
     </script>
 </body>
 
- <!-- TradingView Widget BEGIN -->
- <div class="tradingview-widget-container mt-4">
+ <!-- TradingView Widget BEGIN (Visible on all devices) -->
+<div class="tradingview-widget-container mt-4">
     <div class="tradingview-widget-container__widget"></div>
-    <div class="tradingview-widget-copyright"><a href="https://www.tradingview.com/" rel="noopener nofollow" target="_blank"><span class="blue-text">Track all markets on TradingView</span></a></div>
+    <div class="tradingview-widget-copyright">
+        <a href="https://www.tradingview.com/" rel="noopener nofollow" target="_blank">
+            <span class="blue-text">Track all markets on TradingView</span>
+        </a>
+    </div>
     <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-ticker-tape.js" async>
     document.write(JSON.stringify({
-    "symbols": [
-      {
-        "proName": "FOREXCOM:SPXUSD",
-        "title": "S&P 500"
-      },
-      {
-        "proName": "FOREXCOM:NSXUSD",
-        "title": "US 100"
-      },
-      {
-        "proName": "FX_IDC:EURUSD",
-        "title": "EUR to USD"
-      },
-      {
-        "proName": "BITSTAMP:BTCUSD",
-        "title": "Bitcoin"
-      },
-      {
-        "proName": "BITSTAMP:ETHUSD",
-        "title": "Ethereum"
-      }
-    ],
-    "showSymbolLogo": true,
-    "isTransparent": false,
-    "displayMode": "adaptive",
-    "colorTheme": "light",
-    "locale": "en"
-  }));
+        "symbols": [
+            {
+                "proName": "FOREXCOM:SPXUSD",
+                "title": "S&P 500"
+            },
+            {
+                "proName": "FOREXCOM:NSXUSD",
+                "title": "US 100"
+            },
+            {
+                "proName": "FX_IDC:EURUSD",
+                "title": "EUR to USD"
+            },
+            {
+                "proName": "BITSTAMP:BTCUSD",
+                "title": "Bitcoin"
+            },
+            {
+                "proName": "BITSTAMP:ETHUSD",
+                "title": "Ethereum"
+            }
+        ],
+        "showSymbolLogo": true,
+        "isTransparent": false,
+        "displayMode": "adaptive",
+        "colorTheme": "light",
+        "locale": "en"
+    }));
     </script>
-
-
-<section class="py-16 bg-white" id="spacing">
-    <div class="container mx-auto text-center">
-    </div>
-</section>
+</div>
+<!-- TradingView Widget END -->
 
 
   </div>
@@ -637,8 +637,26 @@
     </div>
 </section>
 
-<!-- TradingView Widget BEGIN -->
-<div class="tradingview-widget-container mx-auto text-center">
+<style>
+    /* Center the widget container */
+    .tradingview-widget-container {
+        display: flex; /* Use flexbox */
+        flex-direction: column; /* Stack children vertically */
+        align-items: center; /* Center children horizontally */
+        justify-content: center; /* Center children vertically */
+        margin: 0 auto; /* Center the container itself */
+    }
+
+    /* Hide the widget on mobile */
+    @media (max-width: 768px) {
+        .hide-on-mobile {
+            display: none; /* Hide on mobile */
+        }
+    }
+</style>
+
+<!-- TradingView Widget BEGIN (Widget to hide on mobile) -->
+<div class="tradingview-widget-container mt-4 hide-on-mobile">
     <div class="tradingview-widget-container__widget"></div>
     <div class="tradingview-widget-copyright">
         <a href="https://www.tradingview.com/" rel="noopener nofollow" target="_blank">
@@ -647,24 +665,26 @@
     </div>
     <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-screener.js" async></script>
     <script>
-    function updateWidgetSize() {
-        const widgetWidth = window.innerWidth <= 768 ? window.innerWidth - 40 : 1000;
-        const widgetHeight = window.innerWidth <= 768 ? 400 : 490;
+        function updateWidgetSize() {
+            const widgetWidth = window.innerWidth <= 768 ? window.innerWidth - 40 : 1000;
+            const widgetHeight = window.innerWidth <= 768 ? 400 : 490;
 
-        new TradingView.widget({
-            "width": widgetWidth,
-            "height": widgetHeight,
-            "defaultColumn": "overview",
-            "screener_type": "crypto_mkt",
-            "displayCurrency": "USD",
-        });
-    }
+            new TradingView.widget({
+                "width": widgetWidth,
+                "height": widgetHeight,
+                "defaultColumn": "overview",
+                "screener_type": "crypto_mkt",
+                "displayCurrency": "USD",
+            });
+        }
 
-    window.addEventListener('resize', updateWidgetSize);
-    window.addEventListener('load', updateWidgetSize);
+        window.addEventListener('resize', updateWidgetSize);
+        window.addEventListener('load', updateWidgetSize);
     </script>
 </div>
 <!-- TradingView Widget END -->
+
+
 
 
 <!-- Footer Section -->
