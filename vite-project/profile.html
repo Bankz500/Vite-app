@@ -47,6 +47,11 @@
                     document.getElementById('email').value = userData.email || '';
                     document.getElementById('phone').value = userData.phone || '';
                     document.getElementById('bio').value = userData.bio || '';
+
+                    // Populate member state
+                    const memberState = userData.memberState || 'Regular';
+                    document.getElementById('currentMemberState').textContent = memberState;
+                    document.getElementById('memberStateDropdown').value = memberState;
                 } else {
                     console.log('No user document found in Firestore.');
                     alert('No user data found in Firestore.');
@@ -82,80 +87,75 @@
 
 <body class="font-sans antialiased bg-blue-100">
 
-<!-- Navbar -->
-<nav class="bg-white p-4 shadow">
-    <div class="container mx-auto flex items-center justify-between">
-        <a href="index.html">
-            <img src="vision.png" alt="Crypto Brand Logo" class="h-12">
-        </a>
+    <!-- Navbar -->
+    <nav class="bg-white p-4 shadow">
+        <div class="container mx-auto flex items-center justify-between">
+            <a href="index.html">
+                <img src="vision.png" alt="Crypto Brand Logo" class="h-12">
+            </a>
 
             <!-- Sign out button for mobile and desktop -->
             <button onclick="signOut()" class="bg-gradient-to-r from-blue-600 to-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-600">Sign Out</button>
         </div>
-    </div>
-</nav>
-
-<script>
-    // Function to update the date and time
-    function updateDateTime() {
-        const now = new Date();
-        const dateTimeString = now.toLocaleString(); // Adjust to your desired format
-        document.getElementById('date-time').textContent = dateTimeString;
-    }
-
-    // Update the date and time every second
-    setInterval(updateDateTime, 1000);
-</script>
-
+    </nav>
 
     <div class="flex">
 
-<!-- Sidebar (hidden on mobile, visible on desktop) -->
-<div id="sidebar" class="md:w-64 bg-gradient-to-r from-blue-800 to-blue-600 shadow-lg h-screen hidden md:block">
-    <div class="p-6">
-        <h2 class="text-xl font-bold text-white border-b border-gray-500 pb-4">Investor Dashboard</h2>
-    </div>
-    <nav class="mt-6 text-white">
-        <ul>
-            <li class="p-4 hover:bg-blue-300  flex items-center border-b border-gray-500 transition">
-                <img src="wallet 1.png" alt="Wallet Icon" class="w-5 h-5 mr-4"> <!-- Custom Wallet Icon -->
-                <a href="dashboard.html" class="flex-1">Wallet</a>
-            </li>
-            <li class="p-4 hover:bg-blue-300  flex items-center border-b border-gray-500 transition">
-                <img src="piggy 1.png" alt="Deposit Icon" class="w-5 h-5 mr-4"> <!-- Custom Deposit Icon -->
-                <a href="deposit.html" class="flex-1">Deposit</a>
-            </li>
-            <li class="p-4 hover:bg-blue-300  flex items-center border-b border-gray-500 transition">
-                <img src="money 2.png" alt="Withdrawal Icon" class="w-5 h-5 mr-4"> <!-- Custom Withdrawal Icon -->
-                <a href="withdrawal.html" class="flex-1">Withdrawal</a>
-            </li>
-            <li class="p-4 hover:bg-blue-300  flex items-center border-b border-gray-500 transition">
-                <img src="secure 1.png" alt="Verification Icon" class="w-5 h-5 mr-4"> <!-- Custom Verification Icon -->
-                <a href="verification.html" class="flex-1">Verification</a>
-            </li>
-            <li class="p-4 hover:bg-blue-300 flex items-center transition">
-                <img src="user 1.png" alt="Profile Icon" class="w-5 h-5 mr-4"> <!-- Custom Profile Icon -->
-                <a href="profile.html" class="flex-1">Profile</a>
-            </li>
-        </ul>
-    </nav>
-</div>
+        <!-- Sidebar (hidden on mobile, visible on desktop) -->
+        <div id="sidebar" class="md:w-64 bg-gradient-to-r from-blue-800 to-blue-600 shadow-lg h-screen hidden md:block">
+            <div class="p-6">
+                <h2 class="text-xl font-bold text-white border-b border-gray-500 pb-4">Investor Dashboard</h2>
+            </div>
+            <nav class="mt-6 text-white">
+                <ul>
+                    <li class="p-4 hover:bg-blue-300  flex items-center border-b border-gray-500 transition">
+                        <img src="wallet 1.png" alt="Wallet Icon" class="w-5 h-5 mr-4"> <!-- Custom Wallet Icon -->
+                        <a href="dashboard.html" class="flex-1">Wallet</a>
+                    </li>
+                    <li class="p-4 hover:bg-blue-300  flex items-center border-b border-gray-500 transition">
+                        <img src="piggy 1.png" alt="Deposit Icon" class="w-5 h-5 mr-4"> <!-- Custom Deposit Icon -->
+                        <a href="deposit.html" class="flex-1">Deposit</a>
+                    </li>
+                    <li class="p-4 hover:bg-blue-300  flex items-center border-b border-gray-500 transition">
+                        <img src="money 2.png" alt="Withdrawal Icon" class="w-5 h-5 mr-4"> <!-- Custom Withdrawal Icon -->
+                        <a href="withdrawal.html" class="flex-1">Withdrawal</a>
+                    </li>
+                    <li class="p-4 hover:bg-blue-300  flex items-center border-b border-gray-500 transition">
+                        <img src="secure 1.png" alt="Verification Icon" class="w-5 h-5 mr-4"> <!-- Custom Verification Icon -->
+                        <a href="verification.html" class="flex-1">Verification</a>
+                    </li>
+                    <li class="p-4 hover:bg-blue-300 flex items-center transition">
+                        <img src="user 1.png" alt="Profile Icon" class="w-5 h-5 mr-4"> <!-- Custom Profile Icon -->
+                        <a href="profile.html" class="flex-1">Profile</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
 
         <!-- Main Profile Content -->
-<div class="flex-1 p-6 bg-blue-100"> <!-- Added navy background -->
-    <div class="flex-1 p-1 bg-white rounded-lg text-black">
-        <div class="w-full bg-white px-6 rounded-lg shadow-md">
-            <!-- Profile Header -->
-            <div class="flex items-center space-x-2">
-                <div class="relative">
-                    <img id="profilePic" src="https://via.placeholder.com/100" alt="Profile Picture" class="w-10 h-10 rounded-full border border-gray-300">
-                    <label for="profileImageInput" class="absolute inset-0 flex items-center justify-center text-gray-500 bg-gray-700 bg-opacity-50 rounded-full cursor-pointer opacity-0 hover:opacity-100 transition-opacity duration-300">
-                        <span class="text-sm">Change</span>
-                    </label>
-                    <input type="file" id="profileImageInput" class="hidden" accept="image/*" onchange="uploadProfilePicture(event)">
+        <div class="flex-1 p-6 bg-blue-100">
+            <div class="flex-1 p-1 bg-white rounded-lg text-black">
+                <div class="w-full bg-white px-6 rounded-lg shadow-md">
+                    <!-- Profile Header -->
+                    <div class="flex items-center space-x-2">
+                        <div class="relative">
+                            <img id="profilePic" src="https://via.placeholder.com/100" alt="Profile Picture" class="w-10 h-10 rounded-full border border-gray-300">
+                            <label for="profileImageInput" class="absolute inset-0 flex items-center justify-center text-gray-500 bg-gray-700 bg-opacity-50 rounded-full cursor-pointer opacity-0 hover:opacity-100 transition-opacity duration-300">
+                                <span class="text-sm">Change</span>
+                            </label>
+                            <input type="file" id="profileImageInput" class="hidden" accept="image/*" onchange="uploadProfilePicture(event)">
+                        </div>
+                        <div>
+                            <h1 id="displayName" class="text-3xl font-bold"></h1>
+                            <p id="displayEmail" class="text-gray-500"></p>
+                        </div>
+                    </div>
                 </div>
-                <div>
-                    <h1 id="displayName" class="text-3xl font-bold"></h1>
+ <!-- Member State -->
+<p id="memberState" class="text-gray-700 mt-2">Member: <span class="font-semibold" id="currentMemberState">Regular</span></p>
+</select>
+<div>
+<h1 id="displayName" class="text-3xl font-bold"></h1>
                     <p id="displayEmail" class="text-gray-500"></p>
                 </div>
             </div>
