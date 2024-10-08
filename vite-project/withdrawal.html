@@ -8,6 +8,11 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Chart.js Library -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+        <style>
+        html, body {
+            overflow: auto; /* Ensures scrolling is enabled */
+        }
+    </style>
     <script type="module">
         // Firebase SDK imports
         import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.1.3/firebase-app.js';
@@ -141,6 +146,20 @@
                                class="w-full bg-white border border-gray-300 rounded-lg p-2 text-black placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-white" 
                                placeholder="Enter account number">
                         <p id="accountNumberError" class="text-red-500 text-sm hidden">Account Number is required</p>
+                    </div>
+                    <div>
+                        <label for="RoutineNumber" class="block text-sm text-black">Routine number</label>
+                        <input type="text" id="accountNumber" 
+                               class="w-full bg-white border border-gray-300 rounded-lg p-2 text-black placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-white" 
+                               placeholder="Enter Routine number">
+                        <p id="RoutineNumberError" class="text-red-500 text-sm hidden">Routine Number is required</p>
+                    </div>
+                    <div>
+                        <label for="swiftcode" class="block text-sm text-black">Swift code</label>
+                        <input type="text" id="accountNumber" 
+                               class="w-full bg-white border border-gray-300 rounded-lg p-2 text-black placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-white" 
+                               placeholder="Enter swiftcode">
+                        <p id="swiftcodeerror" class="text-red-500 text-sm hidden">Swift code is required</p>
                     </div>
                     <div>
                         <label for="amount" class="block text-sm text-black">Amount</label>
