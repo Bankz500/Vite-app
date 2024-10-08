@@ -49,6 +49,9 @@
                     document.getElementById('Deposit-account').textContent = `${userData.deposit || '0.00'}`;
                     document.getElementById('Profit-wallet').textContent = `${userData.profit || '0.00'}`;
                     document.getElementById('wallet').textContent = `${userData.wallet || '0.00'}`;
+                    
+                    // Set the welcome message
+                    document.getElementById('welcome-message').textContent = `Welcome ${userData.name}`; // Set welcome message
                 } else {
                     console.log('No user document found in Firestore.');
                     alert('No user data found.');
@@ -127,7 +130,7 @@
         <div class="flex justify-between items-center mb-6">
             <!-- Welcome Message -->
             <div class="flex-1 p-2 bg-blue-100">
-                <h1 id="welcome-message" class="text-2xl font-semibold mb-6 rounded-lg text-black">Welcome Hectorr</h1>
+                <h1 id="welcome-message" class="text-2xl font-semibold mb-6 rounded-lg text-black">Welcome back</h1>
                 
                 <!-- Generate Wallet Address Feature -->
                 <div class="flex items-center space-x-4 mb-6"> <!-- Added mb-6 for spacing -->
@@ -135,30 +138,8 @@
                     <button id="generate-button" onclick="generateWalletAddress()" class="bg-blue-200 text-black px-4 py-2 rounded-lg hover:bg-blue-500">Generate</button>
                 </div>
 
-                <script>
-                    // Assuming you have Firebase initialized and the user is logged in
-                    firebase.auth().onAuthStateChanged(function(user) {
-                        if (user) {
-                            // Get the user's first name from Firestore or Realtime Database
-                            const uid = user.uid; // Get the user's UID
-                            const db = firebase.firestore(); // Use Firestore as an example
-                            
-                            // Fetch user data
-                            db.collection("users").doc(uid).get().then((doc) => {
-                                if (doc.exists) {
-                                    const userData = doc.data();
-                                    const firstName = userData.firstName; // Assuming firstName is a field in your user document
-                                    document.getElementById("welcome-message").innerText = `Welcome ${firstName}`;
-                                } else {
-                                    console.log("No such document!");
-                                }
-                            }).catch((error) => {
-                                console.log("Error getting document:", error);
-                            });
-                        } else {
-                            console.log("No user is signed in.");
-                        }
-                    });
+
+                    <script>
 
                     // Generate wallet address with loading state
                     window.generateWalletAddress = function() {
@@ -199,6 +180,11 @@
                     </div>
                 </div>
                 
+                <section class="py-16 bg-blue-100" id="spacing">
+                    <div class="container mx-auto text-center">
+                    </div>
+                </section>
+
                 <!-- TradingView Widget BEGIN (Desktop Only) -->
                 <div class="hidden md:block mt-6"> <!-- Ensure this only shows on desktop -->
                     <script type="text/javascript" src="https://s3.tradingview.com/tv.js"></script>
