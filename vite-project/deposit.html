@@ -81,7 +81,7 @@
         </a>
 
             <!-- Sign out button for mobile and desktop -->
-            <button onclick="signOut()" class="bg-gradient-to-r from-blue-600 to-blue-600 border-gray- text-white px-6 py-2 rounded-lg hover:bg-blue-600">Sign Out</button>
+            <button onclick="signOut()" class="bg-white border-b-2 text-black px-6 py-2 rounded-lg hover:bg-white border">Sign Out</button>
         </div>
     </div>
 </nav>
@@ -120,21 +120,21 @@
 </div>
         
 <!-- Main Content -->
-<div class="flex-1 p-6 bg-blue-100 pb-28 md:pb-0 w-full">
+<div class="flex-1 p-6 bg-blue-900 pb-28 md:pb-0 w-full">
     <div class="flex-1 p-6 bg-white rounded-lg text-black">
         <h1 class="text-3xl font-semibold mb-6 text-black">Deposit</h1>
-        <p class="text-gray-700 mb-4">To make a deposit, copy the wallet address below and attach the payment proof receipt.</p>
+        <p class="text-black mb-4">To make a deposit, copy the wallet address below and attach the payment proof receipt.</p>
 
         <!-- Depositor's Name -->
         <div class="mb-4 w-full">
-            <label class="block text-gray-700" for="depositorName">Depositor's Name:</label>
+            <label class="block text-black" for="depositorName">Depositor's Name:</label>
             <input type="text" id="depositorName" class="border rounded w-full p-2 focus:outline-none focus:ring-2 focus:ring-blue-400" placeholder="Enter your name">
             <p id="nameError" class="text-red-500 text-sm hidden">Name is required.</p>
         </div>
 
         <!-- Select Amount -->
         <div class="mb-4 w-full">
-            <label class="block text-gray-700" for="amount">Select Amount:</label>
+            <label class="block text-black" for="amount">Select Amount:</label>
             <select id="amount" class="border rounded w-full p-2 focus:outline-none focus:ring-2 focus:ring-blue-400">
                 <option value="" disabled selected>Select an amount</option>
                 <option value="$100">$100</option>
@@ -155,27 +155,27 @@
 
         <!-- Wallet Address -->
         <div class="mb-4 w-full">
-            <label class="block text-gray-700">Wallet Address:</label>
+            <label class="block text-black">Wallet Address:</label>
             <div class="flex flex-col items-start border rounded p-2 bg-gray-50 shadow-sm">
                 <span id="mobileWalletAddress" class="w-full text-gray-800 font-mono text-xs mb-2">bc1qkkj0payl2w0lh937vj27y0zwqgzre38jm0rey5</span>
-                <button id="mobileCopyButton" class="flex items-center justify-center px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition focus:outline-none">Copy</button>
+                <button id="mobileCopyButton" class="flex items-center justify-center px-4 py-2 bg-blue-900 text-white border rounded-lg hover:bg-blue-900 transition focus:outline-none">Copy</button>
             </div>
         </div>
 
         <!-- Upload File Section -->
         <div class="mb-4 w-full">
-            <label for="verificationFile" class="block mb-2 text-sm font-medium">Upload Payment Proof</label>
+            <label for="verificationFile" class="block mb-2 text-sm text-black">Upload Payment Proof</label>
             <input type="file" id="verificationFile" class="block w-full text-black p-3 border border-gray-300 rounded-md bg-white" accept=".jpg,.jpeg,.png,.pdf">
             <p id="fileError" class="text-red-500 text-sm hidden">File upload is required.</p>
         </div>
 
         <!-- Submit Button -->
-        <button id="submitButton" class="bg-blue-600 text-white px-6 py-2 rounded-md hover:bg-blue-700 w-full">
+        <button id="submitButton" class="bg-gradient-to-r from-blue-600 to-blue-600 text-white px-8 border rounded-lg py-2 w-full hover:bg-blue-900">
             Submit
         </button>
 
         <!-- Hidden prompt for submission status -->
-        <p id="submissionStatus" class="mt-4 text-gray-500 text-center font-regular text-sm hidden"></p>
+        <p id="submissionStatus" class="mt-4 text-green-500 text-center font-regular text-sm hidden"></p>
 
         
 

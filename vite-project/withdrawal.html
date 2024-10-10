@@ -71,7 +71,7 @@
         };
     </script>
 </head>
-<body class="font-sans antialiased bg-blue-100">
+<body class="font-sans antialiased bg-blue-900">
 
     <!-- Navbar -->
     <nav class="bg-white p-4 shadow">
@@ -81,7 +81,7 @@
             </a>
 
             <!-- Sign out button for mobile and desktop -->
-            <button onclick="signOut()" class="bg-gradient-to-r from-blue-600 to-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-600">Sign Out</button>
+            <button onclick="signOut()" class="bg-white border-b-2 text-black px-6 py-2 rounded-lg hover:bg-white border">Sign Out</button>
         </div>
     </nav>
 
@@ -118,7 +118,7 @@
             </nav>
         </div>
 <!-- Main Content -->
-<div class="flex-1 p-6 bg-blue-100 pb-28 md:pb-0"> <!-- Added navy background -->
+<div class="flex-1 p-6 bg-blue-900 pb-28 md:pb-0"> <!-- Added navy background -->
     <div class="flex-1 p-6 bg-white rounded-lg text-black">
         <h1 class="text-3xl font-semibold mb-6 text-black">Withdrawal</h1>
 
@@ -130,7 +130,7 @@
         
         <!-- Cash Withdrawal Form -->
         <div id="cashWithdrawal" class="block">
-            <p class="mb-4 text-gray-400">Withdrawal costs $1.00, input your details to complete your withdrawal.</p>
+            <p class="mb-4 text-black">Withdrawal costs $1.00, input your details to complete your withdrawal.</p>
             <form id="withdrawalForm">
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div>
@@ -171,17 +171,17 @@
                     </div>
                     <div class="col-span-1 flex justify-center md:col-span-2">
                         <button type="button" onclick="submitCashWithdrawal()" id="cashWithdrawButton"
-                                class="bg-gradient-to-r from-blue-600 to-blue-600 text-white px-8 rounded-lg py-2 w-full hover:bg-blue-600">Submit</button>
+                                class="bg-gradient-to-r from-blue-600 to-blue-600 text-white px-8 border rounded-lg py-2 w-full hover:bg-blue-900">Submit</button>
                     </div>
                 </div>
             </form>
             <!-- Message Display for Cash Withdrawal -->
-            <div id="cashMessage" class="text-gray-500 text-sm mt-2 text-center p-2 rounded-lg"></div>
+            <div id="cashMessage" class="text-gray-800 text-sm mt-2 text-center p-2 rounded-lg"></div>
         </div>
 
         <!-- BTC Withdrawal Form -->
         <div id="btcWithdrawal" class="hidden">
-            <p class="mb-4 text-gray-400">Input your details to complete your withdrawal.</p>
+            <p class="mb-4 text-black">Input your details to complete your withdrawal.</p>
             <form id="btcWithdrawalForm">
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div>
@@ -201,7 +201,7 @@
                     </div>
                     <div class="col-span-1 flex justify-center md:col-span-2">
                         <button type="button" onclick="submitBTCWithdrawal()" id="btcWithdrawButton"
-                                class="bg-gradient-to-r from-blue-600 to-blue-600 text-white px-8 rounded-lg py-2 w-full hover:bg-blue-600">Submit</button>
+                                class="bg-gradient-to-r from-blue-600 to-blue-600 text-white px-8 border rounded-lg py-2 w-full hover:bg-blue-900">Submit</button>
                     </div>
                 </div>
             </form>

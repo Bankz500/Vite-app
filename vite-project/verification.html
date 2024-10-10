@@ -66,7 +66,7 @@
         };
     </script>
 </head>
-<body class="font-sans antialiased bg-blue-100">
+<body class="font-sans antialiased bg-blue-900">
 
    <!-- Navbar -->
 <nav class="bg-white p-4 shadow">
@@ -76,7 +76,7 @@
         </a>
 
             <!-- Sign out button for mobile and desktop -->
-            <button onclick="signOut()" class="bg-gradient-to-r from-blue-600 to-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-600">Sign Out</button>
+            <button onclick="signOut()" class="bg-white border-b-2 text-black px-6 py-2 rounded-lg hover:bg-white border">Sign Out</button>
         </div>
     </div>
 </nav>
@@ -128,14 +128,14 @@
 </div>
 
 <!-- Main Content -->
-<div class="flex-1 p-6 bg-blue-100"> <!-- Added navy background -->
+<div class="flex-1 p-6 bg-blue-900"> <!-- Added navy background -->
     <div class="flex-1 p-6 bg-white rounded-lg text-black">
-        <h1 class="text-3xl font-semibold mb-6">Verification</h1>
-        <p class="mb-4">To complete your verification process, please upload a government-issued identity card.</p>
+        <h1 class="text-3xl font-semibold mb-6 text-black">Verification</h1>
+        <p class="mb-4 text-black">To complete your verification process, please upload a government-issued identity card.</p>
 
         <!-- Select Dropdown -->
         <div class="mb-4">
-            <label for="docType" class="block mb-2 text-sm font-medium">Choose an option</label>
+            <label for="docType" class="block mb-2 text-sm font-medium text-black">Choose an option</label>
             <select id="docType" class="block w-full p-3 border border-gray-300 rounded-md bg-white text-black focus:ring-indigo-500 focus:border-white">
                 <option value="" disabled selected>Select a document type</option>
                 <option value="driversLicense">Driver's License</option>
@@ -147,19 +147,19 @@
 
         <!-- Upload File Section -->
         <div class="mb-4">
-            <label for="verificationFile" class="block mb-2 text-sm font-medium">Upload File</label>
+            <label for="verificationFile" class="block mb-2 text-sm font-medium text-black">Upload File</label>
             <input type="file" id="verificationFile" class="block w-full text-black p-3 border border-gray-300 rounded-md bg-white" accept=".jpg,.jpeg,.png,.pdf" onchange="uploadVerificationDocument(event)">
             <p id="fileError" class="text-red-500 text-sm hidden">File upload is required.</p>
         </div>
-        <p class="text-sm mb-6">Upload supported file types: JPG, PNG, PDF</p>
+        <p class="text-sm mb-6 text-black">Upload supported file types: JPG, PNG, PDF</p>
 
         <!-- Submit Button -->
-        <button id="submitButton" onclick="submitVerification()" class="bg-blue-600 text-white px-6 py-2 rounded-md hover:bg-blue-700 w-full">
+        <button id="submitButton" onclick="submitVerification()" class="bg-gradient-to-r from-blue-600 to-blue-600 text-white px-8 border rounded-lg py-2 w-full hover:bg-blue-900">
             Submit
         </button>
 
 <!-- Hidden prompt for submission status -->
-<p id="submissionStatus" class="mt-4 text-gray-400 text-center text-sm hidden"></p>
+<p id="submissionStatus" class="mt-4 text-green-500 text-center text-sm hidden"></p>
 
 
 <script>

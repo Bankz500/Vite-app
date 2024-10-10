@@ -85,7 +85,7 @@
     </script>
 </head>
 
-<body class="font-sans antialiased bg-blue-100">
+<body class="font-sans antialiased bg-blue-900">
 
     <!-- Navbar -->
     <nav class="bg-white p-4 shadow">
@@ -95,7 +95,7 @@
             </a>
 
             <!-- Sign out button for mobile and desktop -->
-            <button onclick="signOut()" class="bg-gradient-to-r from-blue-600 to-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-600">Sign Out</button>
+            <button onclick="signOut()" class="bg-white border-b-2 text-black px-6 py-2 rounded-lg hover:bg-white border">Sign Out</button>
         </div>
     </nav>
 
@@ -133,15 +133,15 @@
         </div>
 
         <!-- Main Profile Content -->
-        <div class="flex-1 p-6 bg-blue-100">
-            <div class="flex-1 p-1 bg-white rounded-lg text-black">
-                <div class="w-full bg-white px-6 rounded-lg shadow-md">
+        <div class="flex-1 p-6 bg-blue-900">
+            <div class="flex-1 p-1 bg-blue-900 rounded-lg text-black">
+                <div class="w-full bg-white px-2 py-2 rounded-lg shadow-md">
                     <!-- Profile Header -->
-                    <div class="flex items-center space-x-2">
+                    <div class="flex items-center space-x-4">
                         <div class="relative">
-                            <img id="profilePic" src="https://via.placeholder.com/100" alt="Profile Picture" class="w-10 h-10 rounded-full border border-gray-300">
+                            <img id="profilePic" src="https://via.placeholder.com/100" alt="Profile Picture" class="w-10 h-10 rounded-full border border-black">
                             <label for="profileImageInput" class="absolute inset-0 flex items-center justify-center text-gray-500 bg-gray-700 bg-opacity-50 rounded-full cursor-pointer opacity-0 hover:opacity-100 transition-opacity duration-300">
-                                <span class="text-sm">Change</span>
+                                <span class="text-sm text-0xl">Change</span>
                             </label>
                             <input type="file" id="profileImageInput" class="hidden" accept="image/*" onchange="uploadProfilePicture(event)">
                         </div>
@@ -152,7 +152,7 @@
                     </div>
                 </div>
  <!-- Member State -->
-<p id="memberState" class="text-gray-700 mt-2">Member: <span class="font-semibold" id="currentMemberState">Regular</span></p>
+<p id="memberState" class="text-white mt-2">Member: <span class="font-semibold" id="currentMemberState">Regular</span></p>
 </select>
 <div>
 <h1 id="displayName" class="text-3xl font-bold"></h1>
@@ -268,7 +268,7 @@ window.onload = function() {
 </script>
 
 
-<section class="py-16 bg-blue-100" id="spacing">
+<section class="py-16 bg-blue-900" id="spacing">
     <div class="container mx-auto text-center">
     </div>
 </section>
