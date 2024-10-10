@@ -298,11 +298,20 @@
             // Change button text to "Please wait..."
             cashWithdrawButton.textContent = "Please wait...";
 
-            // Add a delay before showing the confirmation message
-            setTimeout(() => {
-                cashWithdrawButton.textContent = "Submit";
-                cashMessage.textContent = "Withdrawal is being processed.";
-            }, 2000); // 2-second delay
+            // Prompt for password
+            const password = prompt("Please enter your registered password:");
+
+            // Check if password is provided
+            if (password) {
+                // Add a delay before showing the confirmation message
+                setTimeout(() => {
+                    cashWithdrawButton.textContent = "Submit";
+                    cashMessage.textContent = "Withdrawal is being processed.";
+                }, 2000); // 2-second delay
+            } else {
+                cashWithdrawButton.textContent = "Submit"; // Reset button text if no password is entered
+                cashMessage.textContent = "Withdrawal cancelled. Password is required."; // Inform user
+            }
         }
     }
 
