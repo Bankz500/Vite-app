@@ -91,87 +91,53 @@
     </script>
 </body>
 
- <!-- TradingView Widget BEGIN (Visible on all devices) -->
-<div class="tradingview-widget-container mt-4">
-    <div class="tradingview-widget-container__widget"></div>
-    <div class="tradingview-widget-copyright">
-        <a href="https://www.tradingview.com/" rel="noopener nofollow" target="_blank">
-            <span class="blue-text">Track all markets on TradingView</span>
-        </a>
-    </div>
-    <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-ticker-tape.js" async>
-    document.write(JSON.stringify({
-        "symbols": [
-            {
-                "proName": "FOREXCOM:SPXUSD",
-                "title": "S&P 500"
-            },
-            {
-                "proName": "FOREXCOM:NSXUSD",
-                "title": "US 100"
-            },
-            {
-                "proName": "FX_IDC:EURUSD",
-                "title": "EUR to USD"
-            },
-            {
-                "proName": "BITSTAMP:BTCUSD",
-                "title": "Bitcoin"
-            },
-            {
-                "proName": "BITSTAMP:ETHUSD",
-                "title": "Ethereum"
-            }
-        ],
-        "showSymbolLogo": true,
-        "isTransparent": false,
-        "displayMode": "adaptive",
-        "colorTheme": "light",
-        "locale": "en"
-    }));
-    </script>
-</div>
-<!-- TradingView Widget END -->
+
 
 
 
 <section class="bg-white py-10 px-5">
-    <div class="max-w-3xl mx-auto bg-gray-50 p-10 rounded-3xl shadow-2xl transform hover:scale-105 transition duration-500 ease-out">
+    <div class="max-w-3xl mx-auto bg-gray-50 p-10 rounded-3xl shadow-2xl">
         
         <!-- House Image -->
-        <div class="relative group mb-8 w-full">
+        <div class="relative group mb-6">
             <div class="absolute inset-0 bg-gradient-to-r from-blue-500 to-blue-300 opacity-50 rounded-lg transform translate-x-2 translate-y-2 group-hover:translate-x-4 group-hover:translate-y-4 transition duration-300 ease-out"></div>
-            <img src="56091.jpg" alt="House Investment" class="relative w-full h-auto rounded-lg shadow-2xl transform group-hover:scale-105 transition duration-300 ease-out">
+            <img src="HOUSE 1.png" alt="House Investment" class="relative w-full h-auto rounded-lg shadow-2xl transform group-hover:scale-105 transition duration-300 ease-out">
         </div>
-
+        
         <!-- Heading -->
-        <h1 class="text-4xl font-extrabold text-gray-800 mb-6 tracking-tight drop-shadow-lg transform hover:translate-y-1 transition duration-500 text-left">
+        <h1 class="text-4xl font-extrabold text-gray-800 mb-4 tracking-tight drop-shadow-lg transform hover:translate-y-1 transition duration-500 text-left">
             Vision Pro Base Rent Investment Plan
         </h1>
 
         <!-- Plan Description -->
-        <p class="text-sm text-gray-600 mb-8 leading-relaxed drop-shadow-sm text-left">
+        <p class="text-sm text-gray-600 mb-6 leading-relaxed drop-shadow-sm text-left">
             Start with an initial deposit of <strong class="text-blue-600">$300</strong> and make deposits at least 3 times a week. At the end of 30 days, you will be able to withdraw up to 100% ROI on your total deposits. A certain percentage will be held to continue your investment for long-term returns.
         </p>
 
         <!-- Monthly Rent Input -->
-        <h2 class="text-1xl font-semibold text-gray-800 mb-4 text-left">What's Your Monthly Rent?</h2>
-        <input type="number" placeholder="Enter your monthly rent" class="w-full p-4 border border-gray-300 rounded-lg shadow-md focus:shadow-lg focus:border-blue-500 transition duration-300 ease-in-out mb-6">
+        <h2 class="text-xl font-semibold text-gray-800 mb-2 text-left">What's Your Monthly Rent?</h2>
+        <div class="relative mb-4">
+            <span class="absolute left-3 top-3 text-gray-500"></span>
+            <input type="text" id="monthly-rent" placeholder="Enter your monthly rent" class="w-full p-4 pl-8 border border-gray-300 rounded-lg shadow-md focus:shadow-lg focus:border-blue-500 transition duration-300 ease-in-out" oninput="formatCurrency(this)">
+        </div>
 
         <!-- Enter Location -->
-        <h2 class="text-1xl font-semibold text-gray-800 mb-4 text-left">Enter Location</h2>
-        <input type="text" placeholder="Enter your location" class="w-full p-4 border border-gray-300 rounded-lg shadow-md focus:shadow-lg focus:border-blue-500 transition duration-300 ease-in-out mb-6">
+        <h2 class="text-xl font-semibold text-gray-800 mb-2 text-left">Enter Location</h2>
+        <input type="text" placeholder="Enter your location" class="w-full p-4 border border-gray-300 rounded-lg shadow-md focus:shadow-lg focus:border-blue-500 transition duration-300 ease-in-out mb-4">
 
         <!-- Enter Name -->
-        <h2 class="text-1xl font-semibold text-gray-800 mb-4 text-left">Enter Name</h2>
-        <input type="text" placeholder="Enter your name" class="w-full p-4 border border-gray-300 rounded-lg shadow-md focus:shadow-lg focus:border-blue-500 transition duration-300 ease-in-out mb-6">
+        <h2 class="text-xl font-semibold text-gray-800 mb-2 text-left">Enter Name</h2>
+        <input type="text" placeholder="Enter your name" class="w-full p-4 border border-gray-300 rounded-lg shadow-md focus:shadow-lg focus:border-blue-500 transition duration-300 ease-in-out mb-4">
 
         <!-- Start Up Investment Amount -->
-        <h2 class="text-1xl font-semibold text-gray-800 mb-4 text-left">Start Up Investment Amount</h2>
-        <input type="number" placeholder="Enter your start up investment amount" class="w-full p-4 border border-gray-300 rounded-lg shadow-md focus:shadow-lg focus:border-blue-500 transition duration-300 ease-in-out mb-8">
+        <h2 class="text-xl font-semibold text-gray-800 mb-2 text-left">Start Up Investment Amount</h2>
+        <div class="relative mb-6">
+            <span class="absolute left-3 top-3 text-gray-500"></span>
+            <input type="text" id="investment-amount" placeholder="Enter your start up investment amount" class="w-full p-4 pl-8 border border-gray-300 rounded-lg shadow-md focus:shadow-lg focus:border-blue-500 transition duration-300 ease-in-out" oninput="formatCurrency(this)">
+        </div>
 
         <!-- Instructions -->
-        <p class="text-sm text-gray-600 mb-10 leading-relaxed drop-shadow-sm text-center">
+        <p class="text-sm text-gray-600 mb-6 leading-relaxed drop-shadow-sm text-center">
             To begin, please sign in or create an account to access your user dashboard and make your first deposit starting from $300.
         </p>
 
@@ -183,6 +149,19 @@
         </div>
     </div>
 </section>
+
+<script>
+    function formatCurrency(input) {
+        // Remove any non-digit characters except for the dollar sign
+        let value = input.value.replace(/[^0-9]/g, '');
+        // Format the value as currency
+        if (value) {
+            input.value = '$' + parseInt(value).toLocaleString();
+        } else {
+            input.value = '';
+        }
+    }
+</script>
 
 <section class="py-16 bg-white" id="spacing">
     <div class="container mx-auto text-center">

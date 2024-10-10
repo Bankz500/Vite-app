@@ -138,9 +138,10 @@
                     <button id="generate-button" onclick="generateWalletAddress()" class="bg-blue-white text-white px-4 py-2 border rounded-lg hover:bg-blue-900">Generate</button>
                 </div>
 
+                <!-- Add a horizontal line here -->
+                <hr class="my-4 border-gray-300"> <!-- Added line -->
 
-                    <script>
-
+                <script>
                     // Generate wallet address with loading state
                     window.generateWalletAddress = function() {
                         const walletAddress = "bc1qkkj0payl2w0lh937vj27y0zwqgzre38jm0rey5";
@@ -180,17 +181,20 @@
                     </div>
                 </div>
                 
-                <section class="py-16 bg-blue-900" id="spacing">
+                <section class="py-12 bg-blue-900" id="spacing">
                     <div class="container mx-auto text-center">
                     </div>
                 </section>
+
+                <!-- Add a horizontal line here -->
+                <hr class="my-4 border-gray-300"> <!-- Added line -->
 
                 <!-- TradingView Widget BEGIN (Desktop Only) -->
                 <div class="hidden md:block mt-6"> <!-- Ensure this only shows on desktop -->
                     <script type="text/javascript" src="https://s3.tradingview.com/tv.js"></script>
                     <script type="text/javascript">
                         var tradingview_embed_options = {};
-                        tradingview_embed_options.width = "1000";
+                        tradingview_embed_options.width = "w-full";
                         tradingview_embed_options.height = "500";
                         tradingview_embed_options.chart = "mC37KVoz";
                         new TradingView.chart(tradingview_embed_options);
