@@ -14,6 +14,9 @@ export default defineConfig({
         withdrawal: './withdrawal.html',
         deposit: './deposit.html',
         dashboard: './dashboard.html',
+        rent: './rent.html',
+        portfolio: './portfolio.html',
+        
       },
     },
   },
