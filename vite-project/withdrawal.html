@@ -71,7 +71,7 @@
         };
     </script>
 </head>
-<body class="font-sans antialiased bg-blue-900">
+<body class="font-sans antialiased bg-gradient-to-r from-black to-blue-900">
 
     <!-- Navbar -->
     <nav class="bg-white p-4 shadow">
@@ -88,37 +88,45 @@
     <div class="flex">
 
         <!-- Sidebar (hidden on mobile, visible on desktop) -->
-        <div id="sidebar" class="md:w-64 bg-gradient-to-r from-blue-800 to-blue-600 shadow-lg h-screen hidden md:block">
-            <div class="p-6">
-                <h2 class="text-xl font-bold text-white border-b border-gray-500 pb-4">Investor Dashboard</h2>
-            </div>
-            <nav class="mt-6 text-white">
-                <ul>
-                    <li class="p-4 hover:bg-blue-300 flex items-center border-b border-gray-500 transition">
-                        <img src="wallet 1.png" alt="Wallet Icon" class="w-5 h-5 mr-4"> <!-- Custom Wallet Icon -->
-                        <a href="dashboard.html" class="flex-1">Wallet</a>
-                    </li>
-                    <li class="p-4 hover:bg-blue-300 flex items-center border-b border-gray-500 transition">
-                        <img src="piggy 1.png" alt="Deposit Icon" class="w-5 h-5 mr-4"> <!-- Custom Deposit Icon -->
-                        <a href="deposit.html" class="flex-1">Deposit</a>
-                    </li>
-                    <li class="p-4 hover:bg-blue-300 flex items-center border-b border-gray-500 transition">
-                        <img src="money 2.png" alt="Withdrawal Icon" class="w-5 h-5 mr-4"> <!-- Custom Withdrawal Icon -->
-                        <a href="withdrawal.html" class="flex-1">Withdrawal</a>
-                    </li>
-                    <li class="p-4 hover:bg-blue-300 flex items-center border-b border-gray-500 transition">
-                        <img src="secure 1.png" alt="Verification Icon" class="w-5 h-5 mr-4"> <!-- Custom Verification Icon -->
-                        <a href="verification.html" class="flex-1">Verification</a>
-                    </li>
-                    <li class="p-4 hover:bg-blue-300 flex items-center transition">
-                        <img src="user 1.png" alt="Profile Icon" class="w-5 h-5 mr-4"> <!-- Custom Profile Icon -->
-                        <a href="profile.html" class="flex-1">Profile</a>
-                    </li>
-                </ul>
-            </nav>
-        </div>
+<div id="sidebar" class="md:w-64 bg-gradient-to-r from-blue-800 to-blue-600 shadow-lg h-screen hidden md:block">
+    <div class="p-6">
+        <h2 class="text-xl font-bold text-white border-b border-gray-500 pb-4">Investor Dashboard</h2>
+    </div>
+    <nav class="mt-6 text-white">
+        <ul>
+            <li class="p-4 hover:bg-blue-300 flex items-center border-b border-gray-500 transition">
+                <img src="wallet 1.png" alt="Wallet Icon" class="w-5 h-5 mr-4"> <!-- Custom Wallet Icon -->
+                <a href="dashboard.html" class="flex-1">Wallet</a>
+            </li>
+            <li class="p-4 hover:bg-blue-300 flex items-center border-b border-gray-500 transition">
+                <img src="piggy 1.png" alt="Deposit Icon" class="w-5 h-5 mr-4"> <!-- Custom Deposit Icon -->
+                <a href="deposit.html" class="flex-1">Deposit</a>
+            </li>
+            <li class="p-4 hover:bg-blue-300 flex items-center border-b border-gray-500 transition">
+                <img src="money 2.png" alt="Withdrawal Icon" class="w-5 h-5 mr-4"> <!-- Custom Withdrawal Icon -->
+                <a href="withdrawal.html" class="flex-1">Withdrawal</a>
+            </li>
+            <li class="p-4 hover:bg-blue-300 flex items-center border-b border-gray-500 transition">
+                <img src="secure 1.png" alt="Verification Icon" class="w-5 h-5 mr-4"> <!-- Custom Verification Icon -->
+                <a href="verification.html" class="flex-1">Verification</a>
+            </li>
+            <li class="p-4 hover:bg-blue-300 flex items-center transition">
+                <img src="user 1.png" alt="Profile Icon" class="w-5 h-5 mr-4"> <!-- Custom Profile Icon -->
+                <a href="profile.html" class="flex-1">Profile</a>
+            </li>
+        </ul>
+        <!-- Add a horizontal line to separate the CTAs -->
+        <hr class="my-8 border-gray-500"> <!-- Increased margin for more spacing -->
+        <ul class="mt-6"> <!-- Adjusted margin-top for additional spacing -->
+            <li class="p-4 hover:bg-blue-300 flex items-center transition">
+                <img src="terms .png" alt="Terms Icon" class="w-5 h-5 mr-4"> <!-- Custom Terms Icon -->
+                <a href="Vision pro base Terms & Condition.pdf" class="flex-1" target="_blank">Terms & Conditions</a> <!-- Added target="_blank" to open in a new tab -->
+            </li>
+        </ul>
+    </nav>
+</div>
 <!-- Main Content -->
-<div class="flex-1 p-6 bg-blue-900 pb-28 md:pb-0"> <!-- Added navy background -->
+<div class="flex-1 p-6 bg-gradient-to-r from-black to-blue-900 pb-28 md:pb-0"> <!-- Added navy background -->
     <div class="flex-1 p-6 bg-white rounded-lg text-black">
         <h1 class="text-3xl font-semibold mb-6 text-black">Withdrawal</h1>
 
