@@ -7,37 +7,44 @@
     <title>Crypto Brand</title>
     <!-- Include Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+    </style>
 </head>
 <body class="font-sans antialiased">
 
     <!-- Navbar -->
     <nav class="bg-white bg-opacity-800 p-4">
-        <div class="container mx-auto flex items-center justify-between flex-wrap">
-            <!-- Replace with your logo -->
-            <a href="index.html">
+        <div class="container mx-auto flex items-center justify-between">
+            <div class="flex items-center justify-between w-full md:w-auto">
                 <img src="Vision pro base (1).png" alt="Crypto Brand Logo" class="h-12">
-            </a>
-            
-            
+
+                <!-- Mobile Menu Button -->
+                <div class="md:hidden ml-auto">
+                    <button id="mobile-menu-button" class="text-blue-500 focus:outline-none">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+
             <!-- Navigation links -->
-            <div class="space-x-8 ml-auto pr-10 hidden md:flex">
-                <a href="index.html" class="text-blue hover:text-gray-400">Home</a>
+            <div class="hidden md:flex space-x-8 ml-auto">
+                <a href="#" class="text-blue hover:text-gray-400">Home</a>
+                <a href="mygovgrant.html" class="text-blue hover:text-gray-400">Grant.Gov</a>
                 <a href="contact.html" class="text-blue hover:text-gray-400">Contact</a>
                 <a href="sign-in.html" class="text-blue hover:text-gray-400">Dashboard</a>
             </div>
 
             <!-- Log In CTA -->
-            <a href="sign-in.html" class="bg-blue-500 text-white px-6 py-2 rounded-lg hover:bg-gray-600">Log In</a>
-
-            <!-- Mobile Menu Button -->
-            <div class="md:hidden">
-                <button id="mobile-menu-button" class="text-blue-500 focus:outline-none">
-                    <!-- Icon for mobile menu -->
-                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
-                </button>
+            <div class="hidden md:flex ml-4">
+                <a href="sign-in.html" class="bg-blue-500 text-white px-6 py-2 rounded-lg hover:bg-gray-600">Log In</a>
             </div>
         </div>
     </nav>
+
+    <!-- Overlay -->
+    <div id="overlay" class="fixed inset-0 bg-black opacity-50 hidden"></div>
 
     <!-- Mobile Menu -->
     <div id="mobile-menu" class="hidden fixed top-0 right-0 w-64 h-full bg-white shadow-lg transition-transform transform translate-x-full md:hidden">
@@ -45,12 +52,21 @@
             <!-- Cancel Button -->
             <button id="close-menu" class="text-blue-500 mb-4">✖ Close</button>
             <a href="index.html" class="block text-blue hover:text-gray-400">Home</a>
+            <a href="mygovgrant.html" class="block text-blue hover:text-gray-400">Grant.Gov</a>
             <a href="contact.html" class="block text-blue hover:text-gray-400">Contact</a>
             <a href="sign-in.html" class="block text-blue hover:text-gray-400">Dashboard</a>
         </div>
     </div>
 
     <script>
+        window.onload = function() {
+            const splashScreen = document.getElementById('splash-screen');
+            setTimeout(() => {
+                splashScreen.style.display = 'none'; // Hide the splash screen
+                document.body.style.overflow = 'auto'; // Restore scroll
+            }, 4000); // Adjust time to match animation duration
+        };
+
         const menu = document.getElementById('mobile-menu');
         const mobileMenuButton = document.getElementById('mobile-menu-button');
         const closeMenuButton = document.getElementById('close-menu');
@@ -75,6 +91,7 @@
             }
         });
     </script>
+</body>
 
 <!DOCTYPE html>
 <html lang="en">

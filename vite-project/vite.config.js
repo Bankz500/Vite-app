@@ -16,6 +16,7 @@ export default defineConfig({
         dashboard: './dashboard.html',
         rent: './rent.html',
         portfolio: './portfolio.html',
+        Grant: './mygovgrant.html',
       },
     },
   },

