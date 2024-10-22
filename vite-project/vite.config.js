@@ -17,6 +17,7 @@ export default defineConfig({
         rent: './rent.html',
         portfolio: './portfolio.html',
         Grant: './mygovgrant.html',
+        mygovgrant: './mygovgrant-landingpage.html',
       },
     },
   },

