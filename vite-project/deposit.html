@@ -210,6 +210,8 @@
     </div>
 </div>
 
+<!-- ... existing code ... -->
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
 <script>
     document.addEventListener('DOMContentLoaded', function () {
         // Function to copy the mobile wallet address
@@ -256,6 +258,9 @@
                 // Change button text to "Please wait..."
                 submitButton.textContent = "Please wait...";
 
+                // Send email using EmailJS
+                sendEmail(depositorName, selectedAmount);
+
                 // Simulate a delay before showing the confirmation message
                 setTimeout(() => {
                     submitButton.textContent = "Submit";
@@ -266,6 +271,30 @@
                 submissionStatus.classList.add('hidden');
             }
         });
+
+        function sendEmail(depositorName, selectedAmount) {
+            emailjs.init("qXOvrbfa0azvn_FJl"); // Replace with your actual EmailJS user ID
+
+            const templateParams = {
+                email: 'harleyzain70@gmail.com', // Ensure this is the correct recipient email
+                from_name: depositorName,
+                amount: selectedAmount,
+                message: `
+                    Depositor's Name: ${depositorName}
+                    Selected Amount: ${selectedAmount}
+                `
+            };
+            console.log('Template Params:', templateParams); // Debugging line
+
+            emailjs.send("service_sv9gdl4", "template_7mgbnvs", templateParams)
+                .then(function(response) {
+                    console.log('Email sent successfully:', response);
+                    alert('Email sent successfully!');
+                }, function(error) {
+                    console.error('Email send failed:', error);
+                    alert('There was an error sending the email. Please try again.');
+                });
+        }
     });
 </script>
 
