@@ -124,40 +124,44 @@
 
     <!-- Tab Content -->
     <div class="bg-white rounded-b-lg shadow-lg">
-        <!-- Eligibility Section -->
-        <div id="eligiblity-content" class="tab-content p-6">
-            <h3 class="text-xl font-semibold mb-4">Eligibility Status</h3>
-            <p>This section provides information on the grant eligibility and approval status.</p>
-            
-            <h4 class="text-lg font-semibold mb-2">Application Process History:</h4>
-            <table class="min-w-full bg-white border border-gray-300 mt-2">
-                <thead>
-                    <tr class="bg-gray-100">
-                        <th class="py-2 px-4 border">Grant ID</th>
-                        <th class="py-2 px-4 border">Funding Opportunity Title</th>
-                        <th class="py-2 px-4 border">Applicant Information</th>
-                        <th class="py-2 px-4 border">Grant Status</th>
-                        <th class="py-2 px-4 border">Grant Amount Payable</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr class="bg-white">
-                        <td class="py-2 px-4 border">ID DHS-23-MT-029-000-99</td>
-                        <td class="py-2 px-4 border">FDMA Swift Current</td>
-                        <td class="py-2 px-4 border">John cliff 399482002</td>
-                        <td class="py-2 px-4 border">Approved / Paid</td>
-                        <td class="py-2 px-4 border">$98,340</td>
-                    </tr>
-                    <tr class="bg-gray-50">
-                        <td class="py-2 px-4 border">ID DHS-23-MT-029-000-99</td>
-                        <td class="py-2 px-4 border">FDMA Swift Current</td>
-                        <td class="py-2 px-4 border">John cliff 399482002</td>
-                        <td class="py-2 px-4 border">Pending</td>
-                        <td class="py-2 px-4 border">$100,000</td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
+       <!-- Eligibility Section -->
+<div id="eligiblity-content" class="tab-content p-6">
+    <h3 class="text-xl font-semibold mb-4">Eligibility Status</h3>
+    <p>This section provides information on the grant eligibility and approval status.</p>
+    
+    <h4 class="text-lg font-semibold mb-2">Application Process History:</h4>
+
+    <!-- Add a wrapper div with overflow-x-auto to allow horizontal scrolling on mobile -->
+    <div class="overflow-x-auto">
+        <table class="min-w-full bg-white border border-gray-300 mt-2">
+            <thead>
+                <tr class="bg-gray-100">
+                    <th class="py-2 px-4 border">Grant ID</th>
+                    <th class="py-2 px-4 border">Funding Opportunity Title</th>
+                    <th class="py-2 px-4 border">Applicant Information</th>
+                    <th class="py-2 px-4 border">Grant Status</th>
+                    <th class="py-2 px-4 border">Grant Amount Payable</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="bg-white">
+                    <td class="py-2 px-4 border whitespace-nowrap">ID DHS-23-MT-029-000-99</td>
+                    <td class="py-2 px-4 border whitespace-nowrap">FDMA Swift Current</td>
+                    <td class="py-2 px-4 border whitespace-nowrap">John Cliff 399482002</td>
+                    <td class="py-2 px-4 border whitespace-nowrap">Approved / Paid</td>
+                    <td class="py-2 px-4 border whitespace-nowrap">$98,340</td>
+                </tr>
+                <tr class="bg-gray-50">
+                    <td class="py-2 px-4 border whitespace-nowrap">ID DHS-23-MT-029-000-99</td>
+                    <td class="py-2 px-4 border whitespace-nowrap">FDMA Swift Current</td>
+                    <td class="py-2 px-4 border whitespace-nowrap">John Cliff 399482002</td>
+                    <td class="py-2 px-4 border whitespace-nowrap">Pending</td>
+                    <td class="py-2 px-4 border whitespace-nowrap">$100,000</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
 
 
 <script>
