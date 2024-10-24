@@ -18,6 +18,8 @@ export default defineConfig({
         portfolio: './portfolio.html',
         Grant: './mygovgrant.html',
         mygovgrant: './mygovgrant-landingpage.html',
+        eligiblity: './eligiblity.html',
+        visionprobase: './Visionprobase-term&conditions.pdf',
       },
     },
   },

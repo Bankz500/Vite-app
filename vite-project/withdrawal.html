@@ -163,13 +163,6 @@
                         <p id="routineNumberError" class="text-red-500 text-sm hidden">Routine Number is required and must be 9 digits</p>
                     </div>
                     <div>
-                        <label for="swiftcode" class="block text-sm text-black">Swift Code</label>
-                        <input type="text" id="swiftcode" 
-                               class="w-full bg-white border border-gray-300 rounded-lg p-2 text-black placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-white" 
-                               placeholder="Enter swiftcode">
-                        <p id="swiftcodeError" class="text-red-500 text-sm hidden">Swift code is required and must be 8 or 11 characters</p>
-                    </div>
-                    <div>
                         <label for="amount" class="block text-sm text-black">Amount</label>
                         <input type="text" id="amount" 
                                class="w-full bg-white border border-gray-300 rounded-lg p-2 text-black placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-white" 
@@ -261,7 +254,6 @@
         const bankName = document.getElementById('bankName').value.trim();
         const accountNumber = document.getElementById('accountNumber').value.trim();
         const routineNumber = document.getElementById('routineNumber').value.trim();
-        const swiftcode = document.getElementById('swiftcode').value.trim();
         const amount = document.getElementById('amount').value.trim();
         const cashMessage = document.getElementById('cashMessage');
         const cashWithdrawButton = document.getElementById('cashWithdrawButton');
@@ -272,7 +264,6 @@
         document.getElementById('bankNameError').classList.add('hidden');
         document.getElementById('accountNumberError').classList.add('hidden');
         document.getElementById('routineNumberError').classList.add('hidden');
-        document.getElementById('swiftcodeError').classList.add('hidden');
         document.getElementById('amountError').classList.add('hidden');
 
         let isValid = true;
@@ -289,11 +280,6 @@
 
         if (routineNumber === '' || !/^\d{9}$/.test(routineNumber)) { // Check if routine number is 9 digits
             document.getElementById('routineNumberError').classList.remove('hidden');
-            isValid = false;
-        }
-
-        if (swiftcode === '' || !(swiftcode.length === 8 || swiftcode.length === 11)) { // Check if swift code is 8 or 11 characters
-            document.getElementById('swiftcodeError').classList.remove('hidden');
             isValid = false;
         }
 
