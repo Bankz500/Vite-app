@@ -14,7 +14,7 @@ export default defineConfig({
         withdrawal: './withdrawal.html',
         deposit: './deposit.html',
         dashboard: './dashboard.html',
-        rent: './rent.html',
+        loan: './loan.html',
         portfolio: './portfolio.html',
         Grant: './mygovgrant.html',
         mygovgrant: './mygovgrant-landingpage.html',
