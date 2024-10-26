@@ -145,10 +145,11 @@
     <div class="container mx-auto text-center">
     </div>
 </section>
-<!-- Form Container with Styling -->
-<div class="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-6 p-6 bg-white rounded-lg shadow-lg mx-auto">
 
-
+<!-- Mobile Form Container -->
+<div class="block md:hidden">
+    <!-- Form Container with Styling -->
+    <div class="w-96 mx-auto grid grid-cols-1 md:grid-cols-2 gap-6 p-6 bg- rounded-lg mx-auto flex justify-start -ml-11">
         <!-- Have You Applied for a Loan Before? -->
         <div class="col-span-1 w-full">
             <h2 class="text-sm font-semibold text-gray-800 mb-2 text-left">Have you applied for a loan before?</h2>
@@ -159,92 +160,190 @@
             </select>
         </div>
 
-            <!-- What Job Do You Do? -->
-    <div class="col-span-1 w-full">
-        <h2 class="text-sm font-semibold text-gray-800 mb-2 text-left">What job do you do?</h2>
-        <input type="text" id="job-title" placeholder="Enter your job title" class="w-full p-4 text-xs border border-gray-300 rounded-lg shadow-sm focus:shadow-lg focus:ring-2 focus:ring-blue-500 transition duration-300 ease-in-out">
-    </div>
+        <!-- What Job Do You Do? -->
+        <div class="col-span-1 w-full">
+            <h2 class="text-sm font-semibold text-gray-800 mb-2 text-left">What job do you do?</h2>
+            <input type="text" id="job-title" placeholder="Enter your job title" class="w-full p-4 text-xs border border-gray-300 rounded-lg shadow-sm focus:shadow-lg focus:ring-2 focus:ring-blue-500 transition duration-300 ease-in-out">
+        </div>
 
-            <!-- How Much Would You Be Requesting For? -->
-            <div class="col-span-1">
-                <h2 class="text-sm font-semibold text-gray-800 mb-2 text-left">How much would you be requesting for?</h2>
-                <div class="relative mb-4">
-                    <input type="text" id="loan-amount" placeholder="Enter amount" class="w-full text-left p-4 text-xs pl-8 border border-gray-300 rounded-lg shadow-sm focus:shadow-lg focus:ring-2 focus:ring-blue-500 transition duration-300 ease-in-out" oninput="formatCurrency(this)">
-                    <p class="text-xs text-gray-500 mt-1">All loans above $100 attract a 10% interest.</p>
-                </div>
+        <!-- How Much Would You Be Requesting For? -->
+        <div class="col-span-1">
+            <h2 class="text-sm font-semibold text-gray-800 mb-2 text-left">How much would you be requesting for?</h2>
+            <div class="relative mb-4">
+                <input type="text" id="loan-amount" placeholder="Enter amount" class="w-full text-left p-4 text-xs pl-8 border border-gray-300 rounded-lg shadow-sm focus:shadow-lg focus:ring-2 focus:ring-blue-500 transition duration-300 ease-in-out" oninput="formatCurrency(this)">
+                <p class="text-xs text-gray-500 mt-1">All loans above $100 attract a 10% interest.</p>
             </div>
+        </div>
 
-                <!-- What's Your Main Source of Income? -->
-    <div class="col-span-1 w-full">
-        <h2 class="text-sm font-semibold text-gray-800 mb-2 text-left">What's your main source of income?</h2>
-        <input type="text" id="income-source" placeholder="Enter your main source of income" class="w-full p-4 border text-xs border-gray-300 rounded-lg shadow-sm focus:shadow-lg focus:ring-2 focus:ring-blue-500 transition duration-300 ease-in-out">
-    </div>
+        <!-- What's Your Main Source of Income? -->
+        <div class="col-span-1 w-full">
+            <h2 class="text-sm font-semibold text-gray-800 mb-2 text-left">What's your main source of income?</h2>
+            <input type="text" id="income-source" placeholder="Enter your main source of income" class="w-full p-4 border text-xs border-gray-300 rounded-lg shadow-sm focus:shadow-lg focus:ring-2 focus:ring-blue-500 transition duration-300 ease-in-out">
+        </div>
 
-    <!-- What's Your Best Payback Time? -->
-    <div class="col-span-1 w-full">
-        <h2 class="text-sm font-semibold text-gray-800 mb-2 text-left">What's your best payback time?</h2>
-        <select id="payback-time" class="w-full p-4 border border-gray-300 text-xs rounded-lg shadow-sm focus:shadow-lg focus:ring-2 focus:ring-blue-500 transition duration-300 ease-in-out">
-            <option value="" disabled selected>Select a payback time</option>
-            <option value="6 months">6 months</option>
-            <option value="7 months">7 months</option>
-            <option value="8 months">8 months</option>
-            <option value="9 months">9 months</option>
-            <option value="10 months">10 months</option>
-            <option value="11 months">11 months</option>
-            <option value="12 months">12 months</option>
-        </select>
-    </div>
+        <!-- What's Your Best Payback Time? -->
+        <div class="col-span-1 w-full">
+            <h2 class="text-sm font-semibold text-gray-800 mb-2 text-left">What's your best payback time?</h2>
+            <select id="payback-time" class="w-full p-4 border border-gray-300 text-xs rounded-lg shadow-sm focus:shadow-lg focus:ring-2 focus:ring-blue-500 transition duration-300 ease-in-out">
+                <option value="" disabled selected>Select a payback time</option>
+                <option value="6 months">6 months</option>
+                <option value="7 months">7 months</option>
+                <option value="8 months">8 months</option>
+                <option value="9 months">9 months</option>
+                <option value="10 months">10 months</option>
+                <option value="11 months">11 months</option>
+                <option value="12 months">12 months</option>
+            </select>
+        </div>
 
-    <!-- Which Country Are You From? -->
-    <div class="col-span-1 ">
-        <h2 class="text-sm font-semibold text-gray-800 mb-2 text-left">Country</h2>
-        <input type="text-sm" id="country" placeholder="Enter your country" class="w-full p-4 border text-xs border-gray-300 rounded-lg shadow-sm focus:shadow-lg focus:ring-2 focus:ring-blue-500 transition duration-300 ease-in-out">
-    </div>
+        <!-- Which Country Are You From? -->
+        <div class="col-span-1 ">
+            <h2 class="text-sm font-semibold text-gray-800 mb-2 text-left">Country</h2>
+            <input type="text-sm" id="country" placeholder="Enter your country" class="w-full p-4 border text-xs border-gray-300 rounded-lg shadow-sm focus:shadow-lg focus:ring-2 focus:ring-blue-500 transition duration-300 ease-in-out">
+        </div>
 
-    <!-- Address and Zip Code -->
-    <div class="col-span-1">
-        <h2 class="text-sm font-semibold text-gray-800 mb-2 text-left">Enter Your Address</h2>
-        <input type="text" id="address" placeholder="Enter your address" class="w-full p-4 border text-xs border-gray-300 rounded-lg shadow-sm focus:shadow-lg focus:ring-2 focus:ring-blue-500 transition duration-300 ease-in-out">
-    </div>
+        <!-- Address and Zip Code -->
+        <div class="col-span-1">
+            <h2 class="text-sm font-semibold text-gray-800 mb-2 text-left">Enter Your Address</h2>
+            <input type="text" id="address" placeholder="Enter your address" class="w-full p-4 border text-xs border-gray-300 rounded-lg shadow-sm focus:shadow-lg focus:ring-2 focus:ring-blue-500 transition duration-300 ease-in-out">
+        </div>
 
-    <div class="col-span-1">
-        <h2 class="text-sm font-semibold text-gray-800 mb-2 text-left">Enter Your Zip Code</h2>
-        <input type="text" id="zipcode" placeholder="Enter your zip code" class="w-full p-4 border text-xs border-gray-300 rounded-lg shadow-sm focus:shadow-lg focus:ring-2 focus:ring-blue-500 transition duration-300 ease-in-out">
-    </div>
+        <div class="col-span-1">
+            <h2 class="text-sm font-semibold text-gray-800 mb-2 text-left">Enter Your Zip Code</h2>
+            <input type="text" id="zipcode" placeholder="Enter your zip code" class="w-full p-4 border text-xs border-gray-300 rounded-lg shadow-sm focus:shadow-lg focus:ring-2 focus:ring-blue-500 transition duration-300 ease-in-out">
+        </div>
 
-    <!-- Why Are You Applying for This Loan? -->
-    <div class="col-span-1">
-        <h2 class="text-sm font-semibold text-gray-800 mb-2 text-left">Why are you applying for this loan?</h2>
-        <textarea id="loan-reason" placeholder="Explain why you need this loan" class="w-full p-4 border text-xs border-gray-300 rounded-lg shadow-sm focus:shadow-lg focus:ring-2 focus:ring-blue-500 transition duration-300 ease-in-out resize-none h-32"></textarea>
-    </div>
+        <!-- Why Are You Applying for This Loan? -->
+        <div class="col-span-1">
+            <h2 class="text-sm font-semibold text-gray-800 mb-2 text-left">Why are you applying for this loan?</h2>
+            <textarea id="loan-reason" placeholder="Explain why you need this loan" class="w-full p-4 border text-xs border-gray-300 rounded-lg shadow-sm focus:shadow-lg focus:ring-2 focus:ring-blue-500 transition duration-300 ease-in-out resize-none h-32"></textarea>
+        </div>
 
-    <!-- Upload a Valid Means of Identity -->
-    <div class="col-span-1">
-        <h2 class="text-sm font-semibold text-gray-800 mb-2 text-left">Upload valid Identity document (Government ID)</h2>
-        <div class="relative mb-4">
-            <input type="file" id="identity-upload" class="w-full p-4 text-xs border border-gray-300 rounded-lg shadow-sm focus:shadow-lg focus:ring-2 focus:ring-blue-500 transition duration-300 ease-in-out">
+        <!-- Upload a Valid Means of Identity -->
+        <div class="col-span-1">
+            <h2 class="text-sm font-semibold text-gray-800 mb-2 text-left">Upload valid Identity document (Government ID)</h2>
+            <div class="relative mb-4">
+                <input type="file" id="identity-upload" class="w-full p-4 text-xs border border-gray-300 rounded-lg shadow-sm focus:shadow-lg focus:ring-2 focus:ring-blue-500 transition duration-300 ease-in-out">
+            </div>
         </div>
     </div>
 
-</div>
+    <section class="py-10 bg-" id="spacing">
+        <div class="container mx-auto text-center"></div>
+    </section>
 
-<section class="py-10 bg-" id="spacing">
-    <div class="container mx-auto text-center">
+    <!-- Instructions -->
+    <p class="text-sm text-gray-600 mb-6 leading-relaxed text-center">
+        Your loan application will be reviewed and processed within 48 hours. For any queries, contact <a href="mailto:info@visionprobase.tech" class="text-blue-500 underline">info@visionprobase.tech</a>.
+    </p>
+
+    <!-- Centered Request Loan Button -->
+    <div class="flex justify-center mt-6">
+        <button id="request-loan-btn" onclick="sendLoanRequest()" class="bg-gradient-to-r from-blue-600 to-blue-500 text-white py-3 px-8 rounded-lg transform hover:scale-105 transition duration-300 ease-out shadow-lg">
+            Request Loan
+        </button>
     </div>
-</section>
-
-<!-- Instructions -->
-<p class="text-sm text-gray-600 mb-6 leading-relaxed text-center">
-    Your loan application will be reviewed and processed within 48 hours. For any queries, contact <a href="mailto:info@visionprobase.tech" class="text-blue-500 underline">info@visionprobase.tech</a>.
-</p>
-
-
-<!-- Centered Request Loan Button -->
-<div class="flex justify-center mt-6">
-    <button id="request-loan-btn" onclick="sendLoanRequest()" class="bg-gradient-to-r from-blue-600 to-blue-500 text-white py-3 px-8 rounded-lg transform hover:scale-105 transition duration-300 ease-out shadow-lg">
-        Request Loan
-    </button>
 </div>
+
+<!-- Desktop Form Container -->
+<div class="hidden md:block">
+    <!-- Form Container with Styling -->
+    <div class="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-6 p-6 bg-white rounded-lg shadow-lg mx-auto">
+        <!-- Have You Applied for a Loan Before? -->
+        <div class="col-span-1 w-full">
+            <h2 class="text-sm font-semibold text-gray-800 mb-2 text-left">Have you applied for a loan before?</h2>
+            <select id="loan-history" class="w-full p-4 border border-gray-300 text-xs rounded-lg shadow-sm focus:shadow-lg focus:ring-2 focus:ring-blue-500 transition duration-300 ease-in-out">
+                <option value="" disabled selected>Select an option</option>
+                <option value="yes">Yes</option>
+                <option value="no">No</option>
+            </select>
+        </div>
+
+        <!-- What Job Do You Do? -->
+        <div class="col-span-1 w-full">
+            <h2 class="text-sm font-semibold text-gray-800 mb-2 text-left">What job do you do?</h2>
+            <input type="text" id="job-title" placeholder="Enter your job title" class="w-full p-4 text-xs border border-gray-300 rounded-lg shadow-sm focus:shadow-lg focus:ring-2 focus:ring-blue-500 transition duration-300 ease-in-out">
+        </div>
+
+        <!-- How Much Would You Be Requesting For? -->
+        <div class="col-span-1">
+            <h2 class="text-sm font-semibold text-gray-800 mb-2 text-left">How much would you be requesting for?</h2>
+            <div class="relative mb-4">
+                <input type="text" id="loan-amount" placeholder="Enter amount" class="w-full text-left p-4 text-xs pl-8 border border-gray-300 rounded-lg shadow-sm focus:shadow-lg focus:ring-2 focus:ring-blue-500 transition duration-300 ease-in-out" oninput="formatCurrency(this)">
+                <p class="text-xs text-gray-500 mt-1">All loans above $100 attract a 10% interest.</p>
+            </div>
+        </div>
+
+        <!-- What's Your Main Source of Income? -->
+        <div class="col-span-1 w-full">
+            <h2 class="text-sm font-semibold text-gray-800 mb-2 text-left">What's your main source of income?</h2>
+            <input type="text" id="income-source" placeholder="Enter your main source of income" class="w-full p-4 border text-xs border-gray-300 rounded-lg shadow-sm focus:shadow-lg focus:ring-2 focus:ring-blue-500 transition duration-300 ease-in-out">
+        </div>
+
+        <!-- What's Your Best Payback Time? -->
+        <div class="col-span-1 w-full">
+            <h2 class="text-sm font-semibold text-gray-800 mb-2 text-left">What's your best payback time?</h2>
+            <select id="payback-time" class="w-full p-4 border border-gray-300 text-xs rounded-lg shadow-sm focus:shadow-lg focus:ring-2 focus:ring-blue-500 transition duration-300 ease-in-out">
+                <option value="" disabled selected>Select a payback time</option>
+                <option value="6 months">6 months</option>
+                <option value="7 months">7 months</option>
+                <option value="8 months">8 months</option>
+                <option value="9 months">9 months</option>
+                <option value="10 months">10 months</option>
+                <option value="11 months">11 months</option>
+                <option value="12 months">12 months</option>
+            </select>
+        </div>
+
+        <!-- Which Country Are You From? -->
+        <div class="col-span-1 ">
+            <h2 class="text-sm font-semibold text-gray-800 mb-2 text-left">Country</h2>
+            <input type="text" id="country" placeholder="Enter your country" class="w-full p-4 border text-xs border-gray-300 rounded-lg shadow-sm focus:shadow-lg focus:ring-2 focus:ring-blue-500 transition duration-300 ease-in-out">
+        </div>
+
+        <!-- Address and Zip Code -->
+        <div class="col-span-1">
+            <h2 class="text-sm font-semibold text-gray-800 mb-2 text-left">Enter Your Address</h2>
+            <input type="text" id="address" placeholder="Enter your address" class="w-full p-4 border text-xs border-gray-300 rounded-lg shadow-sm focus:shadow-lg focus:ring-2 focus:ring-blue-500 transition duration-300 ease-in-out">
+        </div>
+
+        <div class="col-span-1">
+            <h2 class="text-sm font-semibold text-gray-800 mb-2 text-left">Enter Your Zip Code</h2>
+            <input type="text" id="zipcode" placeholder="Enter your zip code" class="w-full p-4 border text-xs border-gray-300 rounded-lg shadow-sm focus:shadow-lg focus:ring-2 focus:ring-blue-500 transition duration-300 ease-in-out">
+        </div>
+
+        <!-- Why Are You Applying for This Loan? -->
+        <div class="col-span-1">
+            <h2 class="text-sm font-semibold text-gray-800 mb-2 text-left">Why are you applying for this loan?</h2>
+            <textarea id="loan-reason" placeholder="Explain why you need this loan" class="w-full p-4 border text-xs border-gray-300 rounded-lg shadow-sm focus:shadow-lg focus:ring-2 focus:ring-blue-500 transition duration-300 ease-in-out resize-none h-32"></textarea>
+        </div>
+
+        <!-- Upload a Valid Means of Identity -->
+        <div class="col-span-1">
+            <h2 class="text-sm font-semibold text-gray-800 mb-2 text-left">Upload valid Identity document (Government ID)</h2>
+            <div class="relative mb-4">
+                <input type="file" id="identity-upload" class="w-full p-4 text-xs border border-gray-300 rounded-lg shadow-sm focus:shadow-lg focus:ring-2 focus:ring-blue-500 transition duration-300 ease-in-out">
+            </div>
+        </div>
+    </div>
+
+    <section class="py-10 bg-" id="spacing">
+        <div class="container mx-auto text-center"></div>
+    </section>
+
+    <!-- Instructions -->
+    <p class="text-sm text-gray-600 mb-6 leading-relaxed text-center">
+        Your loan application will be reviewed and processed within 48 hours. For any queries, contact <a href="mailto:info@visionprobase.tech" class="text-blue-500 underline">info@visionprobase.tech</a>.
+    </p>
+
+    <!-- Centered Request Loan Button -->
+    <div class="flex justify-center mt-6">
+        <button id="request-loan-btn" onclick="sendLoanRequest()" class="bg-gradient-to-r from-blue-600 to-blue-500 text-white py-3 px-8 rounded-lg transform hover:scale-105 transition duration-300 ease-out shadow-lg">
+            Request Loan
+        </button>
+    </div>
+</div>
+
 
 
 <!-- Include Email.js Library -->
