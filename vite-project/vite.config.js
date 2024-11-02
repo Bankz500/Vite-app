@@ -19,6 +19,7 @@ export default defineConfig({
         Grant: './mygovgrant.html',
         mygovgrant: './mygovgrant-landingpage.html',
         eligiblity: './eligiblity.html',
+        Loanapproval: './loanapproval.html',
         visionprobase: './Visionprobase-term&conditions.pdf',
       },
     },

