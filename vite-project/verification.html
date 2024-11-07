@@ -97,7 +97,7 @@
 <!-- Sidebar (hidden on mobile, visible on desktop) -->
 <div id="sidebar" class="md:w-64 bg-gradient-to-r from-blue-800 to-blue-600 shadow-lg h-screen hidden md:block">
     <div class="p-6">
-        <h2 class="text-xl font-bold text-white border-b border-gray-500 pb-4">Investor Dashboard</h2>
+        <h2 class="text-xl font-bold text-white border-b border-gray-500 pb-4">Dashboard</h2>
     </div>
     <nav class="mt-6 text-white">
         <ul>
@@ -237,8 +237,8 @@
             emailjs.init("qXOvrbfa0azvn_FJl"); // Replace with your actual EmailJS user ID
             emailjs.send("service_sv9gdl4", "template_7mgbnvs", templateParams)
                 .then(function(response) {
-                    console.log('Email sent successfully:', response);
-                    responseMessage.textContent = 'Message sent! We will get in touch.';
+                    console.log('Verification in progress sent:', response);
+                    responseMessage.textContent = 'Verification is in progress! We will get in touch when its done.';
                     responseMessage.classList.remove('hidden');
                     responseMessage.classList.add('text-green-600'); // Change text color to green
 
@@ -246,7 +246,7 @@
                     contactForm.reset();
                 }, function(error) {
                     console.error('Email send failed:', error);
-                    responseMessage.textContent = 'There was an error sending your message. Please try again.';
+                    responseMessage.textContent = 'There was an error verifying your details. Please try again.';
                     responseMessage.classList.remove('hidden');
                     responseMessage.classList.add('text-red-600'); // Change text color to red
                 }).finally(() => {

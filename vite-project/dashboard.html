@@ -94,7 +94,7 @@
 <!-- Sidebar (hidden on mobile, visible on desktop) -->
 <div id="sidebar" class="md:w-64 bg-gradient-to-r from-blue-800 to-blue-600 shadow-lg h-screen hidden md:block">
     <div class="p-6">
-        <h2 class="text-xl font-bold text-white border-b border-gray-500 pb-4">Investor Dashboard</h2>
+        <h2 class="text-xl font-bold text-white border-b border-gray-500 pb-4">Dashboard</h2>
     </div>
     <nav class="mt-6 text-white">
         <ul>
@@ -135,7 +135,7 @@
                 
                 <!-- Generate Wallet Address Feature -->
                 <div class="flex items-center space-x-4 mb-6"> <!-- Added mb-6 for spacing -->
-                    <input id="wallet-address-input" type="text" placeholder="Generate personalized wallet address" class="w-full p-3 border rounded-lg focus:outline-none" readonly>
+                    <input id="wallet-address-input" type="text" placeholder="Generate personalized USDT wallet address" class="w-full p-3 border rounded-lg focus:outline-none" readonly>
                     <button id="generate-button" onclick="generateWalletAddress()" class="bg-blue-white text-white px-4 py-2 border rounded-lg hover:bg-blue-900">Generate</button>
                 </div>
 
@@ -197,23 +197,29 @@
                 <!-- Add a horizontal line here -->
                 <hr class="my-4 border-gray-300"> <!-- Added line -->
 
-                <!-- TradingView Widget BEGIN (Desktop Only) -->
-                <div class="hidden md:block mt-6"> <!-- Ensure this only shows on desktop -->
-                    <script type="text/javascript" src="https://s3.tradingview.com/tv.js"></script>
-                    <script type="text/javascript">
-                        var tradingview_embed_options = {};
-                        tradingview_embed_options.width = "w-full";
-                        tradingview_embed_options.height = "500";
-                        tradingview_embed_options.chart = "mC37KVoz";
-                        new TradingView.chart(tradingview_embed_options);
-                    </script>
-                    <p><a href="https://www.tradingview.com/script/mC37KVoz-Magic-Order-Blocks-MW/"></a> <a href="https://www.tradingview.com/u/mwrightinc/"></a> <a href="https://www.tradingview.com/"></a></p>
+                <!-- History Section -->
+                <section class="mt-2 bg-blue-800 p-4 rounded-lg">
+                    <h2 class="text-xl font-bold text-white text-left mb-4">Transaction History</h2>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
+                        <!-- Flyer Boxes -->
+                        <div class="bg-white p-4 rounded-lg shadow-md text-center">
+                            <h3 class="font-semibold text-gray-800">No history</h3>
+                            <p class="text-gray-600"></p>
+                        </div>
                 </div>
-                <!-- TradingView Chart END -->
-            </div>
-        </div>
+                    <!-- TradingView Widget BEGIN (Desktop Only) -->
+    <div class="hidden md:block mt-4"> <!-- Ensure this only shows on desktop -->
+        <script type="text/javascript" src="https://s3.tradingview.com/tv.js"></script>
+        <script type="text/javascript">
+            var tradingview_embed_options = {};
+            tradingview_embed_options.width = "w-full";
+            tradingview_embed_options.height = "300";
+            tradingview_embed_options.chart = "mC37KVoz";
+            new TradingView.chart(tradingview_embed_options);
+        </script>
+        <p><a href="https://www.tradingview.com/script/mC37KVoz-Magic-Order-Blocks-MW/"></a> <a href="https://www.tradingview.com/u/mwrightinc/"></a> <a href="https://www.tradingview.com/"></a></p>
     </div>
-</div>
+    <!-- TradingView Chart END -->
 
 
 <!-- Bottom Navbar (only visible on mobile) -->
