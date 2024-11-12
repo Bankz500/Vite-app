@@ -89,7 +89,7 @@
 
     <div class="flex">
 <!-- Sidebar (hidden on mobile, visible on desktop) -->
-<div id="sidebar" class="md:w-64 bg-gradient-to-r from-blue-800 to-blue-600 shadow-lg h-screen hidden md:block">
+<div id="sidebar" class="md:w-64 bg-blue-900 shadow-lg h-screen hidden md:block">
     <div class="p-6">
         <h2 class="text-xl font-bold text-white border-b border-gray-500 pb-4">Dashboard</h2>
     </div>
@@ -120,7 +120,7 @@
 </div>
         
 <!-- Main Content -->
-<div class="flex-1 p-6 bg-gradient-to-r from-black to-blue-900  pb-28 md:pb-0 w-full">
+<div class="flex-1 p-6 bg-gray-100  pb-28 md:pb-0 w-full">
     <div class="flex-1 p-6 bg-white rounded-lg text-black">
         <h1 class="text-3xl font-semibold mb-6 text-black">Deposit</h1>
         <p class="text-black text-sm mb-4">To make a deposit, copy the wallet address below and attach the payment proof receipt.</p>
@@ -204,7 +204,7 @@
         
 
         <!-- Payment Methods Section -->
-        <section class="py-10 bg-gray-100 rounded-lg mt-8">
+        <section class="py-6 bg-gray-100 rounded-lg mt-8">
             <div class="container mx-auto text-center">
                 <h3 class="text-1xl font-bold mb-8 text-gray-700">Payment Methods</h3>
                 <p class="text-gray-600 mb-6">We accept the following payment methods:</p>
@@ -242,9 +242,9 @@
         mobileCopyButton.addEventListener('click', function() {
             const mobileWalletAddress = document.getElementById('mobileWalletAddress').textContent;
             navigator.clipboard.writeText(mobileWalletAddress).then(() => {
-                alert('Mobile wallet address copied to clipboard!');
+                alert('Wallet address copied');
             }).catch(err => {
-                console.error('Error copying text: ', err);
+                console.error('Error copying wallet: ', err);
             });
         });
 

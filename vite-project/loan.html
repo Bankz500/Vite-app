@@ -166,14 +166,49 @@
             <input type="text" id="job-title" placeholder="Enter your job title" class="w-full p-4 text-xs border border-gray-300 rounded-lg shadow-sm focus:shadow-lg focus:ring-2 focus:ring-blue-500 transition duration-300 ease-in-out">
         </div>
 
-        <!-- How Much Would You Be Requesting For? -->
-        <div class="col-span-1">
-            <h2 class="text-sm font-semibold text-gray-800 mb-2 text-left">How much would you be requesting for?</h2>
-            <div class="relative mb-4">
-                <input type="text" id="loan-amount" placeholder="Enter amount" class="w-full text-left p-4 text-xs pl-8 border border-gray-300 rounded-lg shadow-sm focus:shadow-lg focus:ring-2 focus:ring-blue-500 transition duration-300 ease-in-out" oninput="formatCurrency(this)">
-                <p class="text-xs text-gray-500 mt-1">All loans above $100 attract a 10% interest.</p>
-            </div>
-        </div>
+<!-- How Much Would You Be Requesting For? -->
+<div class="col-span-1">
+    <h2 class="text-sm font-semibold text-gray-800 mb-2 text-left">How much would you be requesting for?</h2>
+    <div class="relative mb-4 flex items-center">
+        <!-- Currency Selector -->
+        <select id="currency-selector" class="border border-gray-300 rounded-l-lg text-xs p-4 focus:ring-2 focus:ring-blue-500 transition duration-300 ease-in-out w-full">
+            <option value="USD">United States - $ (USD)</option>
+            <option value="EUR">Eurozone - € (EUR)</option>
+            <option value="GBP">United Kingdom - £ (GBP)</option>
+            <option value="NGN">Nigeria - ₦ (NGN)</option>
+            <option value="JPY">Japan - ¥ (JPY)</option>
+            <option value="AUD">Australia - $ (AUD)</option>
+            <option value="CAD">Canada - $ (CAD)</option>
+            <option value="CHF">Switzerland - CHF</option>
+            <option value="CNY">China - ¥ (CNY)</option>
+            <option value="INR">India - ₹ (INR)</option>
+            <option value="ZAR">South Africa - R (ZAR)</option>
+            <option value="BRL">Brazil - R$ (BRL)</option>
+            <option value="MXN">Mexico - $ (MXN)</option>
+            <option value="RUB">Russia - ₽ (RUB)</option>
+            <option value="SGD">Singapore - $ (SGD)</option>
+            <option value="HKD">Hong Kong - $ (HKD)</option>
+            <option value="NZD">New Zealand - $ (NZD)</option>
+            <option value="SEK">Sweden - kr (SEK)</option>
+            <option value="NOK">Norway - kr (NOK)</option>
+            <option value="DKK">Denmark - kr (DKK)</option>
+            <option value="KRW">South Korea - ₩ (KRW)</option>
+            <option value="THB">Thailand - ฿ (THB)</option>
+            <option value="PHP">Philippines - ₱ (PHP)</option>
+            <option value="IDR">Indonesia - Rp (IDR)</option>
+            <option value="TRY">Turkey - ₺ (TRY)</option>
+            <option value="AED">United Arab Emirates - د.إ (AED)</option>
+            <option value="SAR">Saudi Arabia - ر.س (SAR)</option>
+            <option value="EGP">Egypt - £ (EGP)</option>
+            <option value="KES">Kenya - KSh (KES)</option>
+            <option value="ARS">Argentina - $ (ARS)</option>
+        </select>
+        <!-- Amount Input Field -->
+        <input type="text" id="loan-amount" placeholder="Enter amount" class="w-full text-left p-4 text-xs pl-4 border border-gray-300 rounded-r-lg shadow-sm focus:shadow-lg focus:ring-2 focus:ring-blue-500 transition duration-300 ease-in-out" oninput="">
+    </div>
+    <p class="text-xs text-blue-500 mt-1">All loans require a 10% security deposit after the loan has been approved and paid.</p>
+</div>
+
 
         <!-- What's Your Main Source of Income? -->
         <div class="col-span-1 w-full">
@@ -311,14 +346,50 @@
     <input type="text" id="job-title" placeholder="Enter your job title" class="w-full p-4 text-xs border border-gray-300 rounded-lg shadow-sm focus:shadow-lg focus:ring-2 focus:ring-blue-500 transition duration-300 ease-in-out">
 </div>
 
-        <!-- How Much Would You Be Requesting For? -->
-        <div class="col-span-1">
-            <h2 class="text-sm font-semibold text-gray-800 mb-2 text-left">How much would you be requesting for?</h2>
-            <div class="relative mb-4">
-                <input type="text" id="loan-amount" placeholder="Enter amount" class="w-full text-left p-4 text-xs pl-8 border border-gray-300 rounded-lg shadow-sm focus:shadow-lg focus:ring-2 focus:ring-blue-500 transition duration-300 ease-in-out" oninput="formatCurrency(this)">
-                <p class="text-xs text-gray-500 mt-1">All loans above $100 attract a 10% interest.</p>
-            </div>
-        </div>
+<!-- How Much Would You Be Requesting For? -->
+<div class="col-span-1">
+    <h2 class="text-sm font-semibold text-gray-800 mb-2 text-left">How much would you be requesting for?</h2>
+    <div class="relative mb-4 flex items-center">
+        <!-- Currency Selector -->
+        <select id="currency-selector" class="border border-gray-300 rounded-l-lg text-xs p-4 focus:ring-2 focus:ring-blue-500 transition duration-300 ease-in-out w-full">
+            <option value="USD">United States - $ (USD)</option>
+            <option value="EUR">Eurozone - € (EUR)</option>
+            <option value="GBP">United Kingdom - £ (GBP)</option>
+            <option value="NGN">Nigeria - ₦ (NGN)</option>
+            <option value="JPY">Japan - ¥ (JPY)</option>
+            <option value="AUD">Australia - $ (AUD)</option>
+            <option value="CAD">Canada - $ (CAD)</option>
+            <option value="CHF">Switzerland - CHF</option>
+            <option value="CNY">China - ¥ (CNY)</option>
+            <option value="INR">India - ₹ (INR)</option>
+            <option value="ZAR">South Africa - R (ZAR)</option>
+            <option value="BRL">Brazil - R$ (BRL)</option>
+            <option value="MXN">Mexico - $ (MXN)</option>
+            <option value="RUB">Russia - ₽ (RUB)</option>
+            <option value="SGD">Singapore - $ (SGD)</option>
+            <option value="HKD">Hong Kong - $ (HKD)</option>
+            <option value="NZD">New Zealand - $ (NZD)</option>
+            <option value="SEK">Sweden - kr (SEK)</option>
+            <option value="NOK">Norway - kr (NOK)</option>
+            <option value="DKK">Denmark - kr (DKK)</option>
+            <option value="KRW">South Korea - ₩ (KRW)</option>
+            <option value="THB">Thailand - ฿ (THB)</option>
+            <option value="PHP">Philippines - ₱ (PHP)</option>
+            <option value="IDR">Indonesia - Rp (IDR)</option>
+            <option value="TRY">Turkey - ₺ (TRY)</option>
+            <option value="AED">United Arab Emirates - د.إ (AED)</option>
+            <option value="SAR">Saudi Arabia - ر.س (SAR)</option>
+            <option value="EGP">Egypt - £ (EGP)</option>
+            <option value="KES">Kenya - KSh (KES)</option>
+            <option value="ARS">Argentina - $ (ARS)</option>
+        </select>
+        <!-- Amount Input Field -->
+        <input type="text" id="loan-amount" placeholder="Enter amount" class="w-full text-left p-4 text-xs pl-4 border border-gray-300 rounded-r-lg shadow-sm focus:shadow-lg focus:ring-2 focus:ring-blue-500 transition duration-300 ease-in-out" oninput="">
+    </div>
+    <p class="text-xs text-blue-500 mt-1">All loans require a 10% security deposit after the loan has been approved and paid.</p>
+</div>
+
+
 
             <!-- What's Your Main Source of Income? -->
 <div class="col-span-1 w-full">
