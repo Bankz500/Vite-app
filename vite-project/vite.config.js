@@ -21,6 +21,8 @@ export default defineConfig({
         eligiblity: './eligiblity.html',
         Loanapproval: './loanapproval.html',
         visionprobase: './Visionprobase-term&conditions.pdf',
+        support: './support.html',
+        manifest: './manifest.json',
       },
     },
   },

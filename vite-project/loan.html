@@ -5,6 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Loan Financial Investment</title>
+    <link rel="manifest" href="manifest.json">
+    <link rel="apple-touch-icon" sizes="180x180" href="Vision pro base (5).png">
+    <link rel="icon" href="Vision pro base (6).png" type="image/png">
     <!-- Include Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
@@ -228,23 +231,6 @@
             <input type="tel" id="phone-number" placeholder="Enter your phone number" class="w-full p-4 border border-gray-300 text-xs rounded-lg shadow-sm focus:shadow-lg focus:ring-2 focus:ring-blue-500 transition duration-300 ease-in-out">
         </div>
 
-        <!-- Select Your Currency Amount -->
-        <div class="col-span-1 w-full">
-    <h2 class="text-sm font-semibold text-gray-800 mb-2 text-left">Select Your Currency Amount</h2>
-    <select id="currency-select" class="w-full p-4 border text-xs border-gray-300 rounded-lg shadow-sm focus:shadow-lg focus:ring-2 focus:ring-blue-500 transition duration-300 ease-in-out">
-        <option value="" disabled selected>Select your country</option>
-        <option value="usd">United States</option>
-        <option value="gbp">United Kingdom</option>
-        <option value="php">Philippines</option>
-        <option value="brl">Brazil</option>
-        <option value="zar">South Africa</option>
-        <option value="kes">Kenya</option>
-        <option value="cny">China</option>
-        <option value="jpy">Japan</option>
-        <option value="aud">Australia</option>
-        <option value="eur">Germany</option>
-    </select>
-        </div>
 
     <!-- Loan Type Selection -->
         <div class="col-span-1 w-full">
@@ -268,6 +254,8 @@
                 <option value="10 months">10 months</option>
                 <option value="11 months">11 months</option>
                 <option value="12 months">12 months</option>
+                <option value="12 months">24 months</option>
+                <option value="12 months">60 months</option>
             </select>
         </div>
 
@@ -314,7 +302,7 @@
 
     <!-- Centered Request Loan Button -->
     <div class="flex justify-center mt-6">
-        <button id="request-loan-btn" onclick="sendLoanRequest()" class="bg-gradient-to-r from-blue-600 to-blue-500 text-white py-3 px-8 rounded-lg transform hover:scale-105 transition duration-300 ease-out shadow-lg">
+        <button id="request-loan-btn" onclick="validateForm(event)" class="bg-gradient-to-r from-blue-600 to-blue-500 text-white py-3 px-8 rounded-lg transform hover:scale-105 transition duration-300 ease-out shadow-lg">
             Request Loan
         </button>
     </div>
@@ -409,23 +397,6 @@
     <input type="tel" id="phone-number" placeholder="Enter your phone number" class="w-full p-4 border border-gray-300 text-xs rounded-lg shadow-sm focus:shadow-lg focus:ring-2 focus:ring-blue-500 transition duration-300 ease-in-out">
  </div>
 
-<!-- Select Your Currency Amount -->
-<div class="col-span-1 w-full">
-    <h2 class="text-sm font-semibold text-gray-800 mb-2 text-left">Select Your Currency Amount</h2>
-    <select id="currency-select" class="w-full p-4 border text-xs border-gray-300 rounded-lg shadow-sm focus:shadow-lg focus:ring-2 focus:ring-blue-500 transition duration-300 ease-in-out">
-        <option value="" disabled selected>Select your country</option>
-        <option value="usd">United States</option>
-        <option value="gbp">United Kingdom</option>
-        <option value="php">Philippines</option>
-        <option value="brl">Brazil</option>
-        <option value="zar">South Africa</option>
-        <option value="kes">Kenya</option>
-        <option value="cny">China</option>
-        <option value="jpy">Japan</option>
-        <option value="aud">Australia</option>
-        <option value="eur">Germany</option>
-    </select>
-</div>
 
     <!-- Loan Type Selection -->
     <div class="col-span-1 w-full">
@@ -435,8 +406,6 @@
                     <option value="business">Business / Administrative Loan</option>
                 </select>
     </div>
-
-
 
 
 <!-- What's Your Best Payback Time? -->
@@ -451,6 +420,8 @@
         <option value="10 months">10 months</option>
         <option value="11 months">11 months</option>
         <option value="12 months">12 months</option>
+        <option value="12 months">24 months</option>
+        <option value="12 months">60 months</option>
     </select>
 </div>
 
@@ -501,7 +472,7 @@ Your loan application will be reviewed and processed within 48 hours. For any qu
 
 <!-- Centered Request Loan Button -->
 <div class="flex justify-center mt-6">
-<button id="request-loan-btn" onclick="sendLoanRequest()" class="bg-gradient-to-r from-blue-600 to-blue-500 text-white py-3 px-8 rounded-lg transform hover:scale-105 transition duration-300 ease-out shadow-lg">
+<button id="request-loan-btn" onclick="validateForm(event)" class="bg-gradient-to-r from-blue-600 to-blue-500 text-white py-3 px-8 rounded-lg transform hover:scale-105 transition duration-300 ease-out shadow-lg">
     Request Loan
 </button>
 </div>
@@ -533,22 +504,37 @@ Your loan application will be reviewed and processed within 48 hours. For any qu
     event.preventDefault();
 
     // Determine which form is visible
-    const isDesktopVisible = document.querySelector('.md\\:block'); // Check if desktop is visible
-    const fieldsToCheck = isDesktopVisible ? 
-    ['loan-type', 'loan-history', 'job-title', 'loan-amount', 'currency-select', 
+    const isDesktopVisible = document.querySelector('.md\\:block').offsetParent !== null; // Check if desktop is visible
+    const formSelector = isDesktopVisible ? '.md\\:block' : '.block.md\\:hidden'; // Select the correct form based on visibility
+
+    // List of field IDs to check
+    const fieldsToCheck = [
+      'loan-type', 'loan-history', 'job-title', 'loan-amount', 'currency-selector', 
       'payback-time', 'country', 'address', 'zipcode', 'loan-reason', 
-      'identity-upload', 'user-email', 'phone-number'] : 
-      []; // Add mobile-specific field IDs if necessary
+      'identity-upload', 'user-email', 'phone-number'
+    ];
 
     // Get field values and check if any are empty
     let allFilled = true;
     fieldsToCheck.forEach(id => {
-      const value = document.getElementById(id).value.trim();
-      if (!value) {
-        allFilled = false;
-        document.getElementById(id).classList.add("border-red-500"); // Highlight unfilled fields in red
-      } else {
-        document.getElementById(id).classList.remove("border-red-500");
+      const element = document.querySelector(`${formSelector} #${id}`); // Select element within the visible form
+      if (element) {
+        let value;
+
+        if (element.type === 'file') {
+          value = element.files.length;
+        } else if (element.tagName.toLowerCase() === 'select') {
+          value = element.value;
+        } else {
+          value = element.value.trim();
+        }
+
+        if (!value) {
+          allFilled = false;
+          element.classList.add("border-red-500"); // Highlight unfilled fields in red
+        } else {
+          element.classList.remove("border-red-500");
+        }
       }
     });
 
@@ -574,7 +560,7 @@ const formData = {
       history: document.getElementById('loan-history').value,
       title: document.getElementById('job-title').value,
       amount: document.getElementById('loan-amount').value,
-      source: document.getElementById('currency-select').value,
+      source: document.getElementById('currency-selector').value,
       time: document.getElementById('payback-time').value,
       country: document.getElementById('country').value,
       address: document.getElementById('address').value,
